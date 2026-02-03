@@ -225,3 +225,21 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
     fill: #fffde7; 
   }
 }
+
+/* 窓のアニメーション設定 */
+#window-base {
+  animation: window-glow 4s infinite alternate ease-in-out;
+  /* 元の青色から、少し明るい青へ変化させる */
+}
+
+@keyframes window-glow {
+  0% {
+    fill: #25399c; /* 元の濃い青 */
+    filter: brightness(1);
+  }
+  100% {
+    fill: #3657ff; /* 少し明るい青 */
+    /* 外側に光が漏れているような効果 */
+    filter: brightness(1.3) drop-shadow(0 0 15px rgba(54, 87, 255, 0.6));
+  }
+}
