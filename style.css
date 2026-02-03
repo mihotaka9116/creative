@@ -207,3 +207,13 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
     max-width: 250px !important;
   }
 }
+
+/* 窓のパーツをふわっと光らせる例 */
+#window {
+  animation: shine 3s infinite alternate;
+}
+
+@keyframes shine {
+  from { opacity: 0.6; }
+  to { opacity: 1; fill: #fffde7; }
+}
