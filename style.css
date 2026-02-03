@@ -208,12 +208,20 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   }
 }
 
-/* 窓のパーツをふわっと光らせる例 */
+/* --- 7. SVG Animations --- */
+/* メインビジュアルの窓をふわっと光らせる */
 #window {
-  animation: shine 3s infinite alternate;
+  animation: shine 3s infinite alternate ease-in-out;
 }
 
+/* 制作会社ポイント：アニメーションの定義は一箇所にまとめる */
 @keyframes shine {
-  from { opacity: 0.6; }
-  to { opacity: 1; fill: #fffde7; }
+  0% { 
+    opacity: 0.6;
+    fill: #fdfae2; /* 柔らかい光の色 */
+  }
+  100% { 
+    opacity: 1; 
+    fill: #fffde7; 
+  }
 }
