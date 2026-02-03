@@ -1,32 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <title>Untitled</title>
-    <link rel="stylesheet" href="./style.css">
-
-  </head>
-    
-  <body>
-  <!DOCTYPE html>
-<body>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Miho Takahashi Portfolio</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Noto+Sans+JP:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-  </head>
+  
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
 
   <header class="header">
     <div class="header-inner">
       <h1 class="logo">
         <span class="logo-text">Miho Takahashi</span>
-        
       </h1>
       <nav class="nav">
         <ul>
@@ -42,10 +32,8 @@
   <main>
     <section id="home" class="hero">
       <div class="hero-svg-wrapper">
-      <img src="siteimage.svg" alt="部屋のイラスト">
+        <img src="siteimage.svg" alt="部屋のイラスト">
       </div>
-      
-      
       <div class="hero-content">
         <h1 class="copy js-split-text">Creative & Colorful</h1>
         <p class="sub-copy js-reveal">
@@ -73,37 +61,23 @@
           </div>
           <div class="work-item">
             <h3>02 Craftsmanship</h3>
-            <p>技術力や工程のこだわり</p>
-            <p>窓の青に背景にはピンクを合わせてカラフルでありながら、落ち着きや信頼感を感じされるような色を採用しました。</p>
+            <p>技術力や工程のこだわり。窓の青に背景にはピンクを合わせてカラフルでありながら、落ち着きや信頼感を感じされるような色を採用しました。</p>
           </div>
         </div>
       </div>
     </section>
 
-   <section id="lookbook" class="js-reveal">
-  <div class="container">
-    <h2 class="section-title">Look Book</h2>
-    
-    <div class="lookbook-wrapper">
-    <div class="lookbook-visual">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1079">
-          </svg>
-      <img src="https://i.imgur.com/l19eNUY.png">
+    <section id="lookbook" class="js-reveal">
+      <div class="container">
+        <h2 class="section-title">Look Book</h2>
+        <div class="lookbook-wrapper">
+          <div class="lookbook-visual">
+            <img src="onnanoko.svg" alt="女の子と海">
+          </div>
+          <p class="lookbook-caption">Collection 2026</p>
+        </div>
       </div>
-      <p class="lookbook-caption">Collection 2026</p>
-    </div>
-  </div>
-</section>
-    
-        <div class="lookbook-visual">
-        <img src="onnanoko.svg" alt="女の子と海">
-      </div>
-       <p class="lookbook-caption">Collection 2026</p>
-    </div>
-    　<img src="siteimage.svg" alt="部屋のイラスト">
-      </div>
-  </div>
-</section>
+    </section>
 
     <section id="shop" class="js-reveal">
       <div class="container">
@@ -120,69 +94,6 @@
     </div>
   </footer>
 
-  <script>
-   document.addEventListener('DOMContentLoaded', () => {
-  
-  // --- 1. タイトルの1文字ずつアニメーション ---
-  const splitText = document.querySelector('.js-split-text');
-  if (splitText) {
-    const text = splitText.textContent.trim();
-    splitText.innerHTML = ''; 
-    [...text].forEach((char, i) => {
-      const span = document.createElement('span');
-      span.style.transitionDelay = `${i * 0.05}s`;
-      span.innerHTML = char === ' ' ? '&nbsp;' : char;
-      splitText.appendChild(span);
-    });
-    
-    setTimeout(() => {
-      splitText.classList.add('is-visible');
-    }, 500);
-  }
-
-  // --- 2. スムーススクロール ---
-  const navLinks = document.querySelectorAll('a[href^="#"]');
-  navLinks.forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const href = this.getAttribute('href');
-      const target = href === "#" ? document.documentElement : document.querySelector(href);
-      
-      if (target) {
-        const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
-        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
-        });
-      }
-    });
-  });
-
-  // --- 3. スクロール監視 (ふわっと出す) ---
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-      }
-    });
-  }, { 
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  });
-
-  document.querySelectorAll('.js-reveal').forEach(el => {
-    revealObserver.observe(el);
-  });
-});
-    
-    
-  </script>
+  <script src="script.js"></script>
 </body>
-</html>
-    <script  src="./script.js"></script>
-
-  </body>
-  
 </html>
