@@ -1,4 +1,4 @@
-/* --- 1. 全体リセットと基本設定 --- */
+/* --- 1. 基本設定 --- */
 * {
   margin: 0;
   padding: 0;
@@ -7,21 +7,19 @@
 
 body {
   font-family: 'Playfair Display', serif;
-  color: #191970;
-  overflow-x: hidden; /* 横揺れを完全に防ぐ */
+  overflow-x: hidden;
 }
 
 /* --- 2. メインビジュアル（全幅・窓中央） --- */
 .hero {
   position: relative;
-  width: 100vw; /* 画面幅いっぱい */
+  width: 100vw;
   height: 90vh;
   background-color: #fff5f8;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* 親の幅を無視して全幅にする魔法の計算 */
-  margin-left: calc(50% - 50vw); 
+  margin-left: calc(50% - 50vw);
 }
 
 .hero-svg-wrapper {
@@ -33,7 +31,7 @@ body {
 .hero-svg-wrapper svg {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* 隙間なく全画面に広げる */
+  object-fit: cover;
 }
 
 .hero-content {
@@ -51,23 +49,21 @@ body {
   opacity: 1 !important;
 }
 
-/* --- 3. ルックブック（2番目の巨大化を防止） --- */
+/* --- 3. ルックブック（2番目の巨大化をピンポイントで防ぐ） --- */
 .lookbook-visual {
-  width: 90%;
-  max-width: 500px; /* 画像の最大サイズを固定 */
+  width: 100%;
+  max-width: 400px; /* 1枚目の画像と同じくらいの幅に制限 */
   margin: 0 auto 40px;
-  text-align: center;
 }
 
 .lookbook-visual svg, .lookbook-visual img {
   width: 100%;
   height: auto;
-  max-height: 70vh; /* 縦に伸びすぎるのを防ぐ */
-  object-fit: contain;
+  max-height: 60vh; /* 縦に伸びすぎないよう制限 */
   border-radius: 12px;
 }
 
-/* --- 4. オンラインショップ（2列 & 浮かび上がるエフェクト） --- */
+/* --- 4. オンラインショップ（2列 & 浮き上がる動き） --- */
 .goods-grid {
   display: flex;
   flex-wrap: wrap;
@@ -78,28 +74,31 @@ body {
 }
 
 .goods-item {
-  flex: 0 0 44%; /* PCで2列 */
+  flex: 0 0 44%;
   max-width: 450px;
+  text-align: center;
 }
 
 .image-wrap {
   width: 100%;
   overflow: hidden;
   border-radius: 12px;
-  /* 浮かび上がるための準備 */
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  background-color: #fcfcfc;
+  /* 浮かび上がるアニメーションの設定 */
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+  will-change: transform; /* 動きを滑らかにする */
 }
 
 .image-wrap img {
   width: 100%;
-  height: auto;
+  height: auto !important;
   display: block;
 }
 
-/* マウスを重ねた時に浮かび上がる（ホバー） */
+/* マウスを重ねた時の動き：上に浮き、影をつける */
 .goods-item:hover .image-wrap {
-  transform: translateY(-12px); /* 上に浮かせる */
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* 影をつけて立体感を出す */
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(37, 57, 156, 0.15); /* ほんのり青みがかった影 */
 }
 
 /* --- 5. 背景交互と中央寄せ --- */
@@ -126,5 +125,4 @@ footer, #footer { padding: 60px 0; text-align: center; }
 /* スマホ対応 */
 @media screen and (max-width: 767px) {
   .goods-item { flex: 0 0 100%; }
-  .hero { height: 70vh; }
 }
