@@ -166,6 +166,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   padding: 120px 0;
   background-color: #fff;
   border-top: 1px solid var(--soft-pink);
+  text-align:center;
 }
 
 /* --- 5. アニメーション設定 --- */
@@ -299,7 +300,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 
   /* ★詳細ページ用★ */
   .goods-grid { 
-    flex-direction: row 
+    display:flex:
     flex-wrap: wrap; 
     justify-content: center; 
     gap: 40px; 
@@ -335,15 +336,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
     margin: 0 10px;
   }
 
-  @media screen and (min-width: 768px) {
-  /* ... */
-  .goods-grid { 
-    display: flex 
-    flex-direction: row
-    /* ... */
-  }
-}
-
+ 
   /* 詳細ページ全体のレイアウト */
 .detail-container {
   padding-top: 100px；
@@ -351,7 +344,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 
 .goods-grid {
   display: flex;
-  flex-direction: column; 
+  flex-direction: row; 
   gap: 30px;
 }
 
