@@ -241,3 +241,95 @@ section:nth-of-type(4) {
   margin-left: auto !important;
   margin-right: auto !important;
 }
+
+/* --- 10. セクション余白の統一（規則性のあるデザイン） --- */
+
+/* すべてのセクション（コンセプト、LOOKBOOK、オンラインショップ、フッター等）に統一した余白を適用 */
+section, 
+#onlineshop, 
+#detail, 
+.concept-section {
+  padding-top: 100px !important;    /* 上にたっぷり余白 */
+  padding-bottom: 100px !important; /* 下にもたっぷり余白 */
+  margin: 0 !important;             /* 外側の余白をリセットして隙間をなくす */
+}
+
+/* スマホ版では少し余白を抑えて読みやすく */
+@media screen and (max-width: 768px) {
+  section, 
+  #onlineshop, 
+  #detail {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+}
+
+/* コンテナ同士の余計な隙間を排除 */
+.container, .detail-container {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* フッター周りの調整 */
+footer {
+  margin-top: 0 !important;
+  padding: 80px 0 !important;
+  border-top: 1px solid rgba(0,0,0,0.05); /* 境界線をうっすら入れて上品に */
+}
+
+/* 各セクション内のタイトル（h2）と本文（p）の距離を統一 */
+h2 {
+  margin-bottom: 40px !important; /* タイトルの下の余白を固定 */
+}
+
+p {
+  margin-bottom: 30px !important; /* 段落の後の余白を固定 */
+}
+
+/* --- オンラインショップ：画像の切れ・ズレを修正 --- */
+
+@media screen and (min-width: 768px) {
+  /* グリッド全体の配置をリセットして中央に */
+  .goods-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    max-width: 1000px !important;
+    margin: 40px auto !important;
+    gap: 60px 40px !important; /* 縦横の隙間を広げて見やすく */
+  }
+
+  /* 各アイテムの枠を固定 */
+  .goods-item {
+    flex: 0 0 calc(50% - 40px) !important;
+    width: calc(50% - 40px) !important;
+    max-width: 400px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+}
+
+/* 画像が枠からはみ出したり切れたりしないように強制 */
+.goods-item img {
+  width: 100% !important;
+  max-width: 100% !important; /* 枠いっぱいに広げる */
+  height: auto !important;
+  object-fit: contain !important; /* 画像全体を表示させる */
+  display: block !important;
+  margin: 0 auto 20px auto !important;
+}
+
+/* 商品タイトルと価格の調整 */
+.goods-item h3, 
+.goods-item p {
+  width: 100% !important;
+  text-align: center !important;
+  margin: 5px 0 !important;
+}
