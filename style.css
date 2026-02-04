@@ -395,13 +395,48 @@ section:nth-of-type(3) .container > div:last-child {
   text-shadow: 0 0 25px #fff, 0 0 10px rgba(255, 255, 255, 0.9) !important;
 }
 
-/* 3. サブコピーの再現 */
-.sub-copy {
+/* --- メインビジュアル：フォントと配置の完全再現 --- */
+
+/* 1. フォント読み込み */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
+/* 2. コピー全体のコンテナ */
+.hero-content {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* 3. メインコピー（ぼかしあり） */
+.copy {
+  order: 1 !important;
   font-family: 'Playfair Display', serif !important;
-  font-weight: 400 !important; /* サブは少し細めにするのが一般的ですが、前と同じなら 700 に変更してください */
-  font-style: italic; /* サブも斜体だった場合は残してください */
+  font-weight: 700 !important;
+  font-size: clamp(2rem, 8vw, 4.2rem) !important;
+  color: var(--primary-blue) !important;
+  /* メインには視認性のためのぼかしを維持 */
+  text-shadow: 0 0 25px #fff, 0 0 10px rgba(255, 255, 255, 0.9) !important;
+  margin-bottom: 20px !important; /* サブコピーとの距離 */
+  line-height: 1.1;
+}
+
+/* 4. サブコピー（ぼかしなし・前と同じ位置） */
+.sub-copy {
+  order: 2 !important;
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 700 !important;
+  font-size: 1.2rem;
+  color: var(--primary-blue) !important;
+  /* ぼかしを完全に削除 */
+  text-shadow: none !important; 
   letter-spacing: 0.1em;
-  margin-top: 20px !important; /* メインコピーからの距離を「前と同じ」くらいに確保 */
-  color: var(--primary-blue);
-  text-shadow: 0 0 10px #fff;
+  text-align: center;
 }
