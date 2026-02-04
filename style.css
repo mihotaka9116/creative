@@ -294,10 +294,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   .content:nth-of-type(even) { flex-direction: row-reverse; }
   .content .text, .content .img { width: 45%; }
   
-  .skills-grid { flex-direction: row; justify-content: space-between; }
-  .skill-item { width: 31%; }
-
-  /* ★詳細ページ用★ */
+    /* ★詳細ページ用★ */
   .goods-grid { 
     flex-direction: row 
     flex-wrap: wrap; 
