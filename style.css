@@ -1,4 +1,4 @@
-/* --- 1. 全体リセット --- */
+/* --- 1. 基本設定 --- */
 * {
   margin: 0;
   padding: 0;
@@ -10,51 +10,73 @@ body {
   color: #191970;
   line-height: 1.6;
   overflow-x: hidden;
-  text-align: center; /* 全体を中央寄せの基本にする */
+  background-color: #fff;
 }
 
-/* --- 2. メインビジュアル（全幅） --- */
+/* --- 2. ヘッダー --- */
+.header {
+  position: fixed;
+  top: 0; width: 100%; height: 60px;
+  background: rgba(255,255,255,0.95);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+.header-inner {
+  width: 100%; max-width: 1100px;
+  margin: 0 auto;
+  display: flex; justify-content: space-between; padding: 0 20px;
+}
+
+.nav ul { display: flex; list-style: none; gap: 25px; }
+.nav a { text-decoration: none; color: #25399c; font-weight: bold; }
+
+/* --- 3. メインビジュアル --- */
 .hero {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 90vh;
   background-color: #fff5f8;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: calc(50% - 50vw); /* はみ出しを補正して全幅にする */
+  overflow: hidden;
 }
 
 .hero-svg-wrapper {
   position: absolute;
-  inset: 0;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
 }
 
 .hero-svg-wrapper svg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* 窓が画面いっぱいに広がる */
+  width: 100%; height: 100%;
+  object-fit: contain; /* 窓が画面内に収まる */
 }
 
 .hero-content {
   position: relative;
   z-index: 10;
+  text-align: center;
 }
 
 .copy {
   display: block;
-  font-size: clamp(2.2rem, 8vw, 4.5rem);
+  font-size: clamp(2rem, 7vw, 4rem);
   font-weight: 800;
   color: #25399c !important;
   text-shadow: 0 0 20px #fff;
-  opacity: 1 !important;
+  opacity: 1 !important; /* 文字を確実に表示 */
 }
 
-/* --- 3. メインページ背景交互（奇数:ピンク / 偶数:白） --- */
+/* --- 4. メインページ背景交互設定 --- */
 section {
   padding: 100px 0;
+  text-align: center;
 }
 
+/* セクションごとの白・ピンク交互 */
 section:nth-of-type(odd) { background-color: #fff5f8; }
 section:nth-of-type(even) { background-color: #ffffff; }
 
@@ -64,67 +86,43 @@ section:nth-of-type(even) { background-color: #ffffff; }
   padding: 0 20px;
 }
 
-/* --- 4. オンラインショップ（画像比率と2列固定） --- */
-.detail-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 60px 20px;
-}
-
-.back-nav {
-  margin-bottom: 40px;
-}
-
-.goods-grid {
+/* --- 5. ショップ & ワークス (PC2列) --- */
+.goods-grid, .works-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 40px;
+  margin-top: 40px;
 }
 
-.goods-item {
-  /* PCで2列固定 */
-  flex: 0 0 44%;
-  max-width: 480px;
-  margin-bottom: 20px;
+@media screen and (min-width: 768px) {
+  .goods-item, .work-item {
+    flex: 0 0 44%; /* 2列固定 */
+    max-width: 480px;
+  }
 }
 
-/* 画像が縦に細長くなるのを防ぐ最重要設定 */
-.image-wrap {
+.image-wrap img, .work-item img {
   width: 100%;
-  height: auto; /* 高さを固定しない */
-  overflow: hidden;
+  height: auto; /* 画像の比率を守る */
   border-radius: 12px;
-  transition: transform 0.3s ease;
-}
-
-.image-wrap img {
-  width: 100%;
-  height: auto !important; /* 強制的に自動比率にする */
   display: block;
 }
 
-.detail-text-box {
-  max-width: 700px;
-  margin: 60px auto;
+/* オンラインショップ専用の中央寄せ */
+.detail-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  text-align: center;
 }
 
-/* --- 5. フッター --- */
+.back-nav { margin-bottom: 40px; }
+.detail-text-box { max-width: 700px; margin: 40px auto; }
+
+/* --- 6. フッター --- */
 footer, #footer {
   padding: 60px 0;
   text-align: center;
-  background-color: #fff;
-}
-
-/* --- 6. ホバーエフェクト --- */
-.goods-item:hover .image-wrap {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-/* スマホ対応 */
-@media screen and (max-width: 767px) {
-  .goods-item {
-    flex: 0 0 100%;
-  }
+  background: #fff;
 }
