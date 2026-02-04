@@ -438,3 +438,93 @@ footer {
     gap: 60px !important;
   }
 }
+
+/* --- オンラインショップ：全要素の完全中央揃えと2列維持 --- */
+
+/* 1. ページ全体のテキストを強制中央寄せ */
+#onlineshop, 
+.onlineshop-section,
+.back-nav {
+  text-align: center !important;
+}
+
+/* 2. グリッドの設定（PC版） */
+@media screen and (min-width: 768px) {
+  .goods-grid {
+    display: flex !important;
+    flex-direction: row !important; /* 横並び */
+    flex-wrap: wrap !important;     /* 折り返し許可 */
+    justify-content: center !important; /* 中央に寄せる */
+    align-items: flex-start !important;
+    max-width: 1000px !important;
+    margin: 40px auto !important;
+    gap: 40px !important;
+  }
+
+  .goods-item {
+    flex: 0 0 calc(50% - 40px) !important; /* 確実に2列 */
+    width: calc(50% - 40px) !important;
+    max-width: 400px !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; /* 中身を中央に */
+  }
+}
+
+/* 3. 画像の切れ・ズレを防止 */
+.goods-item img {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  margin-bottom: 20px !important;
+}
+
+/* 4. 商品タイトル・価格・ボタンを中央へ */
+.goods-item h3, 
+.goods-item p,
+.goods-item .btn,
+.back-nav a {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: block !important;
+  width: fit-content !important; /* 文字幅に合わせる */
+}
+
+/* 5. ページ下部の「Back to Top」等のナビゲーション */
+.back-nav {
+  margin: 60px auto !important;
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+}
+
+/* --- スマホ版：メインビジュアルの画像サイズ適正化 --- */
+@media screen and (max-width: 767px) {
+  .hero {
+    /* 高さの設定を調整（画像が入り切るように） */
+    height: 60vh !important; 
+    min-height: 400px !important;
+    background-size: contain !important; /* 画像を全体が表示されるように収める */
+    background-repeat: no-repeat !important;
+    background-position: center bottom !important; /* 下基準で配置 */
+  }
+
+  .hero-svg-wrapper img {
+    /* 画像タグを使っている場合の強制サイズ調整 */
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  /* コピーが画像に被りすぎる場合は位置を少し上げる */
+  .hero-content {
+    top: 40% !important;
+  }
+  
+  .copy {
+    font-size: 1.8rem !important; /* スマホで見やすいサイズに */
+  }
+}
