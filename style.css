@@ -397,3 +397,35 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   display: block;
   border-radius: 8px;   /* 角を少し丸くするとおしゃれです */
 }
+
+/* オンラインショップ詳細ページの横並び設定 */
+.works-grid {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 30px !important;
+  margin: 40px auto !important;
+  max-width: 1100px !important;
+}
+
+/* 各アイテムの横幅設定 */
+.work-item {
+  width: 100% !important; /* スマホでは1列 */
+  max-width: 450px;
+  text-align: center;
+}
+
+/* PC（画面幅768px以上）の時だけ横に2つ並べる */
+@media screen and (min-width: 768px) {
+  .work-item {
+    width: 45% !important; /* 横幅を約半分にする */
+  }
+}
+
+/* 画像のサイズ調整 */
+.image-wrap img, 
+.work-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
