@@ -336,3 +336,34 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   #header li {
     margin: 0 10px;
   }
+
+  @media screen and (min-width: 768px) {
+  /* ... */
+  .goods-grid { 
+    display: flex 
+    flex-direction: row
+    /* ... */
+  }
+}
+
+  /* 詳細ページ全体のレイアウトを強制 */
+.detail-container {
+  padding-top: 100px !important; /* ヘッダーとの重なりを防止 */
+}
+
+.goods-grid {
+  display: flex;
+  flex-direction: column; /* スマホは縦 */
+  gap: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .goods-grid {
+    flex-direction: row !important; /* PCは横 */
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .goods-item {
+    width: calc(50% - 20px) !important; /* 2列 */
+  }
+}
