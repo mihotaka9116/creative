@@ -155,3 +155,52 @@ section { padding: 100px 0; text-align: center; }
   opacity: 1;
   transform: translateY(0);
 }
+
+/* --- オンラインショップ：2列表示の最終防衛ライン --- */
+@media screen and (min-width: 768px) {
+  .goods-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 30px !important;
+    /* 親の幅を狭くして、物理的に3つ並べなくする */
+    max-width: 850px !important; 
+    margin: 40px auto !important;
+  }
+
+  .goods-item {
+    /* 48%に設定し、3つ目が入るスペースを完全に遮断 */
+    flex: 0 0 48% !important;
+    width: 48% !important;
+    margin-bottom: 30px !important;
+  }
+}
+
+/* --- 背景色を交互に適用する設定（onlineshop.html対応） --- */
+/* 一旦すべての背景を白に */
+.detail-content, .goods-item {
+  background-color: #ffffff;
+}
+
+/* 奇数番目のアイテムにピンクを適用 */
+.goods-item:nth-of-type(odd) {
+  background-color: var(--soft-pink);
+  border-radius: 15px; /* 角を丸くすると可愛くなります */
+  padding: 15px;
+}
+
+/* 偶数番目のアイテムの設定 */
+.goods-item:nth-of-type(even) {
+  background-color: #ffffff;
+  padding: 15px;
+}
+
+/* セクション全体の背景も交互にしたい場合 */
+.detail-container {
+  background-color: #ffffff;
+}
+.detail-text-box {
+  background-color: var(--soft-pink);
+  padding: 60px 20px;
+  margin-top: 50px;
+}
