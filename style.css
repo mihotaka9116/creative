@@ -63,6 +63,7 @@ body {
   text-decoration: none;
 }
 
+/* --- 3. ヒーローセクション --- */
 .hero {
   position: relative;
   width: 100%;
@@ -82,7 +83,6 @@ body {
   justify-content: center;
 }
 
-/* imgタグでSVGを読み込む場合も想定 */
 .hero-svg-wrapper svg,
 .hero-svg-wrapper img {
   width: 100%;
@@ -111,26 +111,6 @@ body {
   line-height: 1.1;
 }
 
-/* 1文字ずつ出すアニメーション用の設定 */
-.js-split-text span {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(15px);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-.js-split-text.is-visible span {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.sub-copy {
-  display: block;
-  font-size: 1.1rem;
-  color: var(--primary-blue);
-  font-weight: 700;
-}
-
 /* --- 4. コンテンツセクション --- */
 section {
   padding: 100px 0;
@@ -139,36 +119,69 @@ section {
 }
 
 .container {
-  max-width: 800px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-/* 背景の交互の色分け */
 section:nth-of-type(even) { background-color: #ffffff; }
 section:nth-of-type(odd) { background-color: var(--soft-pink); }
 
+/* LOOKBOOKの画像 */
 .lookbook-visual {
   width: 90%;
   max-width: 350px;
   margin: 40px auto;
-  display: flex;
-  justify-content: center;
 }
 
-.lookbook-visual img,
-.lookbook-visual svg {
+.lookbook-visual img {
   width: 100%;
   height: auto;
 }
 
-.footer {
-  padding: 120px 0;
-  background-color: #fff;
-  border-top: 1px solid var(--soft-pink);
+/* --- 5. オンラインショップ（詳細ページ）用レイアウト --- */
+.works-grid, .goods-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin: 40px auto;
+  width: 100%;
 }
 
-/* --- 5. アニメーション設定 --- */
+.work-item, .goods-item {
+  width: 100%; /* スマホデフォルト */
+  max-width: 450px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.image-wrap {
+  overflow: hidden;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.image-wrap img, .work-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.work-item:hover img, .goods-item:hover img {
+  transform: scale(1.05);
+}
+
+/* --- 6. レスポンシブ（PC版：768px以上） --- */
+@media screen and (min-width: 768px) {
+  .work-item, .goods-item {
+    width: calc(45% - 20px); /* PCでは2列に並ぶ */
+  }
+}
+
+/* --- 7. アニメーション系 --- */
 .js-reveal {
   opacity: 0;
   transform: translateY(20px);
@@ -180,252 +193,19 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   transform: translateY(0);
 }
 
-/* --- 6. スマホ専用調整 --- */
-@media (max-width: 768px) {
-  .header-inner { flex-direction: column; padding: 10px; }
-  .nav ul { gap: 15px; }
-
-  .hero {
-    height: 60vh;
-    min-height: 380px;
-  }
-
-  .hero-svg-wrapper svg,
-  .hero-svg-wrapper img {
-    width: 95% !important; 
-    position: static !important;
-    transform: none !important;
-  }
-
-  .copy {
-    font-size: 1.8rem !important; /* 少し調整 */
-    white-space: nowrap;
-  }
-
-  .lookbook-visual {
-    max-width: 250px !important;
-  }
+.footer {
+  padding: 80px 0;
+  background-color: #fff;
+  border-top: 1px solid var(--soft-pink);
+  text-align: center;
 }
 
-/* --- 7. SVG Animations --- */
-/* メインビジュアルの窓をふわっと光らせる */
-#window {
-  animation: shine 3s infinite alternate ease-in-out;
-}
-
-/* アニメーション */
-@keyframes shine {
-  0% { 
-    opacity: 0.6;
-    fill: #fdfae2; /* 柔らかい光の色 */
-  }
-  100% { 
-    opacity: 1; 
-    fill: #fffde7; 
-  }
-}
-
-/* 窓のアニメーション設定 */
+/* --- 8. SVG Animations --- */
 #window-base {
   animation: window-glow 4s infinite alternate ease-in-out;
-  /* 元の青色から、少し明るい青へ変化させる */
 }
 
 @keyframes window-glow {
-  0% {
-    fill: #25399c; /* 元の濃い青 */
-    filter: brightness(1);
-  }
-  100% {
-    fill: #3657ff; /* 少し明るい青 */
-    /* 外側に光が漏れているような効果 */
-    filter: brightness(1.3) drop-shadow(0 0 15px rgba(54, 87, 255, 0.6));
-  }
-}
-
-/* --- 5. 詳細ページ（work.html）用 --- */
-/* 基本（スマホ・全デバイス共通の中央寄せ設定） */
-.detail-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 60px 20px;
-  text-align: center;
-}
-.main-visual-img {
-  max-width: 300px;
-  margin: 0 auto 40px;
-  display: block;
-}
-.goods-grid {
-  display: flex;
-  flex-direction: column; /* スマホでは縦並び */
-  align-items: center;
-  gap: 60px;
-  margin-bottom: 60px;
-}
-.goods-item {
-  width: 100%;
-  max-width: 550px; /* 写真のサイズ：一回り大きく */
-  text-align: center;
-}
-.image-wrap {
-  overflow: hidden;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-}
-.image-wrap img { transition: transform 0.4s ease; width: 100%; display: block; }
-.goods-item:hover img { transform: scale(1.05); }
-.item-caption { font-weight: bold; color: #4682b4; }
-.custom-btn {
-  display: inline-block;
-  background-color: #4682b4;
-  color: #fff !important;
-  padding: 15px 40px;
-  text-decoration: none;
-  border-radius: 5px;
-  margin-top: 30px;
-}
-
-/* --- 6. レスポンシブ調整（PC版：768px以上） --- */
-@media screen and (min-width: 768px) {
-  /* トップページ用 */
-  .content { flex-direction: row; justify-content: center; gap: 60px; }
-  .content:nth-of-type(even) { flex-direction: row-reverse; }
-  .content .text, .content .img { width: 45%; }
-  
-  .skills-grid { flex-direction: row; justify-content: space-between; }
-  .skill-item { width: 31%; }
-
-  /* ★詳細ページ用★ */
-  .goods-grid { 
-    flex-direction: row 
-    flex-wrap: wrap; 
-    justify-content: center; 
-    gap: 40px; 
-  }
-  .goods-item { 
-    width: 45%；
-    max-width: none; 
-  }
-}
-
-/* --- 8. スマホ版調整 --- */
-@media screen and (max-width: 767px) {
-  /* ヘッダー全体の余白を調整 */
-  #header {
-    flex-direction: column;
-    padding: 30px 0 0 0; /* 
-    gap: 30px; 
-  }
-
-  /* ロゴのサイズ調整 */
-  .site-title img {
-    width: 80px;
-  }
-
-  /* ナビゲーション（メニュー）の設定 */
-  #header ul {
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 30px; /* 
-  }
-
-  #header li {
-    margin: 0 10px;
-  }
-
-  @media screen and (min-width: 768px) {
-  /* ... */
-  .goods-grid { 
-    display: flex 
-    flex-direction: row
-    /* ... */
-  }
-}
-
-  /* 詳細ページ全体のレイアウト */
-.detail-container {
-  padding-top: 100px；
-}
-
-.goods-grid {
-  display: flex;
-  flex-direction: column; 
-  gap: 30px;
-}
-
-@media screen and (min-width: 768px) {
-  .goods-grid {
-    flex-direction: row；
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .goods-item {
-    width: calc(50% - 20px) !important; /* 2列 */
-  }
-}
-
-/* グッズ一覧の親要素をフレックスボックスにする */
-.goods-grid {
-  display: flex;
-  flex-wrap: wrap;       /* 折り返しを許可 */
-  justify-content: center; /* 中央寄せ */
-  gap: 30px;            /* 画像同士の隙間 */
-  margin: 40px auto;
-  max-width: 1200px;    /* 全体の最大幅 */
-}
-
-/* 各グッズアイテムの幅設定 */
-.goods-item {
-  width: 100%;          /* スマホでは1枚100% */
-  max-width: 400px;     /* 大きくなりすぎないように制限 */
-  text-align: center;
-}
-
-/* PCサイズ（768px以上）の設定 */
-@media screen and (min-width: 768px) {
-  .goods-item {
-    width: calc(45% - 20px); /* PCでは横に2つ並ぶように設定 */
-  }
-}
-
-/* 画像自体のサイズ調整 */
-.image-wrap img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 8px;   /* 角を少し丸くするとおしゃれです */
-}
-
-/* オンラインショップ詳細ページの横並び設定 */
-.works-grid {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-  gap: 30px !important;
-  margin: 40px auto !important;
-  max-width: 1100px !important;
-}
-
-/* 各アイテムの横幅設定 */
-.work-item {
-  width: 100% !important; /* スマホでは1列 */
-  max-width: 450px;
-  text-align: center;
-}
-
-/* PC（画面幅768px以上）の時だけ横に2つ並べる */
-@media screen and (min-width: 768px) {
-  .work-item {
-    width: 45% !important; /* 横幅を約半分にする */
-  }
-}
-
-/* 画像のサイズ調整 */
-.image-wrap img, 
-.work-item img {
-  width: 100%;
-  height: auto;
-  display: block;
+  0% { fill: #25399c; filter: brightness(1); }
+  100% { fill: #3657ff; filter: brightness(1.3) drop-shadow(0 0 15px rgba(54,87,255,0.6)); }
 }
