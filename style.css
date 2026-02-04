@@ -2,7 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Playfair+Display:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap');
 
 /* --- 2. 共通リセット --- */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
   font-family: 'Playfair Display', 'Noto Sans JP', serif;
@@ -10,106 +14,102 @@ body {
   color: #191970;
   background-color: #fff;
   padding-top: 60px;
-  overflow-x: hidden;
 }
 
-/* --- 3. ヒーロー（全幅・コピー復元） --- */
+/* --- 3. メインビジュアル（以前の安定設定） --- */
 .hero {
   position: relative;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  width: 100%;
   height: 90vh;
   background-color: #fff5f8;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+.hero-svg-wrapper {
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+}
+
+.hero-svg-wrapper img {
+  width: 100%;
+  height: auto;
 }
 
 .copy {
   position: absolute;
-  top: 50%; left: 50%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(1.8rem, 8vw, 4.2rem);
+  font-size: clamp(2rem, 8vw, 4rem);
   font-weight: 800;
-  color: #25399c !important;
-  text-shadow: 0 0 25px #fff, 0 0 10px rgba(255,255,255,0.8);
+  color: #25399c;
+  text-shadow: 0 0 20px #fff, 0 0 10px rgba(255,255,255,0.8);
   white-space: nowrap;
   z-index: 10;
+}
+
+/* --- 4. セクション・レイアウト --- */
+section {
+  padding: 80px 0;
   text-align: center;
 }
 
-/* --- 4. DETAIL（1番・2番を横並びにする） --- */
-/* index.htmlのDETAIL部分を狙い撃ち */
-section:nth-of-type(3) .container > div:first-of-type,
-.detail-content {
-  display: flex !important;
-  flex-direction: column !important; /* スマホは縦 */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 背景の色分け */
+section:nth-of-type(even) { background-color: #ffffff; }
+section:nth-of-type(odd) { background-color: #fff5f8; }
+
+/* --- 5. DETAIL & オンラインショップ（2列・横並び） --- */
+.goods-grid, .detail-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 40px;
-  align-items: center;
+  margin-top: 40px;
+}
+
+.goods-item, .detail-item {
+  width: 100%;
+  max-width: 450px;
 }
 
 @media screen and (min-width: 768px) {
-  section:nth-of-type(3) .container > div:first-of-type,
-  .detail-content {
-    flex-direction: row !important; /* PCは横並び */
-    justify-content: center !important;
-    align-items: flex-start !important;
-  }
-  
-  /* 1と2の各ブロックの幅 */
-  section:nth-of-type(3) .container > div:first-of-type > div,
-  .detail-item {
-    width: 45% !important;
-    text-align: center;
+  .goods-item, .detail-item {
+    width: 45%; /* PCで2列並び */
   }
 }
 
-/* --- 5. LOOKBOOK（画像の巨大化を防止） --- */
-.lookbook-visual, 
-section:nth-of-type(3) .container > div:last-child {
-  width: 100% !important;
-  max-width: 400px !important; /* ここでサイズを制限 */
-  margin: 50px auto !important;
-  display: block !important;
+.image-wrap img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
 }
 
-.lookbook-visual img, 
-section:nth-of-type(3) .container > div:last-child img {
-  width: 100% !important;
-  height: auto !important;
-  display: block;
-}
-
-/* --- 6. オンラインショップ（2列 & 強制表示） --- */
-.goods-grid {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-  gap: 30px;
-  max-width: 1100px;
+/* --- 6. ルックブック（画像サイズ制限） --- */
+.lookbook-visual img {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
   margin: 0 auto;
 }
 
-.goods-item {
-  width: 45% !important; /* PCで2列 */
-  min-width: 280px;
-  opacity: 1 !important; /* 強制表示 */
-  transform: none !important;
-  text-align: center;
-}
-
-/* --- 7. フッター（完全中央） --- */
+/* --- 7. フッター（中央寄せ） --- */
 footer, #footer {
-  width: 100% !important;
-  padding: 60px 0 !important;
-  background-color: #fff !important;
-  border-top: 2px solid #87ceeb !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
+  width: 100%;
+  padding: 60px 0;
+  background-color: #fff;
+  border-top: 1px solid #87ceeb;
+  text-align: center;
 }
 
 /* --- 8. 窓のアニメーション --- */
@@ -117,6 +117,6 @@ footer, #footer {
   animation: window-glow 4s infinite alternate ease-in-out;
 }
 @keyframes window-glow {
-  0% { fill: #25399c; filter: brightness(1); }
-  100% { fill: #3657ff; filter: brightness(1.3); }
+  0% { fill: #25399c; }
+  100% { fill: #3657ff; }
 }
