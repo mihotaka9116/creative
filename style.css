@@ -7,7 +7,7 @@
 
 :root {
   --primary-blue: #25399c;
-  --sky-blue: #00bfff;
+  --sky-blue: #00bfff; /* 鮮やかな水色 */
   --hover-blue: #87ceeb;
   --soft-pink: #fff5f8; 
   --text-dark: #191970;
@@ -63,17 +63,6 @@ body {
   position: relative;
 }
 
-/* ナビのおしゃれ下線アニメーション */
-.nav ul li a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px; left: 0;
-  width: 0; height: 1px;
-  background-color: var(--sky-blue);
-  transition: width 0.3s ease;
-}
-.nav ul li a:hover::after { width: 100%; }
-
 /* --- 3. メインビジュアル --- */
 .hero {
   position: relative;
@@ -111,13 +100,7 @@ body {
   font-weight: 800;
   color: var(--primary-blue) !important;
   text-shadow: 0 0 25px #fff;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: reveal 1.2s ease forwards 0.5s;
-}
-
-@keyframes reveal {
-  to { opacity: 1; transform: translateY(0); }
+  opacity: 1; /* 確実に表示 */
 }
 
 /* --- 4. コンテンツセクション --- */
@@ -128,23 +111,10 @@ section {
 section:nth-of-type(odd) { background-color: var(--soft-pink); }
 section:nth-of-type(even) { background-color: #ffffff; }
 
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.lookbook-visual {
-  max-width: 400px;
-  margin: 40px auto;
-}
-.lookbook-visual img { width: 100%; height: auto; border-radius: 12px; }
-
-/* フッターをセンターに修正 */
 footer, .footer {
   padding: 80px 0;
   background-color: #fff;
-  text-align: center; /* 文字をセンターに */
+  text-align: center;
   width: 100%;
 }
 
@@ -156,20 +126,14 @@ footer, .footer {
   text-align: center;
 }
 
-.onlineshop-title {
-  color: var(--sky-blue) !important;
-  margin-bottom: 40px;
-}
-
 .goods-grid {
   display: flex;
-  flex-wrap: wrap; /* 折り返しを許可 */
+  flex-wrap: wrap;
   justify-content: center;
   gap: 40px;
   margin-top: 40px;
 }
 
-/* 基本は1列（スマホ） */
 .goods-item {
   width: 100%;
   max-width: 500px;
@@ -179,14 +143,17 @@ footer, .footer {
 .image-wrap {
   overflow: hidden;
   border-radius: 12px;
+  /* 浮かび上がるアニメーションの速度設定 */
   transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
+
 .image-wrap img { width: 100%; height: auto; display: block; }
 
-/* 浮かび上がるエフェクト */
+/* ホバー：水色のぼかしをやめて通常（グレー系）の影に戻す */
 .goods-item:hover .image-wrap {
   transform: translateY(-10px);
-  box-shadow: 0 15px 35px rgba(0, 191, 255, 0.2);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15); /* 通常の影 */
 }
 
 .item-caption {
@@ -194,20 +161,29 @@ footer, .footer {
   font-weight: bold;
 }
 
-/* --- 6. レスポンシブ調整（PC版：768px以上で2列） --- */
-@media screen and (min-width: 768px) {
-  .goods-item {
-    width: calc(45% - 20px); /* PCで2列にする設定 */
-  }
+/* 問い合わせボタンを水色に */
+.custom-btn, .contact-link {
+  display: inline-block;
+  background-color: var(--sky-blue); /* 水色 */
+  color: #fff !important;
+  padding: 15px 40px;
+  text-decoration: none;
+  border-radius: 30px; 
+  font-weight: bold;
+  margin-top: 30px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: none;
+  cursor: pointer;
 }
 
-/* スクロールアニメ用 */
-.js-reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: 1s ease-out;
+.custom-btn:hover, .contact-link:hover {
+  background-color: var(--hover-blue);
+  transform: scale(1.05);
 }
-.js-reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+
+/* --- 6. レスポンシブ調整（PC版：2列） --- */
+@media screen and (min-width: 768px) {
+  .goods-item {
+    width: calc(45% - 20px);
+  }
 }
