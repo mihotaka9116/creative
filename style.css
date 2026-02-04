@@ -208,3 +208,33 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   padding: 60px 0;
   text-align: center;
 }
+
+/* PCサイズ（768px以上）で確実に2列にする設定 */
+@media screen and (min-width: 768px) {
+  .works-grid, .goods-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 40px !important;
+    max-width: 1000px !important; /* 全体の幅を絞って3つ目が入る隙間をなくす */
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .work-item, .goods-item {
+    /* 48%に設定することで、2つで96%を使い、3つ目（+48%）が入る余地を完全に消します */
+    width: 48% !important; 
+    min-width: 340px !important; /* 小さくなりすぎないように固定 */
+    flex: 0 0 48% !important;    /* 伸び縮みさせず、48%幅をキープさせる */
+    box-sizing: border-box !important;
+  }
+}
+
+/* スマホでは1列（480px以下などの場合） */
+@media screen and (max-width: 767px) {
+  .work-item, .goods-item {
+    width: 100% !important;
+    max-width: 450px !important;
+    margin: 0 auto 30px !important;
+  }
+}
