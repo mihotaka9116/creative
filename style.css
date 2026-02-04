@@ -1,4 +1,4 @@
-/* --- 1. 基本設定 --- */
+/* --- 1. 全体リセットと基本設定 --- */
 * {
   margin: 0;
   padding: 0;
@@ -8,51 +8,32 @@
 body {
   font-family: 'Playfair Display', serif;
   color: #191970;
-  line-height: 1.6;
-  overflow-x: hidden;
-  background-color: #fff;
+  overflow-x: hidden; /* 横揺れを完全に防ぐ */
 }
 
-/* --- 2. ヘッダー --- */
-.header {
-  position: fixed;
-  top: 0; width: 100%; height: 60px;
-  background: rgba(255,255,255,0.95);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-}
-
-.header-inner {
-  width: 100%; max-width: 1100px;
-  margin: 0 auto;
-  display: flex; justify-content: space-between; padding: 0 20px;
-}
-
-.nav ul { display: flex; list-style: none; gap: 25px; }
-.nav a { text-decoration: none; color: #25399c; font-weight: bold; }
-
-/* --- 3. メインビジュアル --- */
+/* --- 2. メインビジュアル（全幅・窓中央） --- */
 .hero {
   position: relative;
-  width: 100%;
+  width: 100vw; /* 画面幅いっぱい */
   height: 90vh;
   background-color: #fff5f8;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  /* 親の幅を無視して全幅にする魔法の計算 */
+  margin-left: calc(50% - 50vw); 
 }
 
 .hero-svg-wrapper {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  inset: 0;
+  z-index: 1;
 }
 
 .hero-svg-wrapper svg {
-  width: 100%; height: 100%;
-  object-fit: contain; /* 窓が画面内に収まる */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 隙間なく全画面に広げる */
 }
 
 .hero-content {
@@ -63,53 +44,69 @@ body {
 
 .copy {
   display: block;
-  font-size: clamp(2rem, 7vw, 4rem);
+  font-size: clamp(2.2rem, 8vw, 4.5rem);
   font-weight: 800;
   color: #25399c !important;
   text-shadow: 0 0 20px #fff;
-  opacity: 1 !important; /* 文字を確実に表示 */
+  opacity: 1 !important;
 }
 
-/* --- 4. メインページ背景交互設定 --- */
-section {
-  padding: 100px 0;
+/* --- 3. ルックブック（2番目の巨大化を防止） --- */
+.lookbook-visual {
+  width: 90%;
+  max-width: 500px; /* 画像の最大サイズを固定 */
+  margin: 0 auto 40px;
   text-align: center;
 }
 
-/* セクションごとの白・ピンク交互 */
-section:nth-of-type(odd) { background-color: #fff5f8; }
-section:nth-of-type(even) { background-color: #ffffff; }
-
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
+.lookbook-visual svg, .lookbook-visual img {
+  width: 100%;
+  height: auto;
+  max-height: 70vh; /* 縦に伸びすぎるのを防ぐ */
+  object-fit: contain;
+  border-radius: 12px;
 }
 
-/* --- 5. ショップ & ワークス (PC2列) --- */
-.goods-grid, .works-grid {
+/* --- 4. オンラインショップ（2列 & 浮かび上がるエフェクト） --- */
+.goods-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 40px;
-  margin-top: 40px;
+  max-width: 1100px;
+  margin: 40px auto;
 }
 
-@media screen and (min-width: 768px) {
-  .goods-item, .work-item {
-    flex: 0 0 44%; /* 2列固定 */
-    max-width: 480px;
-  }
+.goods-item {
+  flex: 0 0 44%; /* PCで2列 */
+  max-width: 450px;
 }
 
-.image-wrap img, .work-item img {
+.image-wrap {
   width: 100%;
-  height: auto; /* 画像の比率を守る */
+  overflow: hidden;
   border-radius: 12px;
+  /* 浮かび上がるための準備 */
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.image-wrap img {
+  width: 100%;
+  height: auto;
   display: block;
 }
 
-/* オンラインショップ専用の中央寄せ */
+/* マウスを重ねた時に浮かび上がる（ホバー） */
+.goods-item:hover .image-wrap {
+  transform: translateY(-12px); /* 上に浮かせる */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* 影をつけて立体感を出す */
+}
+
+/* --- 5. 背景交互と中央寄せ --- */
+section { padding: 100px 0; text-align: center; }
+section:nth-of-type(odd) { background-color: #fff5f8; }
+section:nth-of-type(even) { background-color: #ffffff; }
+
 .detail-container {
   max-width: 1100px;
   margin: 0 auto;
@@ -117,12 +114,17 @@ section:nth-of-type(even) { background-color: #ffffff; }
   text-align: center;
 }
 
-.back-nav { margin-bottom: 40px; }
-.detail-text-box { max-width: 700px; margin: 40px auto; }
-
-/* --- 6. フッター --- */
-footer, #footer {
-  padding: 60px 0;
+.back-nav, .detail-text-box {
+  width: 100%;
   text-align: center;
-  background: #fff;
+  margin: 0 auto 40px;
+}
+
+/* フッター */
+footer, #footer { padding: 60px 0; text-align: center; }
+
+/* スマホ対応 */
+@media screen and (max-width: 767px) {
+  .goods-item { flex: 0 0 100%; }
+  .hero { height: 70vh; }
 }
