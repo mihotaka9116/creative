@@ -189,3 +189,54 @@ footer p, .footer p, #footer p {
   0% { fill: #25399c; }
   100% { fill: #3657ff; filter: brightness(1.2) drop-shadow(0 0 10px rgba(54,87,255,0.5)); }
 }
+
+/* --- オンラインショップ：すべての要素を中央へ --- */
+
+/* Back To Top リンクを中央に */
+.back-nav {
+  width: 100% !important;
+  text-align: center !important;
+  margin-bottom: 40px !important;
+}
+
+.back-nav a {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--primary-blue);
+  font-weight: bold;
+}
+
+/* 商品一覧の下にあるテキストエリアを中央に */
+.detail-text-box {
+  width: 100% !important;
+  max-width: 700px !important; /* 読みやすい幅に制限 */
+  margin: 60px auto !important; /* 左右中央に配置 */
+  text-align: center !important;
+}
+
+/* 説明文（pタグ）の調整 */
+.project-description {
+  margin: 20px auto !important;
+  text-align: center !important;
+}
+
+/* グッズについて問い合わせるボタンのコンテナを中央に */
+.cta-button-container {
+  width: 100% !important;
+  text-align: center !important;
+  margin-top: 30px !important;
+}
+
+/* 商品名（Mag Cupなど）のフォントと配置 */
+.item-caption {
+  text-align: center !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+.item-caption span {
+  display: block; /* 英語名を改行して表示 */
+  font-weight: normal;
+  font-size: 0.9rem;
+  color: #666;
+}
