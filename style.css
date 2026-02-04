@@ -345,6 +345,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   /* 詳細ページ全体のレイアウト */
 .detail-container {
   padding-top: 100px；
+  display:flex;
 }
 
 .goods-grid {
@@ -362,4 +363,11 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   .goods-item {
     width: calc(50% - 20px) !important; /* 2列 */
   }
+}
+
+.footer {
+  padding: 120px 0;
+  background-color: #fff;
+  border-top: 1px solid var(--soft-pink);
+  text-align:center;
 }
