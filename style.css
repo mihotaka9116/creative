@@ -148,19 +148,6 @@ section {
 section:nth-of-type(even) { background-color: #ffffff; }
 section:nth-of-type(odd) { background-color: var(--soft-pink); }
 
-.lookbook-visual {
-  width: 90%;
-  max-width: 350px;
-  margin: 40px auto;
-  display: flex;
-  justify-content: center;
-}
-
-.lookbook-visual img,
-.lookbook-visual svg {
-  width: 100%;
-  height: auto;
-}
 
 .footer {
   padding: 120px 0;
@@ -243,6 +230,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   }
 }
 
+
 /* --- 5. 詳細ページ（work.html）用 --- */
 /* 基本（スマホ・全デバイス共通の中央寄せ設定） */
 .detail-container {
@@ -251,11 +239,13 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   padding: 60px 20px;
   text-align: center;
 }
+
 .main-visual-img {
   max-width: 300px;
   margin: 0 auto 40px;
   display: block;
 }
+
 .goods-grid {
   display: flex;
   flex-direction: column; /* スマホでは縦並び */
@@ -263,6 +253,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   gap: 60px;
   margin-bottom: 60px;
 }
+
 .goods-item {
   width: 100%;
   max-width: 550px; /* 写真のサイズ：一回り大きく */
@@ -307,6 +298,20 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   }
 }
 
+.lookbook-visual {
+  width: 90%;
+  max-width: 350px;
+  margin: 40px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.lookbook-visual img,
+.lookbook-visual svg {
+  width: 100%;
+  height: auto;
+}
+
 /* --- 8. スマホ版調整 --- */
 @media screen and (max-width: 767px) {
   /* ヘッダー全体の余白を調整 */
@@ -332,16 +337,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
     margin: 0 10px;
   }
 
-  @media screen and (min-width: 768px) {
-  /* ... */
-  .goods-grid { 
-    display: flex 
-    flex-direction: row
-    /* ... */
-  }
-}
-
-  /* 詳細ページ全体のレイアウト */
+   /* 詳細ページ全体のレイアウト */
 .detail-container {
   padding-top: 100px；
 }
@@ -361,4 +357,15 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   .goods-item {
     width: calc(50% - 20px) !important; /* 2列 */
   }
+}
+
+/* --- 8. フッター（中央寄せ） --- */
+footer, .footer {
+  width: 100%;
+  text-align: center; 
+  padding: 80px 0;   
+  background-color: #ffffff; 
+  color: var(--text-dark);   
+  font-size: 0.8rem;
+  border-top: 1px solid var(--soft-pink);
 }
