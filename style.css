@@ -46,7 +46,7 @@ body {
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 30px;
 }
 
 .nav ul {
@@ -281,7 +281,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 .custom-btn {
   display: inline-block;
   background-color: #4682b4;
-  color: #fff !important;
+  color: #fff 
   padding: 15px 40px;
   text-decoration: none;
   border-radius: 5px;
@@ -297,13 +297,14 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   
   /* ★詳細ページ用★ */
   .goods-grid { 
-    flex-direction: row 
+    display:flex;
+    flex-direction: row; 
     flex-wrap: wrap; 
     justify-content: center; 
     gap: 40px; 
   }
   .goods-item { 
-    width: 45%；
+    width: 45%;
     max-width: none; 
   }
 }
@@ -315,6 +316,10 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
     flex-direction: column;
     padding: 30px 0 0 0; /* 
     gap: 30px; 
+  }
+
+  #footer {
+    text-align:center;
   }
 
   /* ロゴのサイズ調整 */
@@ -333,14 +338,6 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
     margin: 0 10px;
   }
 
-  @media screen and (min-width: 768px) {
-  /* ... */
-  .goods-grid { 
-    display: flex 
-    flex-direction: row
-    /* ... */
-  }
-}
 
   /* 詳細ページ全体のレイアウト */
 .detail-container {
