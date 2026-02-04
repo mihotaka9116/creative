@@ -167,7 +167,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   border-top: 1px solid var(--soft-pink);
   width: 100%;
   text-align: center; 
-  padding: 40px 0;   
+  padding: 120px 0;   
   background-color: #ffffff; 
   color: #191970;   
   font-size: 0.8rem;
@@ -289,16 +289,26 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   .skills-grid { flex-direction: row; justify-content: space-between; }
   .skill-item { width: 31%; }
 
-  /* ★詳細ページ用★ */
-  .goods-grid { 
-    flex-direction: row; 
-    flex-wrap: wrap; 
-    justify-content: center; 
-    gap: 40px; 
-  }
-  .goods-item { 
-    width: 45%；
-    max-width: none; 
+ /* ★詳細ページ（オンラインショップ）用★ */
+.goods-grid { 
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center; /* 中央寄せ */
+  gap: 40px;               /* アイテム間の隙間 */
+}
+
+/* 個別のアイテム（画像＋文字のセット） */
+.goods-item {
+  /* PCで「半分より少し小さい幅」に固定することで、強制的に2列にします */
+  width: calc(50% - 40px); 
+  min-width: 300px;         /* これ以上小さくならないようにする */
+  text-align: center;
+}
+
+/* スマホでは1列にしたい場合（画面幅が狭いとき） */
+@media screen and (max-width: 768px) {
+  .goods-item {
+    width: 100%;           /* スマホは横幅いっぱい（1列） */
   }
 }
 
