@@ -375,3 +375,33 @@ footer p, footer menu, footer div {
   width: 100% !important;
   text-align: center !important;
 }
+
+/* --- オンラインショップ・フッターの強制中央寄せ --- */
+
+/* 1. フッターを囲む親要素を画面幅いっぱいに広げる */
+footer, 
+.back-nav {
+  width: 100vw !important;  /* 画面の端から端まで使う */
+  margin-left: calc(-50vw + 50%) !important; /* 親の幅に関係なく中央に配置する裏技 */
+  margin-right: calc(-50vw + 50%) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+/* 2. 中のテキストやリンクを中央に */
+footer p, 
+footer small,
+.back-nav a {
+  display: inline-block !important;
+  width: auto !important;
+  text-align: center !important;
+  margin: 0 auto !important;
+}
+
+/* 3. オンラインショップのセクション自体のズレを防止 */
+#onlineshop {
+  overflow-x: hidden !important; /* 横揺れ・横ズレを防ぐ */
+}
