@@ -180,62 +180,64 @@ footer {
   transform: translateY(0) !important;
 }
 
-/* --- 1. 背景色の切り替え（ピンクと白）を復元 --- */
-/* 奇数番目のセクションをピンク、偶数番目を白に */
-section:nth-of-type(odd) {
+/* --- 1. 背景色の交互切り替え（以前の正しい順序） --- */
+/* セクションごとに背景色を変える */
+section:nth-of-type(1), 
+section:nth-of-type(3), 
+section:nth-of-type(5) {
   background-color: var(--soft-pink) !important;
 }
 
-section:nth-of-type(even) {
+section:nth-of-type(2), 
+section:nth-of-type(4) {
   background-color: #ffffff !important;
 }
 
-/* Heroエリア（一番上）はピンクに固定 */
-.hero {
-  background-color: var(--soft-pink) !important;
+/* オンラインショップの背景も個別に指定 */
+#onlineshop {
+  background-color: #ffffff !important;
 }
 
-/* --- 2. PC版：オンラインショップ2列を強制 --- */
+/* --- 2. PC版オンラインショップ：2列横並びを完全再現 --- */
 @media screen and (min-width: 768px) {
   .goods-grid {
     display: flex !important;
-    flex-direction: row !important; /* 横並び */
+    flex-direction: row !important; /* 強制的に横並び */
     flex-wrap: wrap !important;
     justify-content: center !important;
-    gap: 40px !important;
-    padding: 40px 20px !important;
+    align-items: flex-start !important;
+    gap: 50px 30px !important; /* 縦横の隙間 */
+    max-width: 1000px !important;
+    margin: 60px auto !important;
   }
 
   .goods-item {
-    width: calc(50% - 40px) !important; /* 確実に2列 */
+    /* 2列にするため幅を45%程度に固定 */
+    flex: 0 0 45% !important;
+    width: 45% !important;
     margin: 0 !important;
   }
 }
 
 /* --- 3. JSアニメーション（浮かび上がる動き）の修正 --- */
-/* 初期状態：!importantを外して、JSが上書きしやすくします */
+/* 初期状態：沈めて隠す */
 .js-reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+  opacity: 0 !important;
+  transform: translateY(40px) !important;
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out !important;
+  pointer-events: none; /* 出てくるまでクリック不可 */
 }
 
-/* クラスがついた時：!importantで最優先に表示 */
+/* JSでクラスが付いた時：浮かび上がらせる */
 .js-reveal.is-visible {
   opacity: 1 !important;
   transform: translateY(0) !important;
-  visibility: visible !important;
+  pointer-events: auto;
 }
 
-/* --- 4. タイトルとテキストの中央寄せ --- */
-.container, .detail-container {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
+/* --- 4. テキスト中央寄せ --- */
+.container, h2, p, .sub-copy {
   text-align: center !important;
-}
-
-h2, p {
-  width: 100% !important;
-  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
