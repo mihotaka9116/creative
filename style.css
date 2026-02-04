@@ -333,3 +333,108 @@ p {
   text-align: center !important;
   margin: 5px 0 !important;
 }
+
+/* --- オンラインショップ：全要素を完全に中央揃え --- */
+
+/* 1. ページ全体のコンテナを中央へ */
+#onlineshop .container,
+.onlineshop-section .container {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+}
+
+/* 2. 商品リスト（グリッド）の中身を中央へ */
+.goods-grid {
+  justify-content: center !important;
+  align-items: flex-start !important; /* 上端は揃えて、横軸を中央に */
+  text-align: center !important;
+}
+
+/* 3. 各商品アイテム内のテキスト（名前・価格）を中央へ */
+.goods-item {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important; /* 子要素を中央に寄せる */
+  text-align: center !important;
+}
+
+.goods-item h3, 
+.goods-item p,
+.goods-item span {
+  width: 100% !important;
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* 4. 下部のナビゲーション（Back to Top 等）も中央へ */
+.back-nav, 
+.onlineshop-footer,
+footer {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+.back-nav a {
+  margin: 0 auto !important;
+}
+
+/* --- メインコピーの位置をわずかに下げる --- */
+.hero-content {
+  /* 50% から 55% に変更して、少しだけ位置を下げます */
+  top: 55% !important; 
+  
+  /* 中央配置を維持するための設定 */
+  transform: translate(-50%, -50%) !important;
+}
+
+/* メインコピーとサブコピーの間の距離も微調整（必要に応じて） */
+.copy {
+  margin-bottom: 25px !important;
+}
+
+/* --- DETAIL（LOOKBOOK）の横並びを復活 --- */
+@media screen and (min-width: 768px) {
+  /* 親要素を横並びに設定 */
+  #detail .container {
+    display: flex !important;
+    flex-direction: row !important; /* 横に並べる */
+    justify-content: center !important;
+    align-items: flex-start !important;
+    gap: 80px !important; /* 1と2の間の距離 */
+    max-width: 1100px !important;
+    margin: 0 auto !important;
+  }
+
+  /* 1と2のそれぞれのブロックの幅を調整 */
+  .detail-item, 
+  #detail .container > div {
+    flex: 1 !important;
+    width: 45% !important;
+    margin: 0 !important;
+    text-align: center !important;
+  }
+
+  /* 画像のサイズが大きくなりすぎないように制限 */
+  #detail .container img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
+
+/* スマホでは縦並びを維持 */
+@media screen and (max-width: 767px) {
+  #detail .container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 60px !important;
+  }
+}
