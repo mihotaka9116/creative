@@ -1,6 +1,7 @@
-/* --- 1. フォント読み込み（最上部に配置） --- */
+/* --- 1. フォント読み込み --- */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Playfair+Display:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap');
 
+/* --- 2. 共通・リセット --- */
 * {
   margin: 0;
   padding: 0;
@@ -23,12 +24,10 @@ body {
   overflow-x: hidden;
 }
 
-/* --- 2. ヒーローエリア（全幅・余白なし） --- */
+/* --- 3. ヒーローエリア（全幅 & ぼかしコピー） --- */
 .hero {
   position: relative;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  width: 100%;
   height: 90vh;
   background-color: var(--soft-pink);
   display: flex;
@@ -39,16 +38,14 @@ body {
 
 .hero-svg-wrapper {
   width: 100%;
-  height: 100%;
+  max-width: 900px;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .hero-svg-wrapper img, .hero-svg-wrapper svg {
   width: 100%;
-  height: 100%;
-  object-fit: cover; /* 隙間なく埋める */
+  height: auto;
 }
 
 .copy {
@@ -56,48 +53,94 @@ body {
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(2rem, 8vw, 4.5rem);
+  font-size: clamp(2rem, 8vw, 4.2rem);
   font-weight: 800;
-  color: var(--primary-blue);
-  text-shadow: 0 0 20px #fff, 0 0 10px rgba(255,255,255,0.8);
+  color: var(--primary-blue) !important;
+  /* 白いぼかしを復元 */
+  text-shadow: 0 0 25px #fff, 0 0 10px rgba(255,255,255,0.8);
   white-space: nowrap;
   z-index: 10;
+  text-align: center;
 }
 
-/* --- 3. オンラインショップの画像表示 & 2列 --- */
-.goods-grid {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-  gap: 30px;
-  padding: 40px 0;
+/* --- 4. 窓を光らせるアニメーション --- */
+#window-base, #window, [id^="window"] {
+  animation: window-glow 4s infinite alternate ease-in-out;
 }
 
-.goods-item {
-  width: 45% !important; /* PCで2列 */
-  min-width: 300px;
-  margin-bottom: 40px;
+@keyframes window-glow {
+  0% {
+    fill: #25399c;
+    filter: brightness(1);
+  }
+  100% {
+    fill: #3657ff;
+    filter: brightness(1.3) drop-shadow(0 0 15px rgba(54, 87, 255, 0.6));
+  }
+}
+
+/* --- 5. DETAILセクション（横並び） --- */
+#detail .container > div, 
+.detail-content > .goods-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  #detail .container > div,
+  .goods-grid {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+  .goods-item, .detail-item {
+    width: 45% !important;
+  }
+}
+
+/* --- 6. JS用アニメーション（ふわっと出る） --- */
+.goods-item, .js-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+/* JSでクラスがついた瞬間に表示 */
+.goods-item.is-visible, .js-reveal.is-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* --- 7. オンラインショップの画像表示 --- */
+.image-wrap {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 15px;
 }
 
 .image-wrap img {
   width: 100%;
   height: auto;
-  display: block; /* 画像の下に隙間を作らない */
+  display: block;
 }
 
-/* --- 4. フッター完全中央寄せ --- */
-#footer, footer {
-  width: 100vw !important;
-  margin-left: calc(50% - 50vw) !important;
+/* --- 8. フッター（白背景・完全中央） --- */
+footer, .footer, #footer {
+  width: 100% !important;
   padding: 60px 0 !important;
-  background: #fff !important;
+  background-color: #ffffff !important;
   border-top: 2px solid var(--sky-blue) !important;
   display: flex !important;
-  justify-content: center !important;
+  flex-direction: column !important;
   align-items: center !important;
+  justify-content: center !important;
+  margin-top: 50px;
 }
 
-#footer p {
-  text-align: center !important;
+footer p, #footer p {
   margin: 0 !important;
+  text-align: center !important;
+  width: 100% !important;
 }
