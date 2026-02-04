@@ -1,4 +1,4 @@
-/* --- 1. リセット & 共通設定 --- */
+/* --- 1. 共通設定・リセット --- */
 * {
   margin: 0;
   padding: 0;
@@ -8,7 +8,7 @@
 :root {
   --primary-blue: #25399c;
   --hover-blue: #3657ff;
-  --soft-pink: #ffdff9; /* SVG背景色と合わせる */
+  --soft-pink: #fff5f8; 
   --text-dark: #191970;
 }
 
@@ -17,15 +17,16 @@ body {
   line-height: 1.7;
   color: var(--text-dark);
   background-color: #fff;
-  overflow-x: hidden;
+  padding-top: 60px;
 }
 
 /* --- 2. ヘッダー --- */
 .header {
   position: fixed;
-  top: 0; width: 100%;
-  height: 60px;
-  background: rgba(255, 255, 255, 0.9);
+  top: 0; left: 0;
+  width: 100%;
+  min-height: 60px;
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   z-index: 1000;
   display: flex;
@@ -45,21 +46,21 @@ body {
 .nav ul {
   display: flex;
   list-style: none;
-  gap: 20px;
+  gap: 30px;
 }
 
 .nav ul li a {
-  font-size: 0.9rem;
+  font-size: 1.1rem; 
   color: var(--primary-blue);
   font-weight: 800;
   text-decoration: none;
 }
 
-/* --- 3. ヒーローセクション（位置ズレ修正） --- */
+/* --- 3. メインビジュアル（窓の位置修正） --- */
 .hero {
   position: relative;
   width: 100%;
-  height: 100vh; /* 画面いっぱいに広げる */
+  height: 90vh;
   background-color: var(--soft-pink);
   display: flex;
   align-items: center;
@@ -69,138 +70,102 @@ body {
 
 .hero-svg-wrapper {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
 }
 
 .hero-svg-wrapper svg {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* 隙間なく配置 */
+  object-fit: contain; /* 窓が切れないように */
 }
 
 .hero-content {
-  position: relative;
-  z-index: 10;
+  position: absolute;
+  top: 52%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
   text-align: center;
-  pointer-events: none;
 }
 
 .copy {
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  color: var(--primary-blue) !important;
+  font-size: clamp(2.2rem, 7vw, 4.2rem);
   font-weight: 800;
-  text-shadow: 0 0 20px #fff;
-  margin-bottom: 10px;
+  color: var(--primary-blue) !important;
+  text-shadow: 0 0 25px #fff;
 }
 
-/* --- 4. コンテンツ配置 --- */
-section { padding: 100px 0; text-align: center; }
-.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+/* --- 4. メインページ背景交互設定 --- */
+section {
+  padding: 100px 0;
+  text-align: center;
+}
 
-/* 2列レイアウトを死守する設定 */
+/* メインページのセクションを交互に色付け */
+section:nth-of-type(even) { background-color: #ffffff; }
+section:nth-of-type(odd) { background-color: var(--soft-pink); }
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- 5. ショップ & Detail（2列固定・ホバー） --- */
 .works-grid, .goods-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
+  gap: 40px;
   margin-top: 40px;
-}
-
-.work-item, .goods-item {
-  width: 100%; /* スマホ */
 }
 
 /* PCサイズで絶対2列にする */
 @media screen and (min-width: 768px) {
   .work-item, .goods-item {
-    flex: 0 0 calc(50% - 30px); /* 画面の半分から余白を引く */
-    max-width: 500px;
+    flex: 0 0 45% !important; /* 45%幅で3列目を防止 */
+    width: 45% !important;
+    max-width: 480px;
   }
 }
 
-/* 画像サイズ制限 */
-.work-item img, .goods-item img, .lookbook-visual img {
+/* スマホサイズ */
+@media screen and (max-width: 767px) {
+  .work-item, .goods-item {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+}
+
+/* 画像とホバーの動き */
+.image-wrap img, .work-item img {
   width: 100%;
-  max-width: 100%;
   height: auto;
   border-radius: 12px;
+  display: block;
+  transition: transform 0.4s ease;
 }
 
-/* LOOKBOOKの巨大化防止 */
-.lookbook-wrapper {
-  max-width: 600px;
-  margin: 0 auto 60px;
+.image-wrap {
+  overflow: hidden;
+  border-radius: 12px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* --- 5. アニメーション --- */
+/* マウスを重ねた時の動き */
+.goods-item:hover .image-wrap, .work-item:hover .image-wrap {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.goods-item:hover img, .work-item:hover img {
+  transform: scale(1.05);
+}
+
+/* --- 6. その他装飾 --- */
+.footer { padding: 60px 0; text-align: center; }
 #window-base { animation: window-glow 4s infinite alternate ease-in-out; }
 @keyframes window-glow {
-  0% { fill: #3657ff; opacity: 0.8; }
-  100% { fill: #25399c; opacity: 1; }
-}
-
-.js-reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: 1s ease-out;
-}
-
-.js-reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* --- オンラインショップ：2列表示の最終防衛ライン --- */
-@media screen and (min-width: 768px) {
-  .goods-grid {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    gap: 30px !important;
-    /* 親の幅を狭くして、物理的に3つ並べなくする */
-    max-width: 850px !important; 
-    margin: 40px auto !important;
-  }
-
-  .goods-item {
-    /* 48%に設定し、3つ目が入るスペースを完全に遮断 */
-    flex: 0 0 48% !important;
-    width: 48% !important;
-    margin-bottom: 30px !important;
-  }
-}
-
-/* --- 背景色を交互に適用する設定（onlineshop.html対応） --- */
-/* 一旦すべての背景を白に */
-.detail-content, .goods-item {
-  background-color: #ffffff;
-}
-
-/* 奇数番目のアイテムにピンクを適用 */
-.goods-item:nth-of-type(odd) {
-  background-color: var(--soft-pink);
-  border-radius: 15px; /* 角を丸くすると可愛くなります */
-  padding: 15px;
-}
-
-/* 偶数番目のアイテムの設定 */
-.goods-item:nth-of-type(even) {
-  background-color: #ffffff;
-  padding: 15px;
-}
-
-/* セクション全体の背景も交互にしたい場合 */
-.detail-container {
-  background-color: #ffffff;
-}
-.detail-text-box {
-  background-color: var(--soft-pink);
-  padding: 60px 20px;
-  margin-top: 50px;
+  0% { fill: #25399c; }
+  100% { fill: #3657ff; }
 }
