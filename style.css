@@ -142,3 +142,40 @@ footer {
   background: #fff;
   border-top: 1px solid var(--soft-pink);
 }
+
+/* --- 8. オンラインショップ：PC版横並びの復活 --- */
+@media screen and (min-width: 768px) {
+  /* 親要素の縦並び強制を解除 */
+  .goods-grid {
+    display: flex !important;
+    flex-direction: row !important; /* 横に並べる */
+    flex-wrap: wrap !important;     /* 入りきらない分は折り返す */
+    justify-content: center !important;
+    gap: 40px !important;           /* アイテム間の隙間 */
+    width: 100% !important;
+    max-width: 1100px !important;
+    margin: 40px auto !important;
+  }
+
+  /* 各アイテムの幅を指定 */
+  .goods-item {
+    width: 45% !important; /* 2列にするための幅 */
+    margin: 0 !important;
+    text-align: center !important;
+  }
+}
+
+/* --- 9. 浮かび上がる機能（JS）の最終設定 --- */
+/* JSが動く前：透明で下に沈んでいる状態 */
+.js-reveal {
+  opacity: 0 !important;
+  transform: translateY(40px) !important;
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out !important;
+  visibility: visible !important;
+}
+
+/* スクロールしてクラスがついた瞬間：見える状態 */
+.js-reveal.is-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
