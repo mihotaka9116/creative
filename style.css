@@ -358,3 +358,20 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
     width: calc(50% - 20px) !important; /* 2列 */
   }
 }
+
+/* 全ページのフッターを強制的に中央揃え */
+footer {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important; /* 縦に並べて中央寄せ */
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 60px 0 !important;
+  clear: both !important; /* 周りの浮いている要素をリセット */
+}
+
+footer p, footer menu, footer div {
+  width: 100% !important;
+  text-align: center !important;
+}
