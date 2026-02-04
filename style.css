@@ -1,40 +1,37 @@
-/* --- 1. 基本設定（崩れ防止） --- */
+/* --- 1. 崩れを根本から直すリセット --- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* 横揺れ・ズレを強制的に防止 */
+  font-family: 'Playfair Display', 'Noto Sans JP', serif;
+}
+
 :root {
   --primary-blue: #25399c;
-  --bg-pink: #fce4ec; /* 以前のピンク（お好みに合わせて調整してください） */
-  --text-dark: #191970;
+  --bg-pink: #fce4ec; /* 以前のピンク */
 }
 
-body {
+/* --- 2. レイアウト（中央揃えの徹底） --- */
+section, .hero {
   width: 100%;
-  overflow-x: hidden; /* 横揺れ防止 */
-  font-family: 'Playfair Display', 'Noto Sans JP', serif;
-  line-height: 1.6;
-  color: var(--text-dark);
-}
-
-/* --- 2. レイアウト設定（ここが崩れの原因でした） --- */
-.hero, section {
-  width: 100%;
-  padding: 100px 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 0;
 }
 
-/* コンテナで中身を中央に固定 */
 .container, .detail-container {
   width: 90%;
   max-width: 1000px;
   margin: 0 auto;
 }
 
-/* 背景色の交互指定（画像と一体化させず、以前のピンクを維持） */
+/* 背景色の交互指定（画像とは独立） */
 .hero, #concept, #lookbook {
   background-color: var(--bg-pink);
 }
@@ -43,28 +40,31 @@ body {
   background-color: #ffffff;
 }
 
-/* ヒーローエリアのSVGサイズ調整 */
+/* ヒーローのSVGサイズ固定 */
 .hero-svg {
   width: 100%;
   max-width: 800px;
   height: auto;
 }
 
-/* --- 3. オンラインショップの2列並び（PC） --- */
+/* --- 3. オンラインショップ：PCでの2列表示 --- */
 .goods-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; /* 2列を左右に */
-  gap: 40px 0;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center; /* 中央に寄せる */
+  gap: 40px; /* 画像同士の間隔 */
+  width: 100%;
   margin-top: 50px;
 }
 
 .goods-item {
-  width: 48%; /* PCでは約半分 */
+  /* PCでは横幅の半分弱にして2列にする */
+  width: calc(50% - 40px); 
+  min-width: 300px;
   text-align: center;
-  opacity: 0; /* JSで浮かび上がらせる用 */
-  transform: translateY(30px);
-  transition: all 1.0s ease-out;
+  opacity: 0; /* JSでふわっと出す用 */
+  transform: translateY(20px);
+  transition: all 0.8s ease-out;
 }
 
 .goods-item.is-visible {
@@ -74,54 +74,54 @@ body {
 
 .image-wrap {
   width: 100%;
-  border-radius: 12px;
+  border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   margin-bottom: 15px;
 }
 
 .image-wrap img {
   width: 100%;
+  height: auto;
   display: block;
 }
 
-/* --- 4. 窓を光らせる（CSSアニメーション） --- */
+/* --- 4. 窓の光（CSSで再現） --- */
 #window-base {
   animation: windowGlow 4s ease-in-out infinite;
 }
 
 @keyframes windowGlow {
-  0%, 100% { fill-opacity: 0.5; filter: brightness(1); }
-  50% { fill-opacity: 1; filter: brightness(1.3); }
+  0%, 100% { fill-opacity: 0.4; }
+  50% { fill-opacity: 1; }
 }
 
 /* --- 5. スマホ対応 --- */
 @media screen and (max-width: 768px) {
   .goods-item {
-    width: 100%; /* スマホは1列 */
-  }
-  .container {
-    padding: 60px 20px;
+    width: 100% !important; /* スマホは1列 */
+    max-width: 400px;
   }
 }
 
-/* --- ナビゲーション等 --- */
+/* ヘッダーの修正（ズレ防止） */
 .header {
   position: fixed;
-  top: 0; width: 100%; height: 70px;
-  background: rgba(255, 255, 255, 0.95);
+  top: 0;
+  width: 100%;
+  height: 70px;
+  background: rgba(255,255,255,0.9);
   z-index: 1000;
   display: flex;
+  justify-content: center;
+}
+.header .container {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: space-around;
 }
 .nav ul {
   display: flex;
   list-style: none;
-  gap: 30px;
-}
-.nav a {
-  text-decoration: none;
-  color: var(--primary-blue);
-  font-weight: bold;
+  gap: 20px;
 }
