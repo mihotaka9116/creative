@@ -166,14 +166,23 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   background-color: var(--hover-blue);
 }
 
-/* --- 5. PCサイズ（768px以上）の調整 --- */
+/* PCサイズ（768px以上）の設定 */
 @media screen and (min-width: 768px) {
-  /* PCでは2列にする */
+  /* 親要素：2つ並びを中央に寄せる */
+  .works-grid, .goods-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 40px !important; /* アイテム間の隙間 */
+  }
+
+  /* 子要素：幅を「半分」にする */
   .work-item, .goods-item {
-    width: calc(50% - 40px); 
+    width: calc(50% - 20px) !important; /* 50%にすることで強制的に2列にする */
+    max-width: 500px !important; /* 大きくなりすぎないように制限 */
+    flex: none !important; /* 自動調整を無効化 */
   }
 }
-
 /* --- 6. アニメーション & SVG --- */
 .js-reveal {
   opacity: 0;
