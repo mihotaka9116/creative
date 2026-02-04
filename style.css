@@ -194,3 +194,83 @@ section {
   text-align: center;
   border-top: 1px solid var(--soft-pink);
 }
+
+/* --- オンラインショップ・グリッドレイアウト --- */
+.detail-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 20px;
+}
+
+/* 商品一覧の親要素 */
+.goods-grid {
+  display: flex !important;
+  flex-wrap: wrap;            /* 入りきらない分は下に回す */
+  justify-content: center;    /* 中央寄せ */
+  gap: 60px 40px;            /* 縦・横の隙間 */
+  margin: 60px 0;
+}
+
+/* 個別の商品アイテム（PCで2列） */
+.goods-item {
+  width: calc(50% - 20px);    /* PCで横幅を半分に（2列） */
+  max-width: 480px;           /* 大きすぎを防止 */
+  text-align: center;
+  
+  /* 初期状態（JSでis-visibleが付与されるまで隠す） */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+/* JSがクラスを付与した時にふわっと表示 */
+.goods-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 画像の囲い（ホバー演出） */
+.image-wrap {
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.image-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* 商品にマウスを乗せた時の動き */
+.goods-item:hover .image-wrap {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+/* キャプション（商品名） */
+.item-caption {
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--primary-blue);
+}
+
+.item-caption span {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: #888;
+  margin-top: 5px;
+}
+
+/* --- スマホ表示 (767px以下) --- */
+@media screen and (max-width: 767px) {
+  .goods-item {
+    width: 100%; /* スマホは1列にする */
+  }
+}
