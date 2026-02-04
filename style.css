@@ -1,4 +1,4 @@
-/* --- 1. 基本設定とリセット --- */
+/* --- 1. 全体リセット --- */
 * {
   margin: 0;
   padding: 0;
@@ -7,32 +7,33 @@
 
 body {
   font-family: 'Playfair Display', serif;
-  overflow-x: hidden; /* 横揺れ防止 */
-  text-align: center; /* 全体的な中央寄せの基本 */
+  color: #191970;
+  line-height: 1.6;
+  overflow-x: hidden;
+  text-align: center; /* 全体を中央寄せの基本にする */
 }
 
-/* --- 2. メインビジュアル（全幅・窓中央） --- */
+/* --- 2. メインビジュアル（全幅） --- */
 .hero {
   position: relative;
-  width: 100vw; /* 画面幅いっぱい */
+  width: 100vw;
   height: 90vh;
   background-color: #fff5f8;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: calc(50% - 50vw);
+  margin-left: calc(50% - 50vw); /* はみ出しを補正して全幅にする */
 }
 
 .hero-svg-wrapper {
   position: absolute;
   inset: 0;
-  z-index: 1;
 }
 
 .hero-svg-wrapper svg {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* 隙間なく全画面に広げる */
+  object-fit: cover; /* 窓が画面いっぱいに広がる */
 }
 
 .hero-content {
@@ -42,58 +43,38 @@ body {
 
 .copy {
   display: block;
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-size: clamp(2.2rem, 8vw, 4.5rem);
   font-weight: 800;
   color: #25399c !important;
   text-shadow: 0 0 20px #fff;
   opacity: 1 !important;
 }
 
-/* --- 3. セクション背景の交互（復活） --- */
+/* --- 3. メインページ背景交互（奇数:ピンク / 偶数:白） --- */
 section {
   padding: 100px 0;
-  width: 100%;
 }
 
-/* 偶数・奇数で色を変える */
 section:nth-of-type(odd) { background-color: #fff5f8; }
 section:nth-of-type(even) { background-color: #ffffff; }
 
 .container {
   max-width: 1100px;
-  margin: 0 auto; /* 中央寄せ */
+  margin: 0 auto;
   padding: 0 20px;
 }
 
-/* --- 4. オンラインショップページの調整（中央寄せ） --- */
+/* --- 4. オンラインショップ（画像比率と2列固定） --- */
 .detail-container {
-  width: 100%;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 80px 20px;
-  text-align: center;
+  padding: 60px 20px;
 }
 
 .back-nav {
-  margin-bottom: 50px;
-  text-align: center;
+  margin-bottom: 40px;
 }
 
-.detail-text-box {
-  max-width: 800px;
-  margin: 60px auto; /* 上下余白、左右中央 */
-  text-align: center;
-}
-
-/* フッターの中央寄せ */
-footer, #footer {
-  padding: 60px 0;
-  text-align: center;
-  width: 100%;
-  background: #fff;
-}
-
-/* --- 5. ショップの2列固定とホバー --- */
 .goods-grid {
   display: flex;
   flex-wrap: wrap;
@@ -101,14 +82,17 @@ footer, #footer {
   gap: 40px;
 }
 
-@media screen and (min-width: 768px) {
-  .goods-item {
-    flex: 0 0 44%;
-    max-width: 450px;
-  }
+.goods-item {
+  /* PCで2列固定 */
+  flex: 0 0 44%;
+  max-width: 480px;
+  margin-bottom: 20px;
 }
 
+/* 画像が縦に細長くなるのを防ぐ最重要設定 */
 .image-wrap {
+  width: 100%;
+  height: auto; /* 高さを固定しない */
   overflow: hidden;
   border-radius: 12px;
   transition: transform 0.3s ease;
@@ -116,10 +100,31 @@ footer, #footer {
 
 .image-wrap img {
   width: 100%;
-  height: auto;
+  height: auto !important; /* 強制的に自動比率にする */
   display: block;
 }
 
+.detail-text-box {
+  max-width: 700px;
+  margin: 60px auto;
+}
+
+/* --- 5. フッター --- */
+footer, #footer {
+  padding: 60px 0;
+  text-align: center;
+  background-color: #fff;
+}
+
+/* --- 6. ホバーエフェクト --- */
 .goods-item:hover .image-wrap {
-  transform: translateY(-10px);
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* スマホ対応 */
+@media screen and (max-width: 767px) {
+  .goods-item {
+    flex: 0 0 100%;
+  }
 }
