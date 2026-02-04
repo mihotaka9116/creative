@@ -1,4 +1,4 @@
-/* --- 1. 共通設定・リセット --- */
+/* --- 1. フォント読み込み（最上部に配置） --- */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Playfair+Display:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap');
 
 * {
@@ -9,16 +9,9 @@
 
 :root {
   --primary-blue: #25399c;
-  --hover-blue: #3657ff;
   --soft-pink: #fff5f8; 
   --text-dark: #191970;
   --sky-blue: #87ceeb;
-}
-
-html, body {
-  width: 100%;
-  overflow-x: hidden;
-  position: relative;
 }
 
 body {
@@ -27,46 +20,10 @@ body {
   color: var(--text-dark);
   background-color: #fff;
   padding-top: 60px;
+  overflow-x: hidden;
 }
 
-/* --- 2. ヘッダー・ナビ --- */
-.header {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  min-height: 70px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-}
-
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.nav ul {
-  display: flex;
-  list-style: none;
-  gap: 30px;
-}
-
-.nav ul li a {
-  font-size: 1.1rem; 
-  color: var(--primary-blue);
-  font-weight: 800;
-  font-family: 'Montserrat', sans-serif;
-  text-decoration: none;
-}
-
-/* --- 3. ヒーローエリア --- */
+/* --- 2. ヒーローエリア（全幅・余白なし） --- */
 .hero {
   position: relative;
   width: 100vw;
@@ -74,257 +31,73 @@ body {
   margin-right: calc(50% - 50vw);
   height: 90vh;
   background-color: var(--soft-pink);
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .hero-svg-wrapper {
   width: 100%;
-  max-width: 900px;
+  height: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
-.hero-svg-wrapper svg,
-.hero-svg-wrapper img {
+.hero-svg-wrapper img, .hero-svg-wrapper svg {
   width: 100%;
-  height: auto;
-}
-
-.hero-content {
-  position: absolute;
-  top: 52%; 
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 100;
-  text-align: center;
-  width: 100%;
-  pointer-events: none;
+  height: 100%;
+  object-fit: cover; /* 隙間なく埋める */
 }
 
 .copy {
-  display: block;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(2.2rem, 7vw, 4.2rem); 
+  font-size: clamp(2rem, 8vw, 4.5rem);
   font-weight: 800;
-  color: var(--primary-blue) !important;
-  text-shadow: 0 0 25px #fff, 0 0 10px rgba(255, 255, 255, 0.9);
-  margin-bottom: 12px;
-  line-height: 1.1;
+  color: var(--primary-blue);
+  text-shadow: 0 0 20px #fff, 0 0 10px rgba(255,255,255,0.8);
+  white-space: nowrap;
+  z-index: 10;
 }
 
-/* --- 4. セクション共通 --- */
-section {
-  padding: 100px 0;
-  width: 100%;
-  text-align: center;
-}
-
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-section:nth-of-type(even) { background-color: #ffffff; }
-section:nth-of-type(odd) { background-color: var(--soft-pink); }
-
-/* --- 5. DETAIL（横並び）設定 --- */
-#detail .container > div:not(.lookbook-visual) {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-@media screen and (min-width: 768px) {
-  #detail .container > div:not(.lookbook-visual) {
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-  }
-  #detail .container > div > div {
-    width: 45%;
-    text-align: center;
-  }
-}
-
-/* --- 6. オンラインショップ（2列・中央寄せ） --- */
+/* --- 3. オンラインショップの画像表示 & 2列 --- */
 .goods-grid {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 60px;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 30px;
+  padding: 40px 0;
 }
 
 .goods-item {
+  width: 45% !important; /* PCで2列 */
+  min-width: 300px;
+  margin-bottom: 40px;
+}
+
+.image-wrap img {
   width: 100%;
-  max-width: 480px;
-  opacity: 0; /* JS用初期値 */
-  transform: translateY(30px);
-  transition: opacity 1s, transform 1s;
+  height: auto;
+  display: block; /* 画像の下に隙間を作らない */
 }
 
-.goods-item.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media screen and (min-width: 768px) {
-  .goods-grid {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
-  }
-  .goods-item {
-    width: calc(50% - 20px);
-  }
-}
-
-.image-wrap {
-  overflow: hidden;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-}
-.image-wrap img { width: 100%; display: block; transition: 0.4s; }
-.goods-item:hover img { transform: scale(1.05); }
-
-.item-caption { font-weight: bold; color: var(--primary-blue); margin-bottom: 10px; }
-
-.custom-btn {
-  display: inline-block;
-  background-color: var(--sky-blue);
-  color: #fff !important;
-  padding: 15px 40px;
-  text-decoration: none;
-  border-radius: 25px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
-  transition: 0.3s;
-}
-
-.custom-btn:hover { background-color: var(--hover-blue); transform: translateY(-3px); }
-
-/* --- 7. LOOKBOOK 巨大化防止 --- */
-.lookbook-visual {
-  width: 100%;
-  max-width: 380px !important;
-  margin: 40px auto;
-  display: flex;
-  justify-content: center;
-}
-.lookbook-visual img { width: 100%; height: auto; }
-
-/* --- 8. フッター（白背景・完全中央寄せ） --- */
-footer, .footer {
-  width: 100% !important;
-  padding: 80px 0 !important;
-  background-color: #ffffff !important;
+/* --- 4. フッター完全中央寄せ --- */
+#footer, footer {
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  padding: 60px 0 !important;
+  background: #fff !important;
   border-top: 2px solid var(--sky-blue) !important;
   display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
   justify-content: center !important;
-  margin: 0 !important;
-}
-
-footer p, .footer p {
-  width: 100% !important;
-  text-align: center !important;
-  margin: 0 !important;
-  color: var(--text-dark) !important;
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
-}
-
-/* --- 9. アニメーション設定 --- */
-#window-base {
-  animation: window-glow 4s infinite alternate ease-in-out;
-}
-@keyframes window-glow {
-  0% { fill: #25399c; filter: brightness(1); }
-  100% { fill: #3657ff; filter: brightness(1.3) drop-shadow(0 0 15px rgba(54, 87, 255, 0.6)); }
-}
-
-/* --- 10. スマホ調整 --- */
-@media (max-width: 768px) {
-  .copy { font-size: 1.8rem !important; }
-  .hero { height: 60vh; min-height: 380px; }
-}
-
-/* --- 1. オンラインショップ・DETAILの横並び修正 --- */
-.goods-grid {
-  display: flex !important;
-  flex-direction: column !important; /* スマホは縦 */
   align-items: center !important;
-  gap: 40px;
-  width: 100% !important;
-  margin: 0 auto 50px auto !important;
-}
-
-@media screen and (min-width: 768px) {
-  .goods-grid {
-    flex-direction: row !important; /* PCは横並び */
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-  }
-  
-  .goods-item {
-    width: calc(50% - 20px) !important; /* きっちり2列 */
-    max-width: 400px !important;
-  }
-}
-
-/* --- 2. 商品テキストとボタンの中央寄せ --- */
-.item-caption, .detail-text-box {
-  text-align: center !important;
-  width: 100% !important;
-}
-
-.item-caption span {
-  display: block;
-  font-size: 0.9rem;
-  color: #666;
-}
-
-.cta-button-container {
-  display: flex !important;
-  justify-content: center !important;
-  width: 100% !important;
-  margin-top: 30px;
-}
-
-/* --- 3. フッターの完全中央寄せ（ID: footerに対応） --- */
-#footer, footer, .footer {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 100% !important;
-  padding: 60px 0 !important;
-  background-color: #ffffff !important;
-  border-top: 2px solid var(--sky-blue, #87ceeb) !important;
-  margin-top: 100px !important;
 }
 
 #footer p {
   text-align: center !important;
   margin: 0 !important;
-  width: 100% !important;
-}
-
-/* --- 4. JSアニメーション用の初期状態（消えているのを出す） --- */
-.goods-item {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1s ease-out, transform 1s ease-out;
-}
-
-.goods-item.is-visible {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
 }
