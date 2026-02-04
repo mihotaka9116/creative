@@ -1,4 +1,6 @@
-/* --- 1. 共通設定・リセット --- */
+/* --- 1. 共通設定 & フォント --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Playfair+Display:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -9,13 +11,7 @@
   --primary-blue: #25399c;
   --soft-pink: #fff5f8; 
   --text-dark: #191970;
-  --sky-blue: #87ceeb; /* 水色ボタン用 */
-}
-
-html, body {
-  width: 100%;
-  overflow-x: hidden;
-  position: relative;
+  --sky-blue: #87ceeb;
 }
 
 body {
@@ -24,6 +20,7 @@ body {
   color: var(--text-dark);
   background-color: #fff;
   padding-top: 60px;
+  overflow-x: hidden; /* 横スクロール防止 */
 }
 
 /* --- 2. ヘッダー --- */
@@ -58,13 +55,16 @@ body {
 .nav a {
   color: var(--primary-blue);
   text-decoration: none;
-  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
 }
 
-/* --- 3. ヒーローエリア（中央配置・右ズレ解消） --- */
+/* --- 3. ヒーローエリア（全幅 & コピーぼかし復元） --- */
 .hero {
   position: relative;
-  width: 100%;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
   height: 90vh;
   background-color: var(--soft-pink);
   display: flex;
@@ -75,48 +75,37 @@ body {
 
 .hero-svg-wrapper {
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
   display: flex;
   justify-content: center;
 }
 
-.hero-svg-wrapper img, .hero-svg-wrapper svg {
-  width: 100%;
-  height: auto;
-}
-
 .hero-content {
   position: absolute;
-  top: 50%; 
+  top: 52%; 
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 100;
   text-align: center;
   width: 100%;
+  pointer-events: none;
 }
 
 .copy {
   display: block;
+  font-family: 'Montserrat', sans-serif;
   font-size: clamp(2.2rem, 7vw, 4.2rem); 
   font-weight: 800;
   color: var(--primary-blue) !important;
+  /* ★白いぼかしを復元★ */
+  text-shadow: 0 0 25px #fff, 0 0 10px rgba(255, 255, 255, 0.9);
+  line-height: 1.1;
   text-align: center;
-  margin-bottom: 12px;
 }
 
 /* --- 4. セクション設定 --- */
-section {
-  padding: 100px 0;
-  width: 100%;
-  text-align: center;
-}
-
-.container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
+section { padding: 100px 0; text-align: center; }
+.container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
 section:nth-of-type(even) { background-color: #ffffff; }
 section:nth-of-type(odd) { background-color: var(--soft-pink); }
 
@@ -124,19 +113,15 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 .lookbook-visual {
   display: block;
   width: 100%;
-  max-width: 380px !important; /* 2枚目もすべてサイズ固定 */
+  max-width: 380px !important;
   margin: 40px auto !important;
 }
+.lookbook-visual img { width: 100%; height: auto; }
 
-.lookbook-visual img {
-  width: 100%;
-  height: auto;
-}
-
-/* --- 6. オンラインショップ（強制中央寄せ & 2列） --- */
+/* --- 6. オンラインショップ（2列・中央寄せ・JS対応） --- */
 .goods-grid {
   display: flex !important;
-  flex-direction: column !important; /* スマホ用 */
+  flex-direction: column !important; /* スマホデフォルト */
   align-items: center !important;
   justify-content: center !important;
   gap: 60px;
@@ -149,30 +134,29 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   max-width: 480px !important;
   display: flex !important;
   flex-direction: column !important;
-  align-items: center !important; /* 画像・文字・ボタンを中央に */
+  align-items: center !important;
   text-align: center !important;
+  
+  /* ★JSアニメーション用の初期状態★ */
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
 }
 
-.image-wrap {
-  width: 100% !important;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  margin-bottom: 20px;
+/* JSでクラスがついた時の状態 */
+.goods-item.is-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
-
-.image-wrap img { width: 100%; display: block; }
 
 .item-caption {
   width: 100% !important;
   text-align: center !important; /* 左寄りを強制解除 */
-  margin-bottom: 20px !important;
+  margin: 20px 0 !important;
   font-weight: bold;
   color: var(--primary-blue);
-  display: block;
 }
 
-/* 水色ボタン */
 .custom-btn {
   display: inline-block !important;
   background-color: var(--sky-blue);
@@ -181,38 +165,35 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   text-decoration: none;
   border-radius: 25px;
   font-weight: bold;
-  margin: 0 auto !important;
+  font-family: 'Montserrat', sans-serif;
+  transition: 0.3s;
 }
 
-/* --- 7. PC版：2列レイアウト設定 --- */
+.custom-btn:hover { background-color: #00bfff; transform: translateY(-3px); }
+
+/* --- 7. レスポンシブ（PC版：2列） --- */
 @media screen and (min-width: 768px) {
   .goods-grid {
     flex-direction: row !important;
     flex-wrap: wrap !important;
     max-width: 1100px;
   }
-
   .goods-item {
-    width: 45% !important; /* 45%にすることで絶対に3列にならない */
+    width: 45% !important; /* 2列固定 */
   }
 }
 
 /* --- 8. フッター（中央寄せ） --- */
 footer, .footer {
   width: 100%;
-  text-align: center !important; 
-  padding: 80px 0;   
-  background-color: #ffffff; 
-  color: var(--text-dark);   
-  font-size: 0.8rem;
+  text-align: center !important;
+  padding: 80px 0;
+  background-color: #ffffff;
   border-top: 1px solid var(--soft-pink);
 }
 
 /* --- 9. 窓の光アニメーション --- */
-#window-base {
-  animation: window-glow 4s infinite alternate ease-in-out;
-}
-
+#window-base { animation: window-glow 4s infinite alternate ease-in-out; }
 @keyframes window-glow {
   0% { fill: #25399c; filter: brightness(1); }
   100% { fill: #3657ff; filter: brightness(1.3); }
