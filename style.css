@@ -359,13 +359,41 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   }
 }
 
-/* --- 8. フッター（中央寄せ） --- */
+/* --- 8. フッター（白背景・完全中央寄せ） --- */
 footer, .footer {
-  width: 100%;
-  text-align: center; 
-  padding: 80px 0;   
-  background-color: #ffffff; 
-  color: var(--text-dark);   
-  font-size: 0.8rem;
-  border-top: 1px solid var(--soft-pink);
+  width: 100% !important;
+  background-color: #ffffff !important; /* 背景は白を維持 */
+  padding: 80px 0 !important;
+  text-align: center !important;
+  
+  /* どんな環境でも真ん中に持ってくる設定 */
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  
+  /* 上部にボタンと同じ水色の細い線を入れて統一感を出す */
+  border-top: 2px solid var(--sky-blue) !important; 
+}
+
+/* フッター内の文字（コピーライトなど） */
+footer p, .footer p, .footer-content, footer small {
+  color: var(--text-dark) !important;
+  font-size: 0.85rem !important;
+  letter-spacing: 0.15em;
+  margin: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  text-align: center !important;
+}
+
+/* リンクがある場合の色 */
+footer a, .footer a {
+  color: var(--primary-blue);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+footer a:hover {
+  color: var(--sky-blue);
 }
