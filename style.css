@@ -255,3 +255,76 @@ footer p, .footer p {
   .copy { font-size: 1.8rem !important; }
   .hero { height: 60vh; min-height: 380px; }
 }
+
+/* --- 1. オンラインショップ・DETAILの横並び修正 --- */
+.goods-grid {
+  display: flex !important;
+  flex-direction: column !important; /* スマホは縦 */
+  align-items: center !important;
+  gap: 40px;
+  width: 100% !important;
+  margin: 0 auto 50px auto !important;
+}
+
+@media screen and (min-width: 768px) {
+  .goods-grid {
+    flex-direction: row !important; /* PCは横並び */
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+  
+  .goods-item {
+    width: calc(50% - 20px) !important; /* きっちり2列 */
+    max-width: 400px !important;
+  }
+}
+
+/* --- 2. 商品テキストとボタンの中央寄せ --- */
+.item-caption, .detail-text-box {
+  text-align: center !important;
+  width: 100% !important;
+}
+
+.item-caption span {
+  display: block;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.cta-button-container {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+  margin-top: 30px;
+}
+
+/* --- 3. フッターの完全中央寄せ（ID: footerに対応） --- */
+#footer, footer, .footer {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  padding: 60px 0 !important;
+  background-color: #ffffff !important;
+  border-top: 2px solid var(--sky-blue, #87ceeb) !important;
+  margin-top: 100px !important;
+}
+
+#footer p {
+  text-align: center !important;
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+/* --- 4. JSアニメーション用の初期状態（消えているのを出す） --- */
+.goods-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.goods-item.is-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
