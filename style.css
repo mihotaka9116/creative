@@ -37,3 +37,50 @@
     gap: 80px !important; /* PC版での横の隙間も広げる */
   }
 }
+
+/* --- 1. LOOKBOOK（DETAIL）画像の巨大化を強制ストップ --- */
+/* セクション内のすべての画像を適切なサイズに制限 */
+#detail .container img, 
+.lookbook-visual img,
+section:nth-of-type(3) img {
+  width: 100% !important;
+  max-width: 350px !important; /* 以前の正しいサイズ */
+  height: auto !important;
+  margin: 0 auto !important;
+  display: block !important;
+}
+
+/* 2枚目の画像の前後の余白を広げる */
+#detail .container > div,
+.lookbook-visual {
+  margin-top: 100px !important; 
+  margin-bottom: 100px !important;
+}
+
+/* --- 2. JSアニメーション（浮かび上がる動き）の完全復元 --- */
+/* 透明度0からスタートし、is-visibleがついたら表示 */
+.js-reveal {
+  opacity: 0 !important;
+  transform: translateY(40px) !important;
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out !important;
+  visibility: visible !important;
+}
+
+/* スクロールしてこのクラスがついた瞬間に動く */
+.js-reveal.is-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* --- 3. メインビジュアルのフォントと配置の最終固定 --- */
+.copy {
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 700 !important;
+  text-shadow: 0 0 25px #fff, 0 0 10px rgba(255, 255, 255, 0.9) !important;
+}
+
+.sub-copy {
+  font-family: 'Playfair Display', serif !important;
+  text-shadow: none !important; /* サブコピーはぼかしなし */
+  margin-top: 30px !important; /* メインコピーとの間隔をさらに広げて下へ */
+}
