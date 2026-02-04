@@ -1,21 +1,77 @@
-/* --- 1. 基本設定 --- */
+/* --- 1. 全体リセットと基本設定 --- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Playfair Display', serif;
-  overflow-x: hidden;
+:root {
+  --primary-blue: #25399c;    /* 濃い青 */
+  --sky-blue: #00bfff;       /* 再現した水色 */
+  --hover-blue: #87ceeb;     /* ホバー時の水色 */
+  --soft-pink: #fff5f8;      /* 背景のピンク */
 }
 
-/* --- 2. メインビジュアル（全幅・窓中央） --- */
+body {
+  font-family: 'Playfair Display', serif;
+  color: #191970;
+  overflow-x: hidden; /* 横揺れ防止 */
+  line-height: 1.6;
+}
+
+/* --- 2. ヘッダーとナビゲーション（おしゃれ下線） --- */
+.header {
+  position: fixed;
+  top: 0; width: 100%; height: 60px;
+  background: rgba(255,255,255,0.95);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+.header-inner {
+  width: 100%; max-width: 1100px;
+  margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center; padding: 0 20px;
+}
+
+.nav ul {
+  display: flex !important;
+  list-style: none;
+  gap: 30px;
+}
+
+.nav ul li a, .nav ul li a:visited {
+  position: relative;
+  text-decoration: none;
+  color: var(--primary-blue) !important;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+.nav ul li a:hover { color: var(--sky-blue) !important; }
+
+/* 下線アニメーション */
+.nav ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 1px;
+  background-color: var(--sky-blue);
+  transition: width 0.3s ease;
+}
+.nav ul li a:hover::after { width: 100%; }
+
+/* --- 3. メインビジュアル（全幅・アニメーション） --- */
 .hero {
   position: relative;
   width: 100vw;
   height: 90vh;
-  background-color: #fff5f8;
+  background-color: var(--soft-pink);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,106 +79,123 @@ body {
 }
 
 .hero-svg-wrapper {
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   z-index: 1;
 }
 
 .hero-svg-wrapper svg {
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   object-fit: cover;
 }
 
-.hero-content {
+.copy {
   position: relative;
   z-index: 10;
-  text-align: center;
-}
-
-.copy {
   display: block;
-  font-size: clamp(2.2rem, 8vw, 4.5rem);
+  font-size: clamp(2.2rem, 8vw, 4.2rem);
   font-weight: 800;
-  color: #25399c !important;
+  color: var(--primary-blue) !important;
   text-shadow: 0 0 20px #fff;
-  opacity: 1 !important;
+  /* 浮かび上がるアニメ */
+  opacity: 0;
+  transform: translateY(30px);
+  animation: revealText 1.2s ease forwards 0.5s;
 }
 
-/* --- 3. ルックブック（2番目の巨大化をピンポイントで防ぐ） --- */
+@keyframes revealText {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- 4. スクロールで浮かび上がるセクション設定 --- */
+.js-reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+.js-reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- 5. 背景交互と中央寄せ --- */
+section {
+  padding: 100px 0;
+  text-align: center;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+section:nth-of-type(odd) { background-color: var(--soft-pink); }
+section:nth-of-type(even) { background-color: #ffffff; }
+
+.container, .detail-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- 6. ルックブック（2枚目サイズ抑制） --- */
 .lookbook-visual {
   width: 100%;
-  max-width: 400px; /* 1枚目の画像と同じくらいの幅に制限 */
+  max-width: 400px; /* 巨大化防止 */
   margin: 0 auto 40px;
 }
-
 .lookbook-visual svg, .lookbook-visual img {
-  width: 100%;
-  height: auto;
-  max-height: 60vh; /* 縦に伸びすぎないよう制限 */
+  width: 100%; height: auto;
+  max-height: 65vh;
+  object-fit: contain;
   border-radius: 12px;
 }
 
-/* --- 4. オンラインショップ（2列 & 浮き上がる動き） --- */
+/* --- 7. オンラインショップ（水色・2列・浮かび上がり） --- */
 .goods-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 40px;
-  max-width: 1100px;
-  margin: 40px auto;
+  margin-top: 40px;
 }
 
 .goods-item {
-  flex: 0 0 44%;
+  flex: 0 0 44%; /* PCで2列 */
   max-width: 450px;
   text-align: center;
+}
+
+.onlineshop-title, .detail-container h1 {
+  color: var(--sky-blue) !important;
+  margin-bottom: 30px;
 }
 
 .image-wrap {
   width: 100%;
   overflow: hidden;
   border-radius: 12px;
-  background-color: #fcfcfc;
-  /* 浮かび上がるアニメーションの設定 */
   transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
-  will-change: transform; /* 動きを滑らかにする */
 }
 
-.image-wrap img {
-  width: 100%;
-  height: auto !important;
-  display: block;
-}
+.image-wrap img { width: 100%; height: auto !important; display: block; }
 
-/* マウスを重ねた時の動き：上に浮き、影をつける */
 .goods-item:hover .image-wrap {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 35px rgba(37, 57, 156, 0.15); /* ほんのり青みがかった影 */
+  transform: translateY(-12px);
+  box-shadow: 0 15px 35px rgba(0, 191, 255, 0.2);
 }
 
-/* --- 5. 背景交互と中央寄せ --- */
-section { padding: 100px 0; text-align: center; }
-section:nth-of-type(odd) { background-color: #fff5f8; }
-section:nth-of-type(even) { background-color: #ffffff; }
-
-.detail-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 80px 20px;
-  text-align: center;
+/* 問い合わせリンクの水色 */
+.contact-link, .back-nav a {
+  color: var(--sky-blue) !important;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 1px solid var(--sky-blue);
+  transition: opacity 0.3s;
 }
+.contact-link:hover { opacity: 0.7; }
 
-.back-nav, .detail-text-box {
-  width: 100%;
-  text-align: center;
-  margin: 0 auto 40px;
-}
-
-/* フッター */
-footer, #footer { padding: 60px 0; text-align: center; }
+/* --- 8. フッター --- */
+footer { padding: 60px 0; text-align: center; background: #fff; width: 100%; }
 
 /* スマホ対応 */
 @media screen and (max-width: 767px) {
   .goods-item { flex: 0 0 100%; }
+  .nav ul { gap: 15px; }
 }
