@@ -240,3 +240,22 @@ footer p, .footer p, #footer p {
   font-size: 0.9rem;
   color: #666;
 }
+
+/* --- LOOKBOOK 2枚目のサイズ調整 --- */
+
+/* DETAILセクション内の画像を狙い撃ち */
+#detail .container > div:last-child img,
+.lookbook-visual img {
+  width: 100% !important;
+  max-width: 350px !important; /* 1つ目の画像サイズに合わせる */
+  height: auto !important;
+  margin: 0 auto !important;
+  display: block !important;
+}
+
+/* 2枚目が大きなブロックに入っている場合の親要素制限 */
+section:nth-of-type(3) .container > div:last-child {
+  width: 100% !important;
+  max-width: 350px !important;
+  margin: 40px auto !important;
+}
