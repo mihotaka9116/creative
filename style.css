@@ -1,82 +1,68 @@
-/* --- 1. 崩れを根本から直すリセット --- */
+/* --- 1. 基本：以前の安定した設定に戻す --- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
+body {
   width: 100%;
-  overflow-x: hidden; /* 横揺れ・ズレを強制的に防止 */
+  overflow-x: hidden; /* 横ズレを物理的に止める */
   font-family: 'Playfair Display', 'Noto Sans JP', serif;
+  color: #191970;
 }
 
-:root {
-  --primary-blue: #25399c;
-  --bg-pink: #fce4ec; /* 以前のピンク */
+/* --- 2. 背景色：交互の指定をシンプルに --- */
+.hero, #concept, #lookbook {
+  background-color: #fce4ec; /* 以前のピンク */
 }
 
-/* --- 2. レイアウト（中央揃えの徹底） --- */
+#detail, #shop {
+  background-color: #ffffff; /* 白 */
+}
+
+/* --- 3. レイアウト：中央揃え --- */
 section, .hero {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 80px 0;
 }
 
 .container, .detail-container {
-  width: 90%;
   max-width: 1000px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
-/* 背景色の交互指定（画像とは独立） */
-.hero, #concept, #lookbook {
-  background-color: var(--bg-pink);
-}
-
-#detail, #shop {
-  background-color: #ffffff;
-}
-
-/* ヒーローのSVGサイズ固定 */
+/* ヒーローのSVG */
 .hero-svg {
+  display: block;
+  margin: 0 auto;
   width: 100%;
   max-width: 800px;
   height: auto;
 }
 
-/* --- 3. オンラインショップ：PCでの2列表示 --- */
+/* --- 4. オンラインショップ：ここだけ2列に調整 --- */
 .goods-grid {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center; /* 中央に寄せる */
-  gap: 40px; /* 画像同士の間隔 */
-  width: 100%;
-  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
 }
 
 .goods-item {
-  /* PCでは横幅の半分弱にして2列にする */
-  width: calc(50% - 40px); 
-  min-width: 300px;
+  width: calc(50% - 20px); /* PCで半分 */
+  min-width: 280px; /* 小さくなりすぎ防止 */
   text-align: center;
-  opacity: 0; /* JSでふわっと出す用 */
-  transform: translateY(20px);
-  transition: all 0.8s ease-out;
-}
-
-.goods-item.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+  margin-bottom: 40px;
 }
 
 .image-wrap {
   width: 100%;
-  border-radius: 15px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   margin-bottom: 15px;
 }
 
@@ -86,42 +72,30 @@ section, .hero {
   display: block;
 }
 
-/* --- 4. 窓の光（CSSで再現） --- */
+/* --- 5. 窓の光：CSSだけで安全に動かす --- */
 #window-base {
-  animation: windowGlow 4s ease-in-out infinite;
+  animation: windowFade 4s ease-in-out infinite;
 }
 
-@keyframes windowGlow {
+@keyframes windowFade {
   0%, 100% { fill-opacity: 0.4; }
   50% { fill-opacity: 1; }
 }
 
-/* --- 5. スマホ対応 --- */
+/* --- 6. スマホ対応 --- */
 @media screen and (max-width: 768px) {
   .goods-item {
-    width: 100% !important; /* スマホは1列 */
-    max-width: 400px;
+    width: 100%; /* スマホは1列 */
+  }
+  .header .nav {
+    display: none; /* シンプルにするため一旦非表示、または以前の設定を維持 */
   }
 }
 
-/* ヘッダーの修正（ズレ防止） */
+/* ヘッダー */
 .header {
-  position: fixed;
-  top: 0;
   width: 100%;
-  height: 70px;
-  background: rgba(255,255,255,0.9);
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
-}
-.header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.nav ul {
-  display: flex;
-  list-style: none;
-  gap: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px 0;
+  text-align: center;
 }
