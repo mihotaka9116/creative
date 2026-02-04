@@ -397,3 +397,55 @@ footer a, .footer a {
 footer a:hover {
   color: var(--sky-blue);
 }
+
+/* --- DETAILセクションを横並びにする修正 --- */
+#detail .container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* 1と2を包む親要素を横並びの土台にする */
+#detail .container > div:not(.lookbook-visual) {
+  display: flex;
+  flex-direction: column; /* スマホでは縦並び */
+  gap: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  #detail .container > div:not(.lookbook-visual) {
+    flex-direction: row; /* PCで横並び */
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  #detail .container > div > div {
+    width: 45%; /* 横幅を半分弱にして2つ並べる */
+    text-align: center;
+  }
+}
+
+/* --- フッター中央寄せの完全解決 --- */
+footer, .footer {
+  width: 100% !important;
+  padding: 60px 0 !important;
+  background-color: #ffffff !important;
+  border-top: 2px solid var(--sky-blue) !important;
+  
+  /* 左側に隙間ができるのを防ぐ */
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+footer p, .footer p {
+  width: 100% !important;
+  text-align: center !important;
+  margin: 0 !important;
+  color: var(--text-dark) !important;
+}
