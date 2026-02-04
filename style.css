@@ -1,86 +1,144 @@
-/* --- 1. JSアニメーション（ふわっと出る動き）の復活 --- */
-.js-reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1.0s ease-out, transform 1.0s ease-out;
-  /* 念のため、JSが動かなくても3秒後には表示されるようにする安全策 */
-  animation: reveal-fallback 0.5s forwards;
-  animation-delay: 3s; 
+/* --- 1. 基本設定・フォント読み込み --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@800&family=Noto+Sans+JP:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* JSでクラスがついた時の動き */
+:root {
+  --primary-blue: #25399c;
+  --soft-pink: #fff5f8; 
+  --text-dark: #191970;
+}
+
+body {
+  font-family: 'Playfair Display', 'Noto Sans JP', serif;
+  line-height: 1.7;
+  color: var(--text-dark);
+  background-color: #fff;
+  padding-top: 60px;
+  overflow-x: hidden;
+}
+
+/* --- 2. ヘッダー --- */
+.header {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  min-height: 60px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.nav ul {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--primary-blue);
+  font-weight: 800;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* --- 3. メインビジュアル (Hero) --- */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  background-color: var(--soft-pink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-svg-wrapper img {
+  width: 100%;
+  max-width: 100vw;
+  height: auto;
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.copy {
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 700 !important;
+  font-size: clamp(2rem, 8vw, 4.2rem);
+  color: var(--primary-blue) !important;
+  text-shadow: 0 0 25px #fff, 0 0 10px rgba(255, 255, 255, 0.9) !important;
+  margin-bottom: 20px !important;
+}
+
+.sub-copy {
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--primary-blue) !important;
+  text-shadow: none !important;
+  margin-top: 10px;
+}
+
+/* --- 4. JSアニメーション（浮かび上がる動き） --- */
+.js-reveal {
+  opacity: 0 !important;
+  transform: translateY(40px) !important;
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out !important;
+}
+
 .js-reveal.is-visible {
   opacity: 1 !important;
   transform: translateY(0) !important;
-  animation: none; /* JSが動いたら安全策を解除 */
 }
 
-@keyframes reveal-fallback {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* --- 2. LOOKBOOK（DETAIL）画像間の余白調整 --- */
-/* 1枚目と2枚目の間の隙間を広げる */
-.lookbook-visual, 
-#detail .container > div:last-child {
-  margin-top: 80px !important; /* 上の画像との間隔を広げました */
-  margin-bottom: 80px !important;
-}
-
-/* DETAIL内の各アイテム（1番・2番）の間の余白 */
-.detail-item {
-  margin-bottom: 60px !important;
-}
-
-@media screen and (min-width: 768px) {
-  .detail-content {
-    gap: 80px !important; /* PC版での横の隙間も広げる */
-  }
-}
-
-/* --- 1. LOOKBOOK（DETAIL）画像の巨大化を強制ストップ --- */
-/* セクション内のすべての画像を適切なサイズに制限 */
+/* --- 5. LOOKBOOK (DETAIL) 画像巨大化防止 ＆ 余白 --- */
 #detail .container img, 
 .lookbook-visual img,
 section:nth-of-type(3) img {
   width: 100% !important;
-  max-width: 350px !important; /* 以前の正しいサイズ */
+  max-width: 350px !important; 
   height: auto !important;
   margin: 0 auto !important;
   display: block !important;
 }
 
-/* 2枚目の画像の前後の余白を広げる */
-#detail .container > div,
-.lookbook-visual {
-  margin-top: 100px !important; 
-  margin-bottom: 100px !important;
+.lookbook-visual,
+#detail .container > div {
+  margin-top: 120px !important;
+  margin-bottom: 120px !important;
 }
 
-/* --- 2. JSアニメーション（浮かび上がる動き）の完全復元 --- */
-/* 透明度0からスタートし、is-visibleがついたら表示 */
-.js-reveal {
-  opacity: 0 !important;
-  transform: translateY(40px) !important;
-  transition: opacity 1.2s ease-out, transform 1.2s ease-out !important;
-  visibility: visible !important;
-}
-
-/* スクロールしてこのクラスがついた瞬間に動く */
-.js-reveal.is-visible {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-}
-
-/* --- 3. メインビジュアルのフォントと配置の最終固定 --- */
-.copy {
-  font-family: 'Playfair Display', serif !important;
-  font-weight: 700 !important;
-  text-shadow: 0 0 25px #fff, 0 0 10px rgba(255, 255, 255, 0.9) !important;
-}
-
-.sub-copy {
-  font-family: 'Playfair Display', serif !important;
-  text-shadow: none !important; /* サブコピーはぼかしなし */
-  margin-top: 30px !important; /* メインコピーとの間隔をさらに広げて下へ */
+/* --- 6. フッター --- */
+footer {
+  padding: 80px 0;
+  text-align: center;
+  background: #fff;
+  border-top: 1px solid var(--soft-pink);
 }
