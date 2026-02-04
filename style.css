@@ -291,3 +291,41 @@ section:nth-of-type(3) .container > div:last-child {
     line-height: 1.2;
   }
 }
+
+/* --- メインビジュアルの配置：メインが上・サブが下 --- */
+.hero-content {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important; /* 縦に並べる */
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* メインコピー（上） */
+.copy {
+  order: 1 !important; /* 1番目に表示 */
+  display: block !important;
+  font-size: clamp(2rem, 8vw, 4.2rem) !important;
+  line-height: 1.1 !important;
+  margin-bottom: 15px !important; /* 下のサブコピーとの隙間 */
+  text-align: center !important;
+}
+
+/* サブコピー（下） */
+.sub-copy {
+  order: 2 !important; /* 2番目に表示 */
+  display: block !important;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  color: var(--primary-blue);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: center !important;
+  text-shadow: 0 0 10px #fff;
+}
