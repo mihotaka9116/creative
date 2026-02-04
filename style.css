@@ -6,41 +6,62 @@
 }
 
 :root {
-  --primary-blue: #25399c;
-  --muted-blue: #7092be; 
-  --soft-pink: #fff5f8; 
+  --primary-blue: #25399c;   /* 濃い青（ロゴ・文字用） */
+  --muted-blue: #7092be;     /* 落ち着いたブルー（ボタン用） */
+  --hover-blue: #5a7ba3;     /* ボタンホバー時 */
+  --soft-pink: #ffdff9;      /* SVG背景と同じ薄ピンク */
   --text-dark: #191970;
 }
 
 body {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Playfair Display', 'Noto Sans JP', serif;
   color: var(--text-dark);
-  overflow-x: hidden;
+  overflow-x: hidden; /* 横揺れを完全に防ぐ */
   width: 100%;
 }
 
-/* --- 2. ナビゲーション（縦並びの解消） --- */
+/* --- 2. ヘッダー・ナビ（横並びを強制） --- */
+.header {
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
 .header-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
+.logo-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: var(--primary-blue);
+  font-size: 1.4rem;
+}
+
 .nav ul {
-  display: flex !important; /* 強制的に横並び */
+  display: flex !important; /* JSの影響を受けないよう強制横並び */
   flex-direction: row !important;
   list-style: none;
-  gap: 30px;
+  gap: 25px;
 }
 
 .nav a {
   text-decoration: none;
   color: var(--primary-blue);
-  font-weight: 800;
-  font-size: 1rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: color 0.3s;
 }
 
 /* --- 3. メインビジュアル（左右の余白を完全削除） --- */
@@ -49,9 +70,7 @@ body {
   width: 100vw;
   height: 90vh;
   background-color: var(--soft-pink);
-  /* 親要素の制約を無視して画面端まで広げる */
   margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,75 +84,113 @@ body {
   height: 100%;
 }
 
-.hero-svg-wrapper svg, .hero-svg-wrapper img {
+.hero-svg-wrapper svg {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* 隙間なく埋める */
+  object-fit: cover; /* 背景を画面いっぱいに */
 }
 
-/* --- 4. セクション背景（全幅） --- */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+}
+
+.copy {
+  font-size: clamp(2.2rem, 8vw, 4.5rem);
+  font-weight: 800;
+  color: var(--primary-blue);
+  text-shadow: 0 0 25px rgba(255,255,255,0.8);
+}
+
+/* 1文字ずつ出すアニメーション用設定 */
+.js-split-text span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.js-split-text.is-visible span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- 4. セクション共通設定（全幅背景） --- */
 section {
   padding: 100px 0;
   width: 100vw;
   margin-left: calc(50% - 50vw);
   text-align: center;
 }
-section:nth-of-type(odd) { background-color: var(--soft-pink); }
-section:nth-of-type(even) { background-color: #ffffff; }
+
+/* ピンクと白を交互に */
+#concept, #lookbook { background-color: var(--soft-pink); }
+#detail, #shop { background-color: #ffffff; }
 
 .container {
-  max-width: 1100px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-/* --- 5. ルックブック & オンラインショップ（2列表示） --- */
-.goods-grid {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: wrap; /* 折り返しを許可 */
-  justify-content: center;
-  gap: 40px;
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: var(--primary-blue);
+}
+
+/* --- 5. ルックブック（巨大化防止） --- */
+.lookbook-wrapper {
+  margin-bottom: 80px;
+}
+
+.lookbook-visual {
   width: 100%;
-  max-width: 1100px;
-  margin: 40px auto;
+  max-width: 420px; /* ここでサイズを抑制 */
+  margin: 0 auto 20px;
 }
 
-.goods-item {
-  width: calc(45% - 20px); /* PCで2列 */
-  min-width: 300px;
-  margin-bottom: 30px;
+.lookbook-visual img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
-.image-wrap {
-  overflow: hidden;
-  border-radius: 12px;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-.goods-item:hover .image-wrap {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.12);
-}
-
-/* 問い合わせボタン（落ち着いた色） */
-.contact-link, .custom-btn {
+/* --- 6. ボタン（落ち着いたトーン） --- */
+.btn {
   display: inline-block;
   background-color: var(--muted-blue);
   color: #fff !important;
-  padding: 14px 35px;
+  padding: 15px 45px;
   text-decoration: none;
-  border-radius: 6px;
+  border-radius: 30px;
   font-weight: bold;
+  transition: all 0.3s ease;
 }
 
-/* --- 6. スマホ対応 --- */
-@media screen and (max-width: 767px) {
-  .goods-item {
-    width: 100%; /* スマホは1列 */
-  }
-  .nav ul {
-    gap: 15px;
-  }
+.btn:hover {
+  background-color: var(--hover-blue);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* --- 7. JSアニメーション（スクロールで浮上） --- */
+.js-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+.js-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- 8. フッター --- */
+.footer {
+  padding: 60px 0;
+  background-color: #fff;
+  text-align: center;
+  border-top: 1px solid var(--soft-pink);
 }
