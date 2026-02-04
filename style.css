@@ -329,3 +329,48 @@ section:nth-of-type(3) .container > div:last-child {
   text-align: center !important;
   text-shadow: 0 0 10px #fff;
 }
+
+/* --- 前の正しい位置を完全に再現 --- */
+
+/* 1. コンテナをイラストの中心に固定 */
+.hero-content {
+  position: absolute !important;
+  top: 50% !important; 
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important; /* 縦に並べる */
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* 2. メインコピー（以前のサイズと位置） */
+.copy {
+  position: static !important; /* 重なりを防ぐため絶対配置を解除 */
+  transform: none !important;
+  margin: 0 0 15px 0 !important; /* 下への間隔 */
+  font-size: clamp(2rem, 8vw, 4.2rem) !important;
+  font-weight: 800;
+  color: var(--primary-blue) !important;
+  text-shadow: 0 0 25px #fff, 0 0 10px rgba(255, 255, 255, 0.9) !important;
+  white-space: nowrap;
+  line-height: 1.1;
+}
+
+/* 3. サブコピー（メインコピーから離れた下側の位置を再現） */
+.sub-copy {
+  position: static !important; /* メインコピーに隠れないよう自動配置に */
+  display: block !important;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+  letter-spacing: 0.12em;
+  text-align: center;
+  /* メインコピーの下に十分な余白を作って配置を安定させる */
+  margin-top: 10px !important; 
+  text-shadow: 0 0 10px #fff;
+}
