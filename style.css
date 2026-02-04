@@ -380,17 +380,28 @@ section:nth-of-type(3) .container > div:last-child {
 /* 1. フォントの再読み込み（念のため） */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Playfair+Display:wght@700&display=swap');
 
-/* 2. メインコピーのフォントをMontserrat (Bold) に固定 */
+/* --- Playfair Display の完全再現 --- */
+
+/* 1. フォント読み込み（Playfair Displayの太字を確実に取得） */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap');
+
+/* 2. メインコピーの再現 */
 .copy {
-  font-family: 'Montserrat', sans-serif !important;
-  font-weight: 800 !important;
-  text-transform: uppercase; /* もし以前が全大文字なら */
-  letter-spacing: -0.02em;   /* 文字間を少し詰めて力強く */
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 700 !important; /* または 900 */
+  text-transform: none; 
+  letter-spacing: 0.02em;
+  color: var(--primary-blue) !important;
+  text-shadow: 0 0 25px #fff, 0 0 10px rgba(255, 255, 255, 0.9) !important;
 }
 
-/* 3. サブコピーのフォントをMontserrat (Medium-Bold) に固定 */
+/* 3. サブコピーの再現 */
 .sub-copy {
-  font-family: 'Montserrat', sans-serif !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.15em;    /* サブコピーは逆に広げてバランスをとる */
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 400 !important; /* サブは少し細めにするのが一般的ですが、前と同じなら 700 に変更してください */
+  font-style: italic; /* サブも斜体だった場合は残してください */
+  letter-spacing: 0.1em;
+  margin-top: 20px !important; /* メインコピーからの距離を「前と同じ」くらいに確保 */
+  color: var(--primary-blue);
+  text-shadow: 0 0 10px #fff;
 }
