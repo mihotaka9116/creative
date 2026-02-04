@@ -1,69 +1,23 @@
-/* --- 1. 基本設定・フォント読み込み --- */
+/* --- 1. 基本設定（消さないでください） --- */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@800&family=Noto+Sans+JP:wght@400;700&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-:root {
-  --primary-blue: #25399c;
-  --soft-pink: #fff5f8; 
-  --text-dark: #191970;
-}
-
+* { margin: 0; padding: 0; box-sizing: border-box; }
 body {
   font-family: 'Playfair Display', 'Noto Sans JP', serif;
   line-height: 1.7;
-  color: var(--text-dark);
+  color: #191970;
   background-color: #fff;
   padding-top: 60px;
   overflow-x: hidden;
 }
+:root { --primary-blue: #25399c; --soft-pink: #fff5f8; }
 
-/* --- 2. ヘッダー --- */
-.header {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  min-height: 60px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-}
-
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 30px;
-}
-
-.nav ul {
-  display: flex;
-  list-style: none;
-  gap: 30px;
-}
-
-.nav a {
-  text-decoration: none;
-  color: var(--primary-blue);
-  font-weight: 800;
-  font-family: 'Montserrat', sans-serif;
-}
-
-/* --- 3. メインビジュアル (Hero) --- */
+/* --- 2. メインビジュアル（窓のアップを防ぎ、全体を見せる） --- */
 .hero {
   position: relative;
   width: 100%;
-  height: 90vh;
-  background-color: var(--soft-pink);
+  height: 80vh;
+  background: var(--soft-pink);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -72,20 +26,18 @@ body {
 
 .hero-svg-wrapper img {
   width: 100%;
-  max-width: 100vw;
-  height: auto;
+  height: 100%;
+  object-fit: contain !important; /* イラスト全体を枠内に収める */
 }
 
 .hero-content {
   position: absolute;
-  top: 50%; left: 50%;
+  top: 55%; /* 少しだけ下に配置 */
+  left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
   width: 100%;
   z-index: 100;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .copy {
@@ -94,437 +46,70 @@ body {
   font-size: clamp(2rem, 8vw, 4.2rem);
   color: var(--primary-blue) !important;
   text-shadow: 0 0 25px #fff, 0 0 10px rgba(255, 255, 255, 0.9) !important;
-  margin-bottom: 20px !important;
 }
 
 .sub-copy {
   font-family: 'Playfair Display', serif !important;
   font-weight: 700;
-  font-size: 1.2rem;
   color: var(--primary-blue) !important;
-  text-shadow: none !important;
-  margin-top: 10px;
+  text-shadow: none !important; /* ぼかし無し */
+  margin-top: 15px;
 }
 
-/* --- 4. JSアニメーション（浮かび上がる動き） --- */
-.js-reveal {
-  opacity: 0 !important;
-  transform: translateY(40px) !important;
-  transition: opacity 1.2s ease-out, transform 1.2s ease-out !important;
+/* --- 3. セクション余白と背景の規則性 --- */
+section {
+  padding: 100px 0 !important;
+  text-align: center;
 }
 
-.js-reveal.is-visible {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
+section:nth-of-type(odd) { background-color: var(--soft-pink) !important; }
+section:nth-of-type(even) { background-color: #ffffff !important; }
+
+/* --- 4. DETAIL（1と2をPCで横並びに、画像サイズ固定） --- */
+@media screen and (min-width: 768px) {
+  #detail .container {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 80px !important;
+  }
 }
 
-/* --- 5. LOOKBOOK (DETAIL) 画像巨大化防止 ＆ 余白 --- */
-#detail .container img, 
-.lookbook-visual img,
-section:nth-of-type(3) img {
+#detail img, .lookbook-visual img {
   width: 100% !important;
-  max-width: 350px !important; 
+  max-width: 350px !important; /* 巨大化防止 */
   height: auto !important;
   margin: 0 auto !important;
-  display: block !important;
 }
 
-.lookbook-visual,
-#detail .container > div {
-  margin-top: 120px !important;
-  margin-bottom: 120px !important;
-}
-
-/* --- 6. フッター --- */
-footer {
-  padding: 80px 0;
-  text-align: center;
-  background: #fff;
-  border-top: 1px solid var(--soft-pink);
-}
-
-/* --- 8. オンラインショップ：PC版横並びの復活 --- */
+/* --- 5. オンラインショップ（2列・中央寄せ） --- */
 @media screen and (min-width: 768px) {
-  /* 親要素の縦並び強制を解除 */
-  .goods-grid {
-    display: flex !important;
-    flex-direction: row !important; /* 横に並べる */
-    flex-wrap: wrap !important;     /* 入りきらない分は折り返す */
-    justify-content: center !important;
-    gap: 40px !important;           /* アイテム間の隙間 */
-    width: 100% !important;
-    max-width: 1100px !important;
-    margin: 40px auto !important;
-  }
-
-  /* 各アイテムの幅を指定 */
-  .goods-item {
-    width: 45% !important; /* 2列にするための幅 */
-    margin: 0 !important;
-    text-align: center !important;
-  }
-}
-
-/* --- 9. 浮かび上がる機能（JS）の最終設定 --- */
-/* JSが動く前：透明で下に沈んでいる状態 */
-.js-reveal {
-  opacity: 0 !important;
-  transform: translateY(40px) !important;
-  transition: opacity 1.2s ease-out, transform 1.2s ease-out !important;
-  visibility: visible !important;
-}
-
-/* スクロールしてクラスがついた瞬間：見える状態 */
-.js-reveal.is-visible {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-}
-
-/* --- 1. 背景色の交互切り替え（以前の正しい順序） --- */
-/* セクションごとに背景色を変える */
-section:nth-of-type(1), 
-section:nth-of-type(3), 
-section:nth-of-type(5) {
-  background-color: var(--soft-pink) !important;
-}
-
-section:nth-of-type(2), 
-section:nth-of-type(4) {
-  background-color: #ffffff !important;
-}
-
-/* オンラインショップの背景も個別に指定 */
-#onlineshop {
-  background-color: #ffffff !important;
-}
-
-/* --- 2. PC版オンラインショップ：2列横並びを完全再現 --- */
-@media screen and (min-width: 768px) {
-  .goods-grid {
-    display: flex !important;
-    flex-direction: row !important; /* 強制的に横並び */
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    align-items: flex-start !important;
-    gap: 50px 30px !important; /* 縦横の隙間 */
-    max-width: 1000px !important;
-    margin: 60px auto !important;
-  }
-
-  .goods-item {
-    /* 2列にするため幅を45%程度に固定 */
-    flex: 0 0 45% !important;
-    width: 45% !important;
-    margin: 0 !important;
-  }
-}
-
-/* --- 3. JSアニメーション（浮かび上がる動き）の修正 --- */
-/* 初期状態：沈めて隠す */
-.js-reveal {
-  opacity: 0 !important;
-  transform: translateY(40px) !important;
-  transition: opacity 1.2s ease-out, transform 1.2s ease-out !important;
-  pointer-events: none; /* 出てくるまでクリック不可 */
-}
-
-/* JSでクラスが付いた時：浮かび上がらせる */
-.js-reveal.is-visible {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  pointer-events: auto;
-}
-
-/* --- 4. テキスト中央寄せ --- */
-.container, h2, p, .sub-copy {
-  text-align: center !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-/* --- 10. セクション余白の統一（規則性のあるデザイン） --- */
-
-/* すべてのセクション（コンセプト、LOOKBOOK、オンラインショップ、フッター等）に統一した余白を適用 */
-section, 
-#onlineshop, 
-#detail, 
-.concept-section {
-  padding-top: 100px !important;    /* 上にたっぷり余白 */
-  padding-bottom: 100px !important; /* 下にもたっぷり余白 */
-  margin: 0 !important;             /* 外側の余白をリセットして隙間をなくす */
-}
-
-/* スマホ版では少し余白を抑えて読みやすく */
-@media screen and (max-width: 768px) {
-  section, 
-  #onlineshop, 
-  #detail {
-    padding-top: 60px !important;
-    padding-bottom: 60px !important;
-  }
-}
-
-/* コンテナ同士の余計な隙間を排除 */
-.container, .detail-container {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-}
-
-/* フッター周りの調整 */
-footer {
-  margin-top: 0 !important;
-  padding: 80px 0 !important;
-  border-top: 1px solid rgba(0,0,0,0.05); /* 境界線をうっすら入れて上品に */
-}
-
-/* 各セクション内のタイトル（h2）と本文（p）の距離を統一 */
-h2 {
-  margin-bottom: 40px !important; /* タイトルの下の余白を固定 */
-}
-
-p {
-  margin-bottom: 30px !important; /* 段落の後の余白を固定 */
-}
-
-/* --- オンラインショップ：画像の切れ・ズレを修正 --- */
-
-@media screen and (min-width: 768px) {
-  /* グリッド全体の配置をリセットして中央に */
   .goods-grid {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: wrap !important;
     justify-content: center !important;
-    align-items: flex-start !important;
-    width: 100% !important;
-    max-width: 1000px !important;
-    margin: 40px auto !important;
-    gap: 60px 40px !important; /* 縦横の隙間を広げて見やすく */
-  }
-
-  /* 各アイテムの枠を固定 */
-  .goods-item {
-    flex: 0 0 calc(50% - 40px) !important;
-    width: calc(50% - 40px) !important;
-    max-width: 400px !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    text-align: center !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-  }
-}
-
-/* 画像が枠からはみ出したり切れたりしないように強制 */
-.goods-item img {
-  width: 100% !important;
-  max-width: 100% !important; /* 枠いっぱいに広げる */
-  height: auto !important;
-  object-fit: contain !important; /* 画像全体を表示させる */
-  display: block !important;
-  margin: 0 auto 20px auto !important;
-}
-
-/* 商品タイトルと価格の調整 */
-.goods-item h3, 
-.goods-item p {
-  width: 100% !important;
-  text-align: center !important;
-  margin: 5px 0 !important;
-}
-
-/* --- オンラインショップ：全要素を完全に中央揃え --- */
-
-/* 1. ページ全体のコンテナを中央へ */
-#onlineshop .container,
-.onlineshop-section .container {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  text-align: center !important;
-  width: 100% !important;
-  max-width: 1200px !important;
-  margin: 0 auto !important;
-}
-
-/* 2. 商品リスト（グリッド）の中身を中央へ */
-.goods-grid {
-  justify-content: center !important;
-  align-items: flex-start !important; /* 上端は揃えて、横軸を中央に */
-  text-align: center !important;
-}
-
-/* 3. 各商品アイテム内のテキスト（名前・価格）を中央へ */
-.goods-item {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important; /* 子要素を中央に寄せる */
-  text-align: center !important;
-}
-
-.goods-item h3, 
-.goods-item p,
-.goods-item span {
-  width: 100% !important;
-  text-align: center !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-/* 4. 下部のナビゲーション（Back to Top 等）も中央へ */
-.back-nav, 
-.onlineshop-footer,
-footer {
-  width: 100% !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  text-align: center !important;
-}
-
-.back-nav a {
-  margin: 0 auto !important;
-}
-
-/* --- メインコピーの位置をわずかに下げる --- */
-.hero-content {
-  /* 50% から 55% に変更して、少しだけ位置を下げます */
-  top: 55% !important; 
-  
-  /* 中央配置を維持するための設定 */
-  transform: translate(-50%, -50%) !important;
-}
-
-/* メインコピーとサブコピーの間の距離も微調整（必要に応じて） */
-.copy {
-  margin-bottom: 25px !important;
-}
-
-/* --- DETAIL（LOOKBOOK）の横並びを復活 --- */
-@media screen and (min-width: 768px) {
-  /* 親要素を横並びに設定 */
-  #detail .container {
-    display: flex !important;
-    flex-direction: row !important; /* 横に並べる */
-    justify-content: center !important;
-    align-items: flex-start !important;
-    gap: 80px !important; /* 1と2の間の距離 */
-    max-width: 1100px !important;
-    margin: 0 auto !important;
-  }
-
-  /* 1と2のそれぞれのブロックの幅を調整 */
-  .detail-item, 
-  #detail .container > div {
-    flex: 1 !important;
-    width: 45% !important;
-    margin: 0 !important;
-    text-align: center !important;
-  }
-
-  /* 画像のサイズが大きくなりすぎないように制限 */
-  #detail .container img {
-    max-width: 100% !important;
-    height: auto !important;
-  }
-}
-
-/* スマホでは縦並びを維持 */
-@media screen and (max-width: 767px) {
-  #detail .container {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 60px !important;
-  }
-}
-
-/* --- オンラインショップ：全要素の完全中央揃えと2列維持 --- */
-
-/* 1. ページ全体のテキストを強制中央寄せ */
-#onlineshop, 
-.onlineshop-section,
-.back-nav {
-  text-align: center !important;
-}
-
-/* 2. グリッドの設定（PC版） */
-@media screen and (min-width: 768px) {
-  .goods-grid {
-    display: flex !important;
-    flex-direction: row !important; /* 横並び */
-    flex-wrap: wrap !important;     /* 折り返し許可 */
-    justify-content: center !important; /* 中央に寄せる */
-    align-items: flex-start !important;
-    max-width: 1000px !important;
-    margin: 40px auto !important;
     gap: 40px !important;
   }
-
-  .goods-item {
-    flex: 0 0 calc(50% - 40px) !important; /* 確実に2列 */
-    width: calc(50% - 40px) !important;
-    max-width: 400px !important;
-    margin: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important; /* 中身を中央に */
-  }
+  .goods-item { flex: 0 0 45% !important; }
 }
 
-/* 3. 画像の切れ・ズレを防止 */
-.goods-item img {
-  width: 100% !important;
-  max-width: 100% !important;
-  height: auto !important;
-  object-fit: contain !important;
-  margin-bottom: 20px !important;
+.goods-item { text-align: center !important; }
+.goods-item img { width: 100% !important; object-fit: contain !important; }
+
+/* --- 6. JSアニメーション（浮かび上がる動き） --- */
+.js-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+.js-reveal.is-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
-/* 4. 商品タイトル・価格・ボタンを中央へ */
-.goods-item h3, 
-.goods-item p,
-.goods-item .btn,
-.back-nav a {
-  text-align: center !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  display: block !important;
-  width: fit-content !important; /* 文字幅に合わせる */
-}
-
-/* 5. ページ下部の「Back to Top」等のナビゲーション */
-.back-nav {
-  margin: 60px auto !important;
-  display: flex !important;
-  justify-content: center !important;
-  width: 100% !important;
-}
-
-/* --- スマホ版：メインビジュアルの画像サイズ適正化 --- */
-@media screen and (max-width: 767px) {
-  .hero {
-    /* 高さの設定を調整（画像が入り切るように） */
-    height: 60vh !important; 
-    min-height: 400px !important;
-    background-size: contain !important; /* 画像を全体が表示されるように収める */
-    background-repeat: no-repeat !important;
-    background-position: center bottom !important; /* 下基準で配置 */
-  }
-
-  .hero-svg-wrapper img {
-    /* 画像タグを使っている場合の強制サイズ調整 */
-    width: 100% !important;
-    height: auto !important;
-    object-fit: contain !important;
-  }
-
-  /* コピーが画像に被りすぎる場合は位置を少し上げる */
-  .hero-content {
-    top: 40% !important;
-  }
-  
-  .copy {
-    font-size: 1.8rem !important; /* スマホで見やすいサイズに */
-  }
-}
+/* ヘッダー・フッター略 */
+.header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.9); z-index: 1000; height: 60px; display: flex; align-items: center; }
+.header-inner { display: flex; justify-content: space-between; width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+.nav ul { display: flex; list-style: none; gap: 20px; }
+.nav a { text-decoration: none; color: var(--primary-blue); font-weight: bold; }
