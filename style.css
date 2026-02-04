@@ -163,9 +163,14 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 }
 
 .footer {
-  padding: 120px 0;
   background-color: #fff;
   border-top: 1px solid var(--soft-pink);
+  width: 100%;
+  text-align: center; 
+  padding: 40px 0;   
+  background-color: #ffffff; 
+  color: #191970;   
+  font-size: 0.8rem;
 }
 
 /* --- 5. アニメーション設定 --- */
@@ -252,7 +257,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 }
 .goods-item {
   width: 100%;
-  max-width: 550px; /* 写真のサイズ：一回り大きく */
+  max-width: 550px; 
   text-align: center;
 }
 .image-wrap {
@@ -286,7 +291,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 
   /* ★詳細ページ用★ */
   .goods-grid { 
-    flex-direction: row 
+    flex-direction: row; 
     flex-wrap: wrap; 
     justify-content: center; 
     gap: 40px; 
