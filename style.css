@@ -105,7 +105,7 @@ body {
   display: block;
   font-size: clamp(2.2rem, 7vw, 4.2rem); 
   font-weight: 800;
-  color: var(--primary-blue) !important;
+  color: var(--primary-blue);
   text-shadow: 0 0 25px #fff, 0 0 10px rgba(255, 255, 255, 0.9);
   margin-bottom: 12px;
   line-height: 1.1;
@@ -193,18 +193,18 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 
   .hero-svg-wrapper svg,
   .hero-svg-wrapper img {
-    width: 95% !important; 
-    position: static !important;
-    transform: none !important;
+    width: 95%; 
+    position: static;
+    transform: none;
   }
 
   .copy {
-    font-size: 1.8rem !important; /* 少し調整 */
+    font-size: 1.8rem; /* 少し調整 */
     white-space: nowrap;
   }
 
   .lookbook-visual {
-    max-width: 250px !important;
+    max-width: 250px;
   }
 }
 
@@ -281,7 +281,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 .custom-btn {
   display: inline-block;
   background-color: #4682b4;
-  color: #fff !important;
+  color: #fff;
   padding: 15px 40px;
   text-decoration: none;
   border-radius: 5px;
@@ -298,7 +298,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   .skills-grid { flex-direction: row; justify-content: space-between; }
   .skill-item { width: 31%; }
 
-  /* ★詳細ページ用★ */
+  /* 詳細ページ用 */
   .goods-grid { 
     display:flex:
     flex-wrap: wrap; 
@@ -355,7 +355,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
     justify-content: center;
   }
   .goods-item {
-    width: calc(50% - 20px) !important; /* 2列 */
+    width: calc(50% - 20px); /* 2列 */
   }
 }
 
