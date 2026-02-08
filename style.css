@@ -127,7 +127,7 @@ body {
 .sub-copy {
   display: block;
   font-size: 1.1rem;
-  color: var(--primary-blue);
+  color: #fff;
   font-weight: 700;
 }
 
