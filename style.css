@@ -447,3 +447,37 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
     transform: scale(1.05); /* ホバーで少し拡大 */
   }
 }
+
+/* 1. スマホ版：縦並び（1列）にする */
+@media screen and (max-width: 767px) {
+  .goods-grid {
+    display: flex;
+    flex-direction: column; /* rowからcolumnに変更 */
+    align-items: center;
+    gap: 40px;
+  }
+
+  .goods-item {
+    width: 90%; /* 横幅いっぱい（少し余白あり） */
+    max-width: 400px; /* スマホで大きくなりすぎないように */
+  }
+}
+
+/* 2. PC版：横並び（2列）にする */
+@media screen and (min-width: 768px) {
+  .goods-grid {
+    display: flex;
+    flex-direction: row;    /* 横並び */
+    flex-wrap: wrap;        /* 折り返し許可 */
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .goods-item {
+    width: calc(50% - 25px); /* 2列計算 */
+  }
+}
+
+    .goods-item {
+  text-align: center;
+}
