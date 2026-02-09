@@ -359,4 +359,14 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   }
 }
 
+.work-item {
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s;
+}
+
+.work-item:hover {
+  transform: translateY(-8px);
+  /* 影も色鮮やかなサイトに合わせて、少し色味のある影にするとお洒落です */
+  box-shadow: 0 15px 30px rgba(37, 57, 156, 0.1); 
+}
+
 
