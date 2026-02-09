@@ -447,4 +447,3 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
     transform: scale(1.05); /* ホバーで少し拡大 */
   }
 }
-
