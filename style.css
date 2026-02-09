@@ -300,13 +300,13 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 
   /* 詳細ページ用 */
   .goods-grid { 
-    display:flex:
+    display:flex;
     flex-wrap: wrap; 
     justify-content: center; 
     gap: 40px; 
   }
   .goods-item { 
-    width: 45%；
+    width: 45%;
     max-width: none; 
   }
 }
@@ -339,7 +339,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
  
   /* 詳細ページ全体のレイアウト */
 .detail-container {
-  padding-top: 100px；
+  padding-top: 100px;
 }
 
 .goods-grid {
@@ -350,7 +350,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 
 @media screen and (min-width: 768px) {
   .goods-grid {
-    flex-direction: row；
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
   }
