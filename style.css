@@ -5,6 +5,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --primary-blue: #25399c;
   --hover-blue: #3657ff;
@@ -929,5 +933,29 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 
   .nav ul li a {
     font-size: 1rem;
+  }
+}
+
+/* --- ヘッダー内のレイアウト調整 --- */
+.header-inner {
+  display: flex;
+  justify-content: space-between; /* ロゴを左、ナビ（またはボタン）を右に */
+  align-items: center;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* PC版ナビゲーションを右寄せにする */
+@media screen and (min-width: 768px) {
+  .nav {
+    margin-left: auto; /* 左側に余白を作って右に押し出す */
+    display: block;
+  }
+  
+  .nav ul {
+    display: flex;
+    gap: 30px; /* メニュー間の距離 */
   }
 }
