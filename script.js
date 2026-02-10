@@ -18,14 +18,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- 2. スムーススクロール ---
-  const navLinks = document.querySelectorAll('a[href^="#"]');
-  navLinks.forEach(anchor => {
+  const scrollLinks = document.querySelectorAll('a[href^="#"]');
+  scrollLinks.forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-      e.preventDefault();
       const href = this.getAttribute('href');
-      const target = href === "#" ? document.documentElement : document.querySelector(href);
-      
+      // 内部リンクでない、または空のリンクは無視
+      if (!href || href === "#") return;
+
+      const target = document.querySelector(href);
       if (target) {
+        e.preventDefault();
         const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
         const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
 
@@ -52,24 +54,23 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.js-reveal').forEach(el => {
     revealObserver.observe(el);
   });
-});
 
-document.addEventListener('DOMContentLoaded', () => {
+  // --- 4. ハンバーガーメニュー (エラー防止付き) ---
   const hamburger = document.getElementById('js-hamburger');
   const nav = document.getElementById('js-nav');
 
-  // ハンバーガーをクリックした時の処理
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active'); // 三本線を×にする
-    nav.classList.toggle('active');       // メニューを出す
-  });
-
-  // メニュー内のリンクをクリックしたらメニューを閉じる処理
-  const navLinks = document.querySelectorAll('#js-nav a');
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      nav.classList.remove('active');
+  if (hamburger && nav) { // 要素が存在するときだけ実行
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      nav.classList.toggle('active');
     });
-  });
+
+    const navLinks = nav.querySelectorAll('a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        nav.classList.remove('active');
+      });
+    });
+  }
 });
