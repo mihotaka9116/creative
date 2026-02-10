@@ -959,3 +959,29 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
     gap: 30px; /* メニュー間の距離 */
   }
 }
+/* --- ハンバーガーボタンを強制表示 --- */
+@media screen and (max-width: 767px) {
+  .header-inner {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-direction: row !important; /* 縦並びを阻止 */
+  }
+
+  .hamburger-menu {
+    display: block !important; /* 絶対に消さない */
+    visibility: visible !important;
+    width: 30px !important;
+    height: 24px !important;
+    position: relative !important;
+    z-index: 9999 !important; /* 何よりも手前に */
+    cursor: pointer !important;
+  }
+
+  /* 三本線の色が背景と同化している可能性があるので濃い青に固定 */
+  .hamburger-menu span {
+    background-color: #25399c !important; 
+    display: block !important;
+    height: 2px !important;
+  }
+}
