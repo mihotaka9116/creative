@@ -484,12 +484,12 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 
 /* --- ハンバーガーボタンの見た目 --- */
 .hamburger-menu {
-  display: block; /* スマホ・PC両方で出す場合 */
+  display: block; /* 基本は表示 */
   width: 30px;
   height: 24px;
   position: relative;
   cursor: pointer;
-  z-index: 100;
+  z-index: 2100; /* ナビ(2000)よりさらに上に */
 }
 
 .hamburger-menu span {
@@ -497,7 +497,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: #333; /* 三本線の色 */
+  background-color: var(--primary-blue); /* 色をブランドカラーに統一 */
   transition: all 0.3s;
 }
 
@@ -505,7 +505,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 .hamburger-menu span:nth-child(2) { top: 11px; }
 .hamburger-menu span:nth-child(3) { bottom: 0; }
 
-/* クリック後（activeクラスがついた時）の三本線の変化 */
+/* activeクラスがついた時の変化（三本線→×） */
 .hamburger-menu.active span:nth-child(1) {
   transform: translateY(11px) rotate(45deg);
 }
@@ -516,150 +516,62 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   transform: translateY(-11px) rotate(-45deg);
 }
 
-/* --- ナビゲーションメニューの動き --- */
+/* --- スマホ・タブレット用ナビゲーション --- */
 .nav {
   position: fixed;
   top: 0;
-  right: -100%; /* 最初は画面の外に隠す */
-  width: 70%;    /* メニューの幅 */
+  right: -100%; /* 画面の外 */
+  width: 100%;
   height: 100vh;
-  background: rgba(255, 255, 255, 0.95);
-  transition: all 0.3s;
-  z-index: 90;
+  background: rgba(255, 255, 255, 0.98);
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav.active {
-  right: 0; /* activeがついたら画面内に戻す */
+  right: 0; /* 画面内に滑り込む */
 }
 
 .nav ul {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  gap: 20px;
   list-style: none;
-}
-
-/* --- ナビゲーションメニューの基本設定 --- */
-.nav {
-  position: fixed;
-  top: 0;
-  right: -100%; /* 基本は画面の外 */
-  width: 100%;  /* スマホでは全画面がおすすめ */
-  height: 100vh;
-  background: rgba(255, 255, 255, 0.98); /* 背景を少し濃く */
-  transition: all 0.3s;
-  z-index: 2000; /* ヘッダー(1000)より上に */
   display: flex;
+  flex-direction: column; /* 縦並び */
   align-items: center;
-  justify-content: center;
+  gap: 30px;
 }
 
-/* activeクラスがついたら画面に出す */
-.nav.active {
-  right: 0;
+.nav ul li a {
+  font-size: 1.5rem;
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
 }
 
-/* --- PC表示（768px以上）の設定 --- */
+/* --- PC版表示（768px以上）の切り替え --- */
 @media screen and (min-width: 768px) {
-  /* ハンバーガーボタンを隠す */
   .hamburger-menu {
-    display: none;
+    display: none; /* PCではハンバーガーを隠す */
   }
 
-  /* メニューを画面内に戻し、横並びにする */
   .nav {
-    position: static; /* 固定を解除 */
+    position: static; /* 固定を解除してヘッダー内に戻す */
     width: auto;
     height: auto;
     background: none;
     right: 0;
+    display: block; /* 常に表示 */
   }
 
   .nav ul {
     flex-direction: row; /* 横並び */
     gap: 30px;
   }
-}
-
-    /* --- ロゴのスタイル調整 --- */
-.logo-text {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  color: var(--primary-blue);
-}
-
-/* --- Shop Nowボタンのデザイン --- */
-.btn {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 15px 50px;
-  background-color: var(--primary-blue);
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 30px; /* 角丸で洗練された印象に */
-  transition: all 0.3s ease;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.btn:hover {
-  background-color: var(--hover-blue);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(37, 57, 156, 0.2);
-}
-
-/* --- セクションタイトルの装飾 --- */
-.section-title {
-  font-size: 2.5rem;
-  font-family: 'Playfair Display', serif;
-  margin-bottom: 40px;
-  color: var(--primary-blue);
-  position: relative;
-  display: inline-block;
-}
-
-/* タイトルの下に小さな線を引く（お好みで） */
-.section-title::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 2px;
-  background-color: var(--primary-blue);
-}
-
-/* --- 詳細セクションのグリッド（Detail部分） --- */
-.works-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  text-align: left; /* テキストは左寄せが見やすい */
-  margin-top: 50px;
-}
-
-@media (max-width: 768px) {
-  .works-grid {
-    grid-template-columns: 1fr; /* スマホでは1列 */
-  }
-}
-
-.work-item h3 {
-  font-size: 1.2rem;
-  color: var(--primary-blue);
-  margin-bottom: 15px;
-  font-family: 'Montserrat', sans-serif;
-}
-
-@media (max-width: 768px) {
-  .hero-svg-wrapper svg {
-    width: 180%; /* スマホでは少しはみ出すくらいに拡大して迫力を出す */
-    max-width: none;
+  
+  .nav ul li a {
+    font-size: 1rem; /* PCでは適切なサイズに */
   }
 }
