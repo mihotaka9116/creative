@@ -7,14 +7,18 @@ document.addEventListener('DOMContentLoaded', () => {
     splitText.innerHTML = ''; 
     [...text].forEach((char, i) => {
       const span = document.createElement('span');
+      // CSS側で .js-split-text span { display: inline-block; opacity: 0; ... } が必要
       span.style.transitionDelay = `${i * 0.05}s`;
       span.innerHTML = char === ' ' ? '&nbsp;' : char;
       splitText.appendChild(span);
     });
     
-    setTimeout(() => {
-      splitText.classList.add('is-visible');
-    }, 500);
+    // 描画タイミングを少しずらして発火
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        splitText.classList.add('is-visible');
+      }, 500);
+    });
   }
 
   // --- 2. スムーススクロール ---
@@ -22,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
   scrollLinks.forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const href = this.getAttribute('href');
-      // 内部リンクでない、または空のリンクは無視
       if (!href || href === "#") return;
 
       const target = document.querySelector(href);
@@ -39,11 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- 3. スクロール監視 (ふわっと出す) ---
+  // --- 3. スクロール監視 (Intersection Observer) ---
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
+        // 一度出たら監視を終了する場合
+        // revealObserver.unobserve(entry.target);
       }
     });
   }, { 
@@ -55,42 +60,24 @@ document.addEventListener('DOMContentLoaded', () => {
     revealObserver.observe(el);
   });
 
-  // --- 4. ハンバーガーメニュー (エラー防止付き) ---
+  // --- 4. ハンバーガーメニュー (統合版) ---
   const hamburger = document.getElementById('js-hamburger');
   const nav = document.getElementById('js-nav');
 
-  if (hamburger && nav) { // 要素が存在するときだけ実行
-    hamburger.addEventListener('click', () => {
+  if (hamburger && nav) {
+    const toggleMenu = () => {
       hamburger.classList.toggle('active');
       nav.classList.toggle('active');
-    });
+    };
 
-    const navLinks = nav.querySelectorAll('a');
-    navLinks.forEach(link => {
+    hamburger.addEventListener('click', toggleMenu);
+
+    // メニュー内のリンクをクリックしたら閉じる（スムーススクロール後に邪魔にならないため）
+    nav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         hamburger.classList.remove('active');
         nav.classList.remove('active');
       });
     });
   }
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-  const hamburger = document.getElementById('js-hamburger');
-  const nav = document.getElementById('js-nav');
-  const navLinks = document.querySelectorAll('#js-nav a');
-
-  // ボタンをクリックしたら active クラスを付け外しする
-  hamburger.addEventListener('click', function() {
-    hamburger.classList.toggle('active');
-    nav.classList.toggle('active');
-  });
-
-  // メニュー内のリンクをクリックしたらメニューを閉じる
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      nav.classList.remove('active');
-    });
-  });
 });
