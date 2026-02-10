@@ -53,3 +53,23 @@ document.addEventListener('DOMContentLoaded', () => {
     revealObserver.observe(el);
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const hamburger = document.getElementById('js-hamburger');
+  const nav = document.getElementById('js-nav');
+
+  // ハンバーガーをクリックした時の処理
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active'); // 三本線を×にする
+    nav.classList.toggle('active');       // メニューを出す
+  });
+
+  // メニュー内のリンクをクリックしたらメニューを閉じる処理
+  const navLinks = document.querySelectorAll('#js-nav a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      nav.classList.remove('active');
+    });
+  });
+});
