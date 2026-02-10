@@ -583,3 +583,83 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
     gap: 30px;
   }
 }
+
+    /* --- ロゴのスタイル調整 --- */
+.logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--primary-blue);
+}
+
+/* --- Shop Nowボタンのデザイン --- */
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 15px 50px;
+  background-color: var(--primary-blue);
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 30px; /* 角丸で洗練された印象に */
+  transition: all 0.3s ease;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.btn:hover {
+  background-color: var(--hover-blue);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(37, 57, 156, 0.2);
+}
+
+/* --- セクションタイトルの装飾 --- */
+.section-title {
+  font-size: 2.5rem;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 40px;
+  color: var(--primary-blue);
+  position: relative;
+  display: inline-block;
+}
+
+/* タイトルの下に小さな線を引く（お好みで） */
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background-color: var(--primary-blue);
+}
+
+/* --- 詳細セクションのグリッド（Detail部分） --- */
+.works-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  text-align: left; /* テキストは左寄せが見やすい */
+  margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+  .works-grid {
+    grid-template-columns: 1fr; /* スマホでは1列 */
+  }
+}
+
+.work-item h3 {
+  font-size: 1.2rem;
+  color: var(--primary-blue);
+  margin-bottom: 15px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+@media (max-width: 768px) {
+  .hero-svg-wrapper svg {
+    width: 180%; /* スマホでは少しはみ出すくらいに拡大して迫力を出す */
+    max-width: none;
+  }
+}
