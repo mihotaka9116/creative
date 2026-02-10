@@ -648,3 +648,26 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
     gap: 20px;
   }
 }
+
+@media screen and (max-width: 767px) {
+  /* ヘッダーの中身を横並びにして端に寄せる */
+  .header-inner {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+
+  /* ボタン自体の存在を確実にする */
+  .hamburger-menu {
+    display: block !important;
+    width: 30px !important;
+    height: 24px !important;
+    position: relative;
+    z-index: 9999; /* 他の要素より手前に */
+  }
+
+  /* 三本線の色を強制的に見えるようにする */
+  .hamburger-menu span {
+    background-color: #25399c !important; /* ブランドカラーの濃い青 */
+  }
+}
