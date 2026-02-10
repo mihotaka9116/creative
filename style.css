@@ -716,3 +716,96 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
     background-color: #25399c !important;
   }
 }
+
+/* --- ナビゲーションの基本設定 --- */
+.nav {
+  position: fixed;
+  top: 0;
+  right: -100%; /* 最初は画面の外（右）に隠す */
+  width: 80%;    /* スマホでのメニュー幅 */
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.95); /* 背景色 */
+  transition: right 0.5s ease; /* スライドするアニメーション */
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* JSで .active がついた時に画面内に入れる */
+.nav.active {
+  right: 0;
+}
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.nav ul li {
+  margin: 20px 0;
+}
+
+.nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* --- ハンバーガーボタンの見た目 --- */
+.hamburger-menu {
+  position: relative;
+  z-index: 100;
+  width: 30px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.hamburger-menu span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #333; /* 三本線の色 */
+  transition: all 0.4s;
+}
+
+.hamburger-menu span:nth-child(1) { top: 0; }
+.hamburger-menu span:nth-child(2) { top: 11px; }
+.hamburger-menu span:nth-child(3) { top: 22px; }
+
+/* ボタンが active になった時の三本線の変化（バツ印） */
+.hamburger-menu.active span:nth-child(1) {
+  transform: translateY(11px) rotate(45deg);
+}
+.hamburger-menu.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger-menu.active span:nth-child(3) {
+  transform: translateY(-11px) rotate(-45deg);
+}
+
+/* --- PCサイズではナビを最初から表示する --- */
+@media (min-width: 768px) {
+  .hamburger-menu {
+    display: none; /* PCではボタンを隠す */
+  }
+
+  .nav {
+    position: static; /* 固定解除 */
+    width: auto;
+    height: auto;
+    background: none;
+    right: 0;
+  }
+
+  .nav ul {
+    display: flex; /* 横並び */
+  }
+
+  .nav ul li {
+    margin: 0 0 0 20px;
+  }
+}
