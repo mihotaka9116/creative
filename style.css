@@ -541,3 +541,45 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   gap: 20px;
   list-style: none;
 }
+
+/* --- ナビゲーションメニューの基本設定 --- */
+.nav {
+  position: fixed;
+  top: 0;
+  right: -100%; /* 基本は画面の外 */
+  width: 100%;  /* スマホでは全画面がおすすめ */
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.98); /* 背景を少し濃く */
+  transition: all 0.3s;
+  z-index: 2000; /* ヘッダー(1000)より上に */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* activeクラスがついたら画面に出す */
+.nav.active {
+  right: 0;
+}
+
+/* --- PC表示（768px以上）の設定 --- */
+@media screen and (min-width: 768px) {
+  /* ハンバーガーボタンを隠す */
+  .hamburger-menu {
+    display: none;
+  }
+
+  /* メニューを画面内に戻し、横並びにする */
+  .nav {
+    position: static; /* 固定を解除 */
+    width: auto;
+    height: auto;
+    background: none;
+    right: 0;
+  }
+
+  .nav ul {
+    flex-direction: row; /* 横並び */
+    gap: 30px;
+  }
+}
