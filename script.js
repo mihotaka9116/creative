@@ -74,3 +74,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const hamburger = document.getElementById('js-hamburger');
+  const nav = document.getElementById('js-nav');
+  const navLinks = document.querySelectorAll('#js-nav a');
+
+  // ボタンをクリックしたら active クラスを付け外しする
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('active');
+    nav.classList.toggle('active');
+  });
+
+  // メニュー内のリンクをクリックしたらメニューを閉じる
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      nav.classList.remove('active');
+    });
+  });
+});
