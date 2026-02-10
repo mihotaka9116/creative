@@ -671,3 +671,48 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
     background-color: #25399c !important; /* ブランドカラーの濃い青 */
   }
 }
+/* --- スマホ用ナビゲーションの最終調整 --- */
+@media screen and (max-width: 767px) {
+  /* ヘッダーの中身を強制的に横並び（ロゴ左・ボタン右）にする */
+  .header-inner {
+    display: flex !important;
+    flex-direction: row !important; /* 縦並びを解除 */
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 10px 20px !important;
+  }
+
+  /* ナビゲーションを画面外へ隠す */
+  .nav {
+    position: fixed !important;
+    top: 0 !important;
+    right: -100% !important; /* 隠す */
+    width: 100% !important;
+    height: 100vh !important;
+    background: rgba(255, 255, 255, 0.98) !important;
+    z-index: 9998 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.5s ease !important;
+  }
+
+  /* JSでactiveクラスがついた時だけ表示 */
+  .nav.active {
+    right: 0 !important;
+  }
+
+  /* ハンバーガーボタンを確実に表示 */
+  .hamburger-menu {
+    display: block !important;
+    width: 30px !important;
+    height: 24px !important;
+    z-index: 9999 !important;
+    position: relative !important;
+  }
+
+  .hamburger-menu span {
+    background-color: #25399c !important;
+  }
+}
