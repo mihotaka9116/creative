@@ -486,39 +486,6 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   text-align: center;
 }
 
-/* --- ハンバーガーボタンの見た目 --- */
-.hamburger-menu {
-  display: block; /* 基本は表示 */
-  width: 30px;
-  height: 24px;
-  position: relative;
-  cursor: pointer;
-  z-index: 2100; /* ナビ(2000)よりさらに上に */
-}
-
-.hamburger-menu span {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--primary-blue); /* 色をブランドカラーに統一 */
-  transition: all 0.3s;
-}
-
-.hamburger-menu span:nth-child(1) { top: 0; }
-.hamburger-menu span:nth-child(2) { top: 11px; }
-.hamburger-menu span:nth-child(3) { bottom: 0; }
-
-/* activeクラスがついた時の変化（三本線→×） */
-.hamburger-menu.active span:nth-child(1) {
-  transform: translateY(11px) rotate(45deg);
-}
-.hamburger-menu.active span:nth-child(2) {
-  opacity: 0;
-}
-.hamburger-menu.active span:nth-child(3) {
-  transform: translateY(-11px) rotate(-45deg);
-}
 
 /* --- スマホ・タブレット用ナビゲーション --- */
 .nav {
@@ -580,14 +547,6 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   }
 }
 
-/* --- 確実にハンバーガーを表示させるための修正 --- */
-
-/* 1. PCでは隠す */
-@media screen and (min-width: 768px) {
-  #js-hamburger {
-    display: none;
-  }
-}
 
 /* 2. スマホ・タブレットでの見た目 */
 @media screen and (max-width: 767px) {
@@ -597,35 +556,6 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
     align-items: center;
     padding: 10px 20px;
   }
-
-  .hamburger-menu {
-    display: block; /* 強制的に表示 */
-    width: 30px;
-    height: 24px;
-    position: relative;
-    cursor: pointer;
-    z-index: 9999; /* 一番手前に */
-  }
-
-  /* 三本線の設定 */
-  .hamburger-menu span {
-    display: block;
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: #25399c; /* var(--primary-blue)と同じ色 */
-    transition: all 0.3s;
-  }
-
-  .hamburger-menu span:nth-child(1) { top: 0; }
-  .hamburger-menu span:nth-child(2) { top: 11px; }
-  .hamburger-menu span:nth-child(3) { bottom: 0; }
-
-  /* ×印に変化する設定 */
-  .hamburger-menu.active span:nth-child(1) { transform: translateY(11px) rotate(45deg); }
-  .hamburger-menu.active span:nth-child(2) { opacity: 0; }
-  .hamburger-menu.active span:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
 
   /* ナビゲーションメニュー（スマホ時） */
   .nav {
@@ -707,19 +637,6 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
     right: 0;
   }
 
-  /* ハンバーガーボタンを確実に表示 */
-  .hamburger-menu {
-    display: block;
-    width: 30px;
-    height: 24px;
-    z-index: 9999;
-    position: relative;
-  }
-
-  .hamburger-menu span {
-    background-color: #25399c;
-  }
-}
 
 /* --- ナビゲーションの基本設定 --- */
 .nav {
@@ -758,38 +675,6 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   font-weight: bold;
 }
 
-/* --- ハンバーガーボタンの見た目 --- */
-.hamburger-menu {
-  position: relative;
-  z-index: 100;
-  width: 30px;
-  height: 24px;
-  cursor: pointer;
-}
-
-.hamburger-menu span {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: #333; /* 三本線の色 */
-  transition: all 0.4s;
-}
-
-.hamburger-menu span:nth-child(1) { top: 0; }
-.hamburger-menu span:nth-child(2) { top: 11px; }
-.hamburger-menu span:nth-child(3) { top: 22px; }
-
-/* ボタンが active になった時の三本線の変化（バツ印） */
-.hamburger-menu.active span:nth-child(1) {
-  transform: translateY(11px) rotate(45deg);
-}
-.hamburger-menu.active span:nth-child(2) {
-  opacity: 0;
-}
-.hamburger-menu.active span:nth-child(3) {
-  transform: translateY(-11px) rotate(-45deg);
-}
 
 /* --- PCサイズではナビを最初から表示する --- */
 @media (min-width: 768px) {
@@ -876,30 +761,6 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   font-weight: 700;
 }
 
-.hamburger-menu span {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background-color: #333;
-  position: absolute;
-  left: 0;
-  transition: all 0.4s;
-}
-
-.hamburger-menu span:nth-child(1) { top: 0; }
-.hamburger-menu span:nth-child(2) { top: 11px; }
-.hamburger-menu span:nth-child(3) { top: 22px; }
-
-/* active時の三本線アニメーション（バツ印） */
-.hamburger-menu.active span:nth-child(1) {
-  transform: translateY(11px) rotate(45deg);
-}
-.hamburger-menu.active span:nth-child(2) {
-  opacity: 0;
-}
-.hamburger-menu.active span:nth-child(3) {
-  transform: translateY(-11px) rotate(-45deg);
-}
 
 /* --- PC版の表示設定（横並びにする） --- */
 @media screen and (min-width: 768px) {
