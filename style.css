@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 /* --- 1. Fonts & Variables --- */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Playfair+Display:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Noto+Sans+JP:wght@400;500;700&family=Playfair+Display:wght@400;700;800&display=swap');
 
 :root {
   --primary-blue: #25399c;
@@ -25,11 +25,11 @@ html, body {
 }
 
 body {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Playfair Display', 'Noto Sans JP', serif;
   line-height: 1.7;
   color: var(--text-dark);
   background-color: #fff;
-  padding-top: 60px; /* ヘッダー固定用 */
+  padding-top: 80px; /* ヘッダーの高さ分 */
 }
 
 /* --- 3. Header & Navigation --- */
@@ -56,7 +56,26 @@ body {
   padding: 0 20px;
 }
 
-/* ハンバーガーメニューボタン（デフォルト非表示） */
+/* PC用ナビ */
+.nav ul {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+.nav a {
+  font-size: 0.9rem; 
+  color: var(--primary-blue);
+  font-weight: 800;
+  font-family: 'Montserrat', sans-serif;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.nav a:visited { color: var(--primary-blue); } /* 訪問済みでも紫にしない */
+.nav a:hover { color: var(--hover-blue); }
+
+/* スマホ用メニューボタン */
 .hamburger-menu {
   display: none;
   width: 30px;
@@ -67,37 +86,16 @@ body {
 }
 
 .hamburger-menu span {
-  display: block;
-  width: 100%;
-  height: 2px;
+  display: block; width: 100%; height: 2px;
   background-color: var(--primary-blue);
-  position: absolute;
-  transition: 0.4s;
+  position: absolute; transition: 0.4s;
 }
 
 .hamburger-menu span:nth-child(1) { top: 0; }
 .hamburger-menu span:nth-child(2) { top: 11px; }
 .hamburger-menu span:nth-child(3) { bottom: 0; }
 
-/* PC版ナビ */
-.nav ul {
-  display: flex;
-  list-style: none;
-  gap: 30px;
-}
-
-.nav ul li a {
-  font-size: 0.9rem; 
-  color: var(--primary-blue);
-  font-weight: 800;
-  font-family: 'Montserrat', sans-serif;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.nav ul li a:hover { color: var(--hover-blue); }
-
-/* --- 4. Hero Section --- */
+/* --- 4. Hero Section (窓) --- */
 .hero {
   position: relative;
   width: 100%;
@@ -109,9 +107,21 @@ body {
   justify-content: center;
 }
 
+.hero-svg-wrapper {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.hero-svg-wrapper svg,
+.hero-svg-wrapper img {
+  width: 100vw;
+  height: 80vh;
+  object-fit: contain;
+}
+
 .hero-content {
   position: absolute;
-  top: 52%; left: 50%;
+  top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   z-index: 100;
   text-align: center;
@@ -124,21 +134,33 @@ body {
   font-size: clamp(2.2rem, 7vw, 4.2rem); 
   font-weight: 800;
   color: var(--primary-blue);
-  text-shadow: 0 0 25px #fff;
+  text-shadow: 0 0 25px #fff, 0 0 10px #fff;
   line-height: 1.1;
 }
 
-/* --- 5. Goods Grid (商品一覧) --- */
+.sub-copy {
+  display: block;
+  font-size: 1.1rem;
+  color: #ffffff !important;
+  font-weight: 700;
+  margin-top: 10px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* --- 5. Goods Grid (商品詳細 01, 02 横並び) --- */
 .goods-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* PCは4列 */
-  gap: 30px;
-  max-width: 1100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1000px;
   margin: 60px auto;
   padding: 0 20px;
+  list-style: none;
 }
 
 .goods-item {
+  width: calc(50% - 20px); /* PCで2列並び */
   text-align: center;
   transition: transform 0.4s ease;
 }
@@ -161,424 +183,59 @@ body {
 .goods-item:hover { transform: translateY(-8px); }
 .goods-item:hover img { transform: scale(1.05); }
 
-/* --- 6. Section & Animations --- */
-section { padding: 100px 0; width: 100%; text-align: center; }
-section:nth-of-type(even) { background-color: #ffffff; }
-section:nth-of-type(odd) { background-color: var(--soft-pink); }
-
-.js-reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: 0.8s ease-out;
-}
-.js-reveal.is-visible { opacity: 1; transform: translateY(0); }
-
-/* --- 7. Responsive (スマホ対応) --- */
-@media (max-width: 768px) {
-  .hamburger-menu { display: block; }
-
-  /* スマホナビ：画面外に隠す */
-  .nav {
-    position: fixed;
-    top: 0; right: -100%;
-    width: 100%; height: 100vh;
-    background: rgba(255, 255, 255, 0.98);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.5s ease;
-    z-index: 999;
-  }
-
-  .nav.active { right: 0; }
-
-  .nav ul {
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  .nav ul li a { font-size: 1.5rem; }
-
-  /* 商品一覧：2列にする */
-  .goods-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
-  .hero { height: 60vh; }
-  .copy { font-size: 1.8rem; }
-}
-
-@media (max-width: 480px) {
-  /* スマホ（小）：1列にする */
-  .goods-grid {
-    grid-template-columns: 1fr;
-    padding: 0 40px;
-  }
-}
-
-/* --- 商品一覧（Goods Grid）の基盤 --- */
-.goods-grid {
-  display: grid;
-  /* PC版：4列に均等分割（1つ25%弱） */
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px; /* アイテム間の隙間 */
-  max-width: 1100px;
-  margin: 60px auto;
-  padding: 0 20px;
-  list-style: none;
-}
-
-.goods-item {
-  width: 100%; /* グリッドの枠いっぱいに広げる */
-  text-align: center;
-}
-
-.image-wrap {
-  width: 100%;
-  aspect-ratio: 1 / 1; /* 正方形を維持 */
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  margin-bottom: 15px;
-}
-
-.image-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* 枠に合わせて切り抜き */
-  display: block;
-}
-
-/* --- レスポンシブ調整 --- */
-
-/* タブレット版（960px以下）：3列にする */
-@media (max-width: 960px) {
-  .goods-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* スマホ版（768px以下）：2列にする */
-@media (max-width: 768px) {
-  .goods-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px; /* スマホでは隙間を少し狭く */
-  }
-  .sec-title {
-    font-size: 1.8rem;
-  }
-}
-
-/* 小さなスマホ版（480px以下）：1列にする */
-@media (max-width: 480px) {
-  .goods-grid {
-    grid-template-columns: 1fr;
-    padding: 0 40px; /* 1列のときは左右に余白を多めにとると綺麗 */
-  }
-}
-
-/* --- 1. メインビジュアル（Hero）の修正 --- */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 80vh; /* スマホで見やすい高さに調整 */
-  background-color: var(--soft-pink);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-svg-wrapper {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px; /* 窓が画面端に当たらないよう余白を作る */
-}
-
-/* 窓の画像/SVGが巨大化してはみ出すのを防ぐ */
-.hero-svg-wrapper svg,
-.hero-svg-wrapper img {
-  width: auto;
-  height: auto;
-  max-width: 90%;  /* 画面幅の90%までに制限 */
-  max-height: 80%; /* 画面の高さからもはみ出さないように制限 */
-  object-fit: contain; /* アスペクト比を維持して収める */
-}
-
-/* --- 2. ルックブック（Lookbook）の巨大化修正 --- */
-.lookbook-visual {
-  width: 100%;
-  max-width: 500px; /* PCでの最大サイズを制限 */
-  margin: 40px auto;
-  padding: 0 20px;
-  display: flex;
-  justify-content: center;
-}
-
-/* 中の画像が親要素を突き破らないようにする最重要設定 */
-.lookbook-visual img,
-.lookbook-visual svg {
-  width: 100% !important; /* 親要素の幅に合わせる */
-  height: auto !important; /* 高さは自動計算（歪まないように） */
-  display: block;
-}
-
-/* --- 3. スマホ専用の微調整 --- */
-@media (max-width: 768px) {
-  .hero {
-    height: 60vh; /* スマホでは高さを少し抑える */
-  }
-  
-  .hero-svg-wrapper {
-    padding: 20px;
-  }
-
-  .copy {
-    font-size: 1.8rem; /* 文字が画像に被りすぎないよう調整 */
-    text-shadow: 0 0 10px #fff; /* 背景が白くても読めるように */
-  }
-
-  .lookbook-visual {
-    max-width: 100%; /* スマホでは画面いっぱいに（左右余白あり） */
-  }
-}
-
-/* --- 1. メインビジュアル（Hero）のサイズ拡大 --- */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 90vh; /* 画面の高さ90%分を贅沢に使う */
-  background-color: var(--soft-pink);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-svg-wrapper {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0; /* 余白をなくして画像を大きく見せる */
-}
-
-.hero-svg-wrapper svg,
-.hero-svg-wrapper img {
-  width: 100%;       /* 横幅いっぱいに広げる */
-  height: 85%;       /* 高さに少し余裕を持たせて見切れを防ぐ */
-  max-width: 1200px;  /* PCで広がりすぎないよう上限を設定 */
-  object-fit: contain; /* アスペクト比を守りつつ最大化 */
-}
-
-/* --- 2. スマホ（768px以下）での迫力アップ --- */
-@media (max-width: 768px) {
-  .hero {
-    height: 75vh; /* スマホでも高さをしっかり確保 */
-  }
-
-  .hero-svg-wrapper svg,
-  .hero-svg-wrapper img {
-    width: 150%;        /* あえて100%以上にし、少しはみ出すくらいで迫力を出す */
-    max-width: none;    /* 上限を解除 */
-    height: auto;
-    /* 窓の中央が画面の真ん中に来るように微調整 */
-    transform: scale(1.1); 
-  }
-
-  .hero-content {
-    top: 50%; /* キャッチコピーの位置を中央に固定 */
-  }
-
-  .copy {
-    font-size: 2.2rem; /* スマホでもコピーを読みやすく大きく */
-    letter-spacing: 0.05em;
-    /* 画像が大きく重なるので、白背景でなくても文字を浮き立たせる */
-    text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 5px rgba(255, 255, 255, 0.8);
-  }
-}
-
-.hero-svg-wrapper svg,
-.hero-svg-wrapper img {
-  width: 100vw;       /* 横幅は画面ぴったり */
-  height: 80vh;       /* 高さは少し余裕を持たせる */
-  object-fit: contain; /* 画像が切れないように収める */
-  max-width: none;    /* 制限を解除 */
-}
-
-@media (max-width: 768px) {
-  .hero-svg-wrapper svg,
-  .hero-svg-wrapper img {
-    width: 120%;      /* スマホではあえて少しはみ出させて迫力を出す */
-    height: auto;
-    transform: scale(1.05); /* わずかにズームして余白を埋める */
-  }
-}
-
-/* --- 1. サブコピーの色を白に --- */
-.sub-copy {
-  display: block;
-  font-size: 1.1rem;
-  color: #ffffff !important; /* 強制的に白にする */
-  font-weight: 700;
-  margin-top: 10px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* 白文字を読みやすくするための影 */
-}
-
-/* --- 2. 窓のアニメーション設定 --- */
-
-/* 窓の「枠」や「ベース」に適用する場合（HTMLのID名を確認してください） */
-#window-base, 
-#window,
-.hero-svg-wrapper svg path[fill="#25399c"] { /* 元の濃い青を指定している部分 */
-  animation: window-glow 4s infinite alternate ease-in-out;
-}
-
-@keyframes window-glow {
-  0% {
-    fill: #25399c; /* 元の濃い青 */
-    filter: brightness(1);
-  }
-  100% {
-    fill: #3657ff; /* 少し明るい青（あるいは窓が光っているような色） */
-    /* 外側に光が漏れているような効果 */
-    filter: brightness(1.3) drop-shadow(0 0 15px rgba(54, 87, 255, 0.6));
-  }
-}
-
-/* 窓の「ガラス面」を白っぽく光らせる場合 */
-#window-glass {
-  animation: shine 3s infinite alternate ease-in-out;
-}
-
-@keyframes shine {
-  0% { 
-    opacity: 0.6;
-    fill: #fdfae2; /* 柔らかい光の色 */
-  }
-  100% { 
-    opacity: 1; 
-    fill: #fffde7; 
-  }
-}
-
-.footer{
-  text-align: center;
-}
-
-/* --- 1. DETAIL本文（テキスト）の視認性アップ --- */
+/* --- 6. Text & DETAIL Styles --- */
 .detail-container .text, 
-.goods-item p,
-.item-caption {
-  line-height: 1.8;          /* 行間を広げてゆとりを持たせる */
-  letter-spacing: 0.05em;    /* 文字同士がくっつきすぎないように */
-  color: var(--text-dark);   /* ぼやけないよう、しっかりした色味に */
-  text-align: justify;       /* 文字の端を揃えて綺麗に見せる */
+.item-caption,
+.goods-item p {
+  line-height: 1.9;
+  letter-spacing: 0.05em;
+  color: var(--text-dark);
+  text-align: justify;
   margin-bottom: 20px;
-}
-
-/* 本文内の日本語フォントを少し太く（500）設定 */
-.detail-container p {
-  font-weight: 500;
   font-family: 'Noto Sans JP', sans-serif;
 }
 
-/* --- 2. リンク済みのボタンが紫にならない設定 --- */
-/* ボタン（btn, custom-btn）やリンク（aタグ）すべてに適用 */
-.btn, .custom-btn, .nav a, .site-title a, .goods-item a {
-  text-decoration: none;
-}
-
-/* 訪問済み（:visited）でも色を変えない */
-.btn:visited, 
-.custom-btn:visited, 
-.nav a:visited, 
-.site-title a:visited,
-.goods-item a:visited {
-  color: inherit; /* 親要素の色をそのまま引き継ぐ */
-}
-
-/* ボタン専用：訪問済みでも背景色を維持 */
-.btn:visited, .custom-btn:visited {
-  background-color: var(--primary-blue);
-  color: #ffffff;
-}
-
-/* ホバー時の設定（念のため再定義） */
-.btn:hover, .custom-btn:hover {
-  background-color: var(--hover-blue) !important;
-  color: #ffffff !important;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(37, 57, 156, 0.3);
-}
-
-/* --- 1. DETAIL (01, 02) を横並びにする --- */
-/* 商品詳細の親要素（goods-gridなど）に適用 */
-.goods-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px; /* アイテム間の隙間 */
-  max-width: 1000px;
-  margin: 0 auto 60px;
-}
-
-/* 各商品アイテムの設定 */
-.goods-item {
-  width: calc(50% - 20px); /* 2列にする計算（隙間の半分を引く） */
-  max-width: none;
-  text-align: center;
-}
-
-/* スマホでは縦1列に戻す */
-@media screen and (max-width: 767px) {
-  .goods-item {
-    width: 100%; /* スマホは横幅いっぱい */
-    margin-bottom: 40px;
-  }
-}
-
-/* --- 2. 「グッズについて問い合わせる」ボタンの視認性アップ --- */
-.custom-btn, 
-.btn {
+/* --- 7. Buttons (問い合わせボタン) --- */
+.btn, .custom-btn {
   display: inline-block;
-  background-color: var(--primary-blue) !important; /* 濃い青を背景に */
-  color: #ffffff !important;                       /* 文字を白に */
-  padding: 15px 40px;
-  border-radius: 50px;                             /* 丸みのあるデザイン */
+  background-color: var(--primary-blue) !important;
+  color: #ffffff !important;
+  padding: 16px 45px;
+  border-radius: 50px;
   text-decoration: none;
   font-weight: bold;
   font-family: 'Montserrat', sans-serif;
   border: 2px solid var(--primary-blue);
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(37, 57, 156, 0.2);   /* 存在感を出す影 */
+  box-shadow: 0 4px 15px rgba(37, 57, 156, 0.2);
 }
 
-/* ホバー時は色を反転させて目立たせる */
-.custom-btn:hover, 
-.btn:hover {
+.btn:visited, .custom-btn:visited { color: #ffffff !important; }
+
+.btn:hover, .custom-btn:hover {
   background-color: #ffffff !important;
   color: var(--primary-blue) !important;
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(37, 57, 156, 0.3);
 }
 
-/* --- 3. フッターの高さを高くする --- */
+/* --- 8. Footer --- */
 .footer {
-  padding: 120px 0 80px; /* 上下の余白を大幅に増やす（上が120px、下が80px） */
+  padding: 140px 0 100px;
   background-color: #fff;
   border-top: 1px solid var(--soft-pink);
   text-align: center;
 }
 
-/* フッター内の文字間隔なども整えて品格を出す */
-.footer p {
-  letter-spacing: 0.1em;
-  font-size: 0.9rem;
-  color: var(--text-dark);
+/* --- 9. Animations --- */
+#window, #window-base, .hero-svg-wrapper svg path[fill="#25399c"] {
+  animation: window-glow 4s infinite alternate ease-in-out;
 }
+
+@keyframes window-glow {
+  0% { fill: #25399c; filter: brightness(1); }
+  100% { fill: #3657ff; filter: brightness(1.3) drop-shadow(0 0 15px rgba(54, 87, 255, 0.6)); }
+}
+
+/* --- 10. Responsive (スマホ対応) --- */
+@media (max
