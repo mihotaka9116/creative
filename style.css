@@ -516,3 +516,43 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(37, 57, 156, 0.3);
 }
+
+/* --- 2. 「グッズについて問い合わせる」ボタンの視認性アップ --- */
+.custom-btn, 
+.btn {
+  display: inline-block;
+  background-color: var(--primary-blue) !important; /* 濃い青を背景に */
+  color: #ffffff !important;                       /* 文字を白に */
+  padding: 15px 40px;
+  border-radius: 50px;                             /* 丸みのあるデザイン */
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  border: 2px solid var(--primary-blue);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(37, 57, 156, 0.2);   /* 存在感を出す影 */
+}
+
+/* ホバー時は色を反転させて目立たせる */
+.custom-btn:hover, 
+.btn:hover {
+  background-color: #ffffff !important;
+  color: var(--primary-blue) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(37, 57, 156, 0.3);
+}
+
+/* --- 3. フッターの高さを高くする --- */
+.footer {
+  padding: 120px 0 80px; /* 上下の余白を大幅に増やす（上が120px、下が80px） */
+  background-color: #fff;
+  border-top: 1px solid var(--soft-pink);
+  text-align: center;
+}
+
+/* フッター内の文字間隔なども整えて品格を出す */
+.footer p {
+  letter-spacing: 0.1em;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+}
