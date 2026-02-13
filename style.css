@@ -531,7 +531,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   border: 2px solid var(--primary-blue);
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(37, 57, 156, 0.2);   /* 存在感を出す影 */
-  margin-top: 10px;
+  
 }
 
 /* ホバー時は色を反転させて目立たせる */
@@ -556,4 +556,31 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   letter-spacing: 0.1em;
   font-size: 0.9rem;
   color: var(--text-dark);
+}
+
+/* ボタンを包むコンテナの余白を増やす */
+.cta-button-container { 
+  margin-top: 60px; /* ここを大きくするほど、上の文字と離れます */
+  text-align: center; 
+}
+
+/* ボタン自体のスタイル */
+.custom-btn, .btn {
+  display: inline-block;
+  background-color: var(--primary-blue) !important;
+  color: #ffffff !important;
+  padding: 16px 45px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid var(--primary-blue);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(37, 57, 156, 0.3); /* 少し影を濃くして浮き立たせました */
+}
+
+.custom-btn:hover, .btn:hover {
+  background-color: #ffffff !important;
+  color: var(--primary-blue) !important;
+  transform: translateY(-3px); /* ホバー時に少し浮き上がる演出 */
+  box-shadow: 0 6px 20px rgba(37, 57, 156, 0.4);
 }
