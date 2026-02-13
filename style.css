@@ -467,15 +467,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   }
 }
 
-/* 2. PC版：横並び（2列）にする */
-@media screen and (min-width: 768px) {
-  .goods-grid {
-    display: flex;
-    flex-direction: row;    /* 横並び */
-    flex-wrap: wrap;        /* 折り返し許可 */
-    justify-content: center;
-    gap: 40px;
-  }
+
 
   .goods-item {
     width: calc(50% - 25px); /* 2列計算 */
@@ -882,3 +874,13 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
     aspect-ratio: 4 / 3; /* スマホでは少し横長に見せても綺麗です */
   }
 }
+
+/* 2. PC版：横並び（2列）にする */
+@media screen and (min-width: 768px) {
+  .goods-grid {
+    display: flex;
+    flex-direction: row;    /* 横並び */
+    flex-wrap: wrap;        /* 折り返し許可 */
+    justify-content: center;
+    gap: 40px;
+  }
