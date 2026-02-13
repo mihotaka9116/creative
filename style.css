@@ -29,7 +29,7 @@ body {
   line-height: 1.7;
   color: var(--text-dark);
   background-color: #fff;
-  padding-top: 80px; /* ヘッダーの高さ分 */
+  padding-top: 80px;
 }
 
 /* --- 3. Header & Navigation --- */
@@ -56,7 +56,6 @@ body {
   padding: 0 20px;
 }
 
-/* PC用ナビ */
 .nav ul {
   display: flex;
   list-style: none;
@@ -72,10 +71,9 @@ body {
   transition: 0.3s;
 }
 
-.nav a:visited { color: var(--primary-blue); } /* 訪問済みでも紫にしない */
+.nav a:visited { color: var(--primary-blue); }
 .nav a:hover { color: var(--hover-blue); }
 
-/* スマホ用メニューボタン */
 .hamburger-menu {
   display: none;
   width: 30px;
@@ -95,7 +93,7 @@ body {
 .hamburger-menu span:nth-child(2) { top: 11px; }
 .hamburger-menu span:nth-child(3) { bottom: 0; }
 
-/* --- 4. Hero Section (窓) --- */
+/* --- 4. Hero Section --- */
 .hero {
   position: relative;
   width: 100%;
@@ -147,7 +145,9 @@ body {
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* --- 5. Goods Grid (商品詳細 01, 02 横並び) --- */
+/* --- 5. Lookbook & Detail Layout (中央寄せ解決策) --- */
+
+/* グリッド全体の設定 */
 .goods-grid {
   display: flex;
   flex-wrap: wrap;
@@ -159,43 +159,61 @@ body {
   list-style: none;
 }
 
-.goods-item {
-  width: calc(50% - 20px); /* PCで2列並び */
-  text-align: center;
-  transition: transform 0.4s ease;
+/* 各アイテム（01, 02など）の共通設定 */
+.goods-item, 
+.detail-container {
+  width: 100%;
+  max-width: 450px; /* 2番目が大きくならないよう固定 */
+  margin: 0 auto 60px;
+  text-align: center !important; /* すべてを中央寄せ */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* 画像のサイズと形を統一 */
 .image-wrap {
   width: 100%;
+  max-width: 450px;
   aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .image-wrap img {
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   transition: transform 0.4s ease;
 }
 
-.goods-item:hover { transform: translateY(-8px); }
 .goods-item:hover img { transform: scale(1.05); }
 
-/* --- 6. Text & DETAIL Styles --- */
+/* テキスト（タイトル・本文）を確実に中央へ */
+.goods-item h3, 
+.detail-container h3, 
+.section-title {
+  text-align: center !important;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.goods-item p, 
 .detail-container .text, 
-.item-caption,
-.goods-item p {
+.item-caption {
+  text-align: center !important; /* justifyを解除して中央揃え */
+  text-justify: none;
   line-height: 1.9;
   letter-spacing: 0.05em;
   color: var(--text-dark);
-  text-align: justify;
   margin-bottom: 20px;
   font-family: 'Noto Sans JP', sans-serif;
+  max-width: 100%;
 }
 
-/* --- 7. Buttons (問い合わせボタン) --- */
+/* --- 6. Buttons --- */
 .btn, .custom-btn {
   display: inline-block;
   background-color: var(--primary-blue) !important;
@@ -210,26 +228,17 @@ body {
   box-shadow: 0 4px 15px rgba(37, 57, 156, 0.2);
 }
 
-.btn:visited, .custom-btn:visited { color: #ffffff !important; }
-
 .btn:hover, .custom-btn:hover {
   background-color: #ffffff !important;
   color: var(--primary-blue) !important;
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(37, 57, 156, 0.3);
 }
 
-/* --- 8. Footer --- */
+/* --- 7. Footer & Animations --- */
 .footer {
-  padding: 140px 0 100px;
-  background-color: #fff;
-  border-top: 1px solid var(--soft-pink);
+  padding: 100px 0;
   text-align: center;
-}
-
-/* --- 9. Animations --- */
-#window, #window-base, .hero-svg-wrapper svg path[fill="#25399c"] {
-  animation: window-glow 4s infinite alternate ease-in-out;
+  border-top: 1px solid var(--soft-pink);
 }
 
 @keyframes window-glow {
@@ -237,7 +246,17 @@ body {
   100% { fill: #3657ff; filter: brightness(1.3) drop-shadow(0 0 15px rgba(54, 87, 255, 0.6)); }
 }
 
-/* --- 10. Responsive (スマホ対応) --- */
+#window, #window-base {
+  animation: window-glow 4s infinite alternate ease-in-out;
+}
+
+/* --- 8. Responsive --- */
+@media (min-width: 769px) {
+  .goods-item {
+    width: calc(50% - 20px); /* PCでは2列 */
+  }
+}
+
 @media (max-width: 768px) {
   .hamburger-menu { display: block; }
   .nav {
@@ -249,103 +268,5 @@ body {
   }
   .nav.active { right: 0; }
   .nav ul { flex-direction: column; gap: 40px; }
-  .nav a { font-size: 1.5rem; }
-
-  .hero { height: 75vh; }
-  .hero-svg-wrapper svg, .hero-svg-wrapper img {
-    width: 120%; transform: scale(1.05);
-  }
-
-  .goods-item { width: 100%; } /* スマホは1列 */
-}
-
-/* ルックブック全体のテキストを中央揃えにする */
-.goods-item {
-  text-align: center; /* 子要素（pやh3など）を中央に寄せる */
-}
-
-/* 商品説明文（pタグなど）の微調整 */
-.goods-item p, 
-.item-caption, 
-.detail-container .text {
-  text-align: center;   /* 左寄せ(justify)を解除して中央へ */
-  margin-left: auto;    /* 外枠の中で中央に配置 */
-  margin-right: auto;
-  max-width: 600px;     /* 文が長すぎる場合は幅を絞ると読みやすいです */
-}
-
-/* 画像の親要素のサイズを一定にする */
-.image-wrap {
-  width: 100%;
-  max-width: 450px;    /* 1枚の最大幅を制限（お好みで調整してください） */
-  margin: 0 auto 15px; /* 中央寄せにし、下に余白を作る */
-  aspect-ratio: 1 / 1; /* 正方形に統一する場合 */
-}
-
-.image-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;   /* 枠に合わせてきれいに切り抜く */
-}
-
-.goods-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* 全体を中央に寄せる */
-  align-items: flex-start; /* 上の高さを揃える */
-  gap: 40px;
-}
-
-@media (min-width: 769px) {
-  .goods-item {
-    width: calc(50% - 20px); /* PCで確実に2列にする */
-    max-width: 450px;        /* 広がりすぎ防止 */
-  }
-}
-
-/* 1. セクションタイトル(DETAIL 01, 02等)を中央寄せ */
-.goods-item h3, 
-.detail-container h3, 
-.section-title {
-  text-align: center !important;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* 2. 本文・キャプションを中央寄せ（justifyを解除） */
-.detail-container .text, 
-.item-caption, 
-.goods-item p {
-  text-align: center !important; /* 強制的に中央揃え */
-  text-justify: none;            /* 両端揃えを無効化 */
-  margin-left: auto !important;
-  margin-right: auto !important;
-  max-width: 600px;              /* 読みやすい幅に制限 */
-}
-
-/* 3. 2番目の画像サイズを1番目と統一する */
-.detail-container .image-wrap,
-.goods-item .image-wrap {
-  width: 100%;
-  max-width: 450px;    /* ここで横幅の最大値を固定します */
-  margin: 0 auto 20px; /* 画像自体を中央に配置 */
-  aspect-ratio: 1 / 1; /* 正方形に統一 */
-}
-
-.detail-container .image-wrap img,
-.goods-item .image-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* 4. レイアウト全体の幅を揃える */
-.detail-container {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* 中身を中央に集める */
+  .hero-svg-wrapper svg { width: 120%; }
 }
