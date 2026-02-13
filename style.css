@@ -811,3 +811,74 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
     gap: 30px; /* メニュー間の距離 */
   }
 }
+/* --- SHOP / Goods Lineup --- */
+
+/* グリッドの土台 */
+.goods-grid {
+  display: grid;
+  /* PCでは4列に並べる（1frを4つ分） */
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 30px; /* アイテム同士の隙間 */
+  margin-bottom: 60px;
+}
+
+/* 各アイテムの見た目 */
+.goods-item {
+  text-align: center;
+}
+
+.image-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;    /* 画像の枠を正方形に統一 */
+  overflow: hidden;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* 枠いっぱいに表示。ロゴ等の場合は contain に変更 */
+  transition: transform 0.3s ease;
+}
+
+/* ホバー時に画像を少し拡大 */
+.goods-item:hover img {
+  transform: scale(1.05);
+}
+
+.item-caption {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.item-caption span {
+  display: block;
+  font-weight: 400;
+  font-size: 12px;
+  color: #888;
+}
+
+/* --- スマホ対応（レスポンシブ） --- */
+
+@media (max-width: 768px) {
+  /* 画面幅が768px以下（タブレット等）で2列にする場合 */
+  .goods-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* 画面幅が480px以下（スマホ）で縦1列にする */
+  .goods-grid {
+    grid-template-columns: 1fr;
+    gap: 40px; /* 縦に並ぶので少し隙間を広げる */
+  }
+  
+  .image-wrap {
+    aspect-ratio: 4 / 3; /* スマホでは少し横長に見せても綺麗です */
+  }
+}
