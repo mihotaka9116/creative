@@ -346,3 +346,59 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
     max-width: 100%; /* スマホでは画面いっぱいに（左右余白あり） */
   }
 }
+
+/* --- 1. メインビジュアル（Hero）のサイズ拡大 --- */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 90vh; /* 画面の高さ90%分を贅沢に使う */
+  background-color: var(--soft-pink);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-svg-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; /* 余白をなくして画像を大きく見せる */
+}
+
+.hero-svg-wrapper svg,
+.hero-svg-wrapper img {
+  width: 100%;       /* 横幅いっぱいに広げる */
+  height: 85%;       /* 高さに少し余裕を持たせて見切れを防ぐ */
+  max-width: 1200px;  /* PCで広がりすぎないよう上限を設定 */
+  object-fit: contain; /* アスペクト比を守りつつ最大化 */
+}
+
+/* --- 2. スマホ（768px以下）での迫力アップ --- */
+@media (max-width: 768px) {
+  .hero {
+    height: 75vh; /* スマホでも高さをしっかり確保 */
+  }
+
+  .hero-svg-wrapper svg,
+  .hero-svg-wrapper img {
+    width: 150%;        /* あえて100%以上にし、少しはみ出すくらいで迫力を出す */
+    max-width: none;    /* 上限を解除 */
+    height: auto;
+    /* 窓の中央が画面の真ん中に来るように微調整 */
+    transform: scale(1.1); 
+  }
+
+  .hero-content {
+    top: 50%; /* キャッチコピーの位置を中央に固定 */
+  }
+
+  .copy {
+    font-size: 2.2rem; /* スマホでもコピーを読みやすく大きく */
+    letter-spacing: 0.05em;
+    /* 画像が大きく重なるので、白背景でなくても文字を浮き立たせる */
+    text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 5px rgba(255, 255, 255, 0.8);
+  }
+}
