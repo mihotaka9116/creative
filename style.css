@@ -516,3 +516,69 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(37, 57, 156, 0.3);
 }
+
+/* --- 1. DETAIL (01, 02) を横並びにする --- */
+/* 商品詳細の親要素（goods-gridなど）に適用 */
+.goods-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px; /* アイテム間の隙間 */
+  max-width: 1000px;
+  margin: 0 auto 60px;
+}
+
+/* 各商品アイテムの設定 */
+.goods-item {
+  width: calc(50% - 20px); /* 2列にする計算（隙間の半分を引く） */
+  max-width: none;
+  text-align: center;
+}
+
+/* スマホでは縦1列に戻す */
+@media screen and (max-width: 767px) {
+  .goods-item {
+    width: 100%; /* スマホは横幅いっぱい */
+    margin-bottom: 40px;
+  }
+}
+
+/* --- 2. 「グッズについて問い合わせる」ボタンの視認性アップ --- */
+.custom-btn, 
+.btn {
+  display: inline-block;
+  background-color: var(--primary-blue) !important; /* 濃い青を背景に */
+  color: #ffffff !important;                       /* 文字を白に */
+  padding: 15px 40px;
+  border-radius: 50px;                             /* 丸みのあるデザイン */
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  border: 2px solid var(--primary-blue);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(37, 57, 156, 0.2);   /* 存在感を出す影 */
+}
+
+/* ホバー時は色を反転させて目立たせる */
+.custom-btn:hover, 
+.btn:hover {
+  background-color: #ffffff !important;
+  color: var(--primary-blue) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(37, 57, 156, 0.3);
+}
+
+/* --- 3. フッターの高さを高くする --- */
+.footer {
+  padding: 120px 0 80px; /* 上下の余白を大幅に増やす（上が120px、下が80px） */
+  background-color: #fff;
+  border-top: 1px solid var(--soft-pink);
+  text-align: center;
+}
+
+/* フッター内の文字間隔なども整えて品格を出す */
+.footer p {
+  letter-spacing: 0.1em;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+}
