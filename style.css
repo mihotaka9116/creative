@@ -302,18 +302,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   .skills-grid { flex-direction: row; justify-content: space-between; }
   .skill-item { width: 31%; }
 
-  /* 詳細ページ用 */
-  .goods-grid { 
-    display:flex;
-    flex-wrap: wrap; 
-    justify-content: center; 
-    gap: 40px; 
-  }
-  .goods-item { 
-    width: 45%;
-    max-width: none; 
-  }
-}
+ 
 
 /* --- 8. スマホ版調整 --- */
 @media screen and (max-width: 767px) {
@@ -809,6 +798,19 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   .nav ul {
     display: flex;
     gap: 30px; /* メニュー間の距離 */
+  }
+}
+
+   /* 詳細ページ用 */
+  .goods-grid { 
+    display:flex;
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 40px; 
+  }
+  .goods-item { 
+    width: 45%;
+    max-width: none; 
   }
 }
 
