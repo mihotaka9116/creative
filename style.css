@@ -302,3 +302,50 @@ body {
     max-width: 450px;        /* 広がりすぎ防止 */
   }
 }
+
+/* 1. セクションタイトル(DETAIL 01, 02等)を中央寄せ */
+.goods-item h3, 
+.detail-container h3, 
+.section-title {
+  text-align: center !important;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 2. 本文・キャプションを中央寄せ（justifyを解除） */
+.detail-container .text, 
+.item-caption, 
+.goods-item p {
+  text-align: center !important; /* 強制的に中央揃え */
+  text-justify: none;            /* 両端揃えを無効化 */
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: 600px;              /* 読みやすい幅に制限 */
+}
+
+/* 3. 2番目の画像サイズを1番目と統一する */
+.detail-container .image-wrap,
+.goods-item .image-wrap {
+  width: 100%;
+  max-width: 450px;    /* ここで横幅の最大値を固定します */
+  margin: 0 auto 20px; /* 画像自体を中央に配置 */
+  aspect-ratio: 1 / 1; /* 正方形に統一 */
+}
+
+.detail-container .image-wrap img,
+.goods-item .image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 4. レイアウト全体の幅を揃える */
+.detail-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 中身を中央に集める */
+}
