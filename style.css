@@ -240,36 +240,3 @@ body {
 /* --- 10. Responsive (スマホ対応) --- */
 @media (max
 
-/* PC用の設定 */
-@media screen and (min-width: 769px) {
-  .goods-grid {
-    display: flex;            /* 横並びにする */
-    flex-wrap: wrap;          /* 幅がいっぱいになったら折り返す */
-    justify-content: center;  /* 中央寄せ */
-    gap: 30px;                /* アイテム間の隙間 */
-    margin: 40px 0;
-  }
-
-  .goods-item {
-    width: calc(25% - 30px);  /* 4つ横並びにする設定（100% ÷ 4） */
-    min-width: 200px;         /* 狭くなりすぎないように */
-  }
-
-  .image-wrap img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-}
-
-/* スマホ用の設定（必要であれば） */
-@media screen and (max-width: 768px) {
-  .goods-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  .goods-item {
-    width: calc(50% - 10px); /* スマホは2列 */
-  }
-}
