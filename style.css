@@ -470,3 +470,49 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 .footer{
   text-align: center;
 }
+
+/* --- 1. DETAIL本文（テキスト）の視認性アップ --- */
+.detail-container .text, 
+.goods-item p,
+.item-caption {
+  line-height: 1.8;          /* 行間を広げてゆとりを持たせる */
+  letter-spacing: 0.05em;    /* 文字同士がくっつきすぎないように */
+  color: var(--text-dark);   /* ぼやけないよう、しっかりした色味に */
+  text-align: justify;       /* 文字の端を揃えて綺麗に見せる */
+  margin-bottom: 20px;
+}
+
+/* 本文内の日本語フォントを少し太く（500）設定 */
+.detail-container p {
+  font-weight: 500;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+/* --- 2. リンク済みのボタンが紫にならない設定 --- */
+/* ボタン（btn, custom-btn）やリンク（aタグ）すべてに適用 */
+.btn, .custom-btn, .nav a, .site-title a, .goods-item a {
+  text-decoration: none;
+}
+
+/* 訪問済み（:visited）でも色を変えない */
+.btn:visited, 
+.custom-btn:visited, 
+.nav a:visited, 
+.site-title a:visited,
+.goods-item a:visited {
+  color: inherit; /* 親要素の色をそのまま引き継ぐ */
+}
+
+/* ボタン専用：訪問済みでも背景色を維持 */
+.btn:visited, .custom-btn:visited {
+  background-color: var(--primary-blue);
+  color: #ffffff;
+}
+
+/* ホバー時の設定（念のため再定義） */
+.btn:hover, .custom-btn:hover {
+  background-color: var(--hover-blue) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(37, 57, 156, 0.3);
+}
