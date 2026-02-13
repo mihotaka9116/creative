@@ -1,4 +1,4 @@
-/* --- 1. Base & Reset --- */
+/* --- 1. 共通設定・リセット --- */
 * {
   margin: 0;
   padding: 0;
@@ -16,27 +16,31 @@ html {
   --text-dark: #191970;
 }
 
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
 body {
   font-family: 'Playfair Display', serif;
   line-height: 1.7;
   color: var(--text-dark);
   background-color: #fff;
-  padding-top: 60px; /* ヘッダー固定用 */
-  overflow-x: hidden;
+  padding-top: 60px;
 }
 
-/* --- 2. Header Layout --- */
+/* --- 2. ヘッダー・ナビ --- */
 .header {
   position: fixed;
   top: 0; left: 0;
   width: 100%;
-  height: 70px; /* 高さを統一 */
+  min-height: 60px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   z-index: 1000;
   display: flex;
   align-items: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .header-inner {
@@ -46,32 +50,466 @@ body {
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
+  padding: 0 15px;
+}
+
+.nav ul {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+.nav ul li a {
+  font-size: 1.1rem; 
+  color: var(--primary-blue);
+  font-weight: 800;
+  font-family: 'Montserrat', sans-serif;
+  text-decoration: none;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  background-color: var(--soft-pink);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-svg-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* imgタグでSVGを読み込む場合も想定 */
+.hero-svg-wrapper svg,
+.hero-svg-wrapper img {
+  width: 100%;
+  height: auto;
+  max-width: 100vw;
+}
+
+.hero-content {
+  position: absolute;
+  top: 52%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  text-align: center;
+  width: 100%;
+  pointer-events: none;
+}
+
+.copy {
+  display: block;
+  font-size: clamp(2.2rem, 7vw, 4.2rem); 
+  font-weight: 800;
+  color: var(--primary-blue);
+  text-shadow: 0 0 25px #fff, 0 0 10px rgba(255, 255, 255, 0.9);
+  margin-bottom: 12px;
+  line-height: 1.1;
+}
+
+/* 1文字ずつ出すアニメーション用の設定 */
+.js-split-text span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.js-split-text.is-visible span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sub-copy {
+  display: block;
+  font-size: 1.1rem;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* --- 4. コンテンツセクション --- */
+section {
+  padding: 100px 0;
+  width: 100%;
+  text-align: center;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
   padding: 0 20px;
 }
 
-/* --- 3. Navigation (Mobile Default) --- */
+/* 背景の交互の色分け */
+section:nth-of-type(even) { background-color: #ffffff; }
+section:nth-of-type(odd) { background-color: var(--soft-pink); }
+
+.lookbook-visual {
+  width: 90%;
+  max-width: 350px;
+  margin: 40px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.lookbook-visual img,
+.lookbook-visual svg {
+  width: 100%;
+  height: auto;
+}
+
+.footer {
+  padding: 120px 0;
+  background-color: #fff;
+  border-top: 1px solid var(--soft-pink);
+  text-align:center;
+}
+
+/* --- 5. アニメーション設定 --- */
+.js-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.8s ease-out;
+}
+
+.js-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- 6. スマホ専用調整 --- */
+@media (max-width: 768px) {
+  .header-inner { flex-direction: column; padding: 10px; }
+  .nav ul { gap: 15px; }
+
+  .hero {
+    height: 60vh;
+    min-height: 380px;
+  }
+
+  .hero-svg-wrapper svg,
+  .hero-svg-wrapper img {
+    width: 95%; 
+    position: static;
+    transform: none;
+  }
+
+  .copy {
+    font-size: 1.8rem; /* 少し調整 */
+    white-space: nowrap;
+  }
+
+  .lookbook-visual {
+    max-width: 250px;
+  }
+}
+
+/* --- 7. SVG Animations --- */
+/* メインビジュアルの窓をふわっと光らせる */
+#window {
+  animation: shine 3s infinite alternate ease-in-out;
+}
+
+/* アニメーション */
+@keyframes shine {
+  0% { 
+    opacity: 0.6;
+    fill: #fdfae2; /* 柔らかい光の色 */
+  }
+  100% { 
+    opacity: 1; 
+    fill: #fffde7; 
+  }
+}
+
+/* 窓のアニメーション設定 */
+#window-base {
+  animation: window-glow 4s infinite alternate ease-in-out;
+  /* 元の青色から、少し明るい青へ変化させる */
+}
+
+@keyframes window-glow {
+  0% {
+    fill: #25399c; /* 元の濃い青 */
+    filter: brightness(1);
+  }
+  100% {
+    fill: #3657ff; /* 少し明るい青 */
+    /* 外側に光が漏れているような効果 */
+    filter: brightness(1.3) drop-shadow(0 0 15px rgba(54, 87, 255, 0.6));
+  }
+}
+
+/* --- 5. 詳細ページ（work.html）用 --- */
+/* 基本（スマホ・全デバイス共通の中央寄せ設定） */
+.detail-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  text-align: center;
+}
+.main-visual-img {
+  max-width: 300px;
+  margin: 0 auto 40px;
+  display: block;
+}
+.goods-grid {
+  display: flex;
+  flex-direction: column; /* スマホでは縦並び */
+  align-items: center;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+.goods-item {
+  width: 100%;
+  max-width: 550px; /* 写真のサイズ：一回り大きく */
+  text-align: center;
+}
+.image-wrap {
+  overflow: hidden;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+.image-wrap img { transition: transform 0.4s ease; width: 100%; display: block; }
+.goods-item:hover img { transform: scale(1.05); }
+.item-caption { font-weight: bold; color: #4682b4; }
+.custom-btn {
+  display: inline-block;
+  background-color: #4682b4;
+  color: #fff;
+  padding: 15px 40px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 30px;
+}
+
+/* --- 6. レスポンシブ調整（PC版：768px以上） --- */
+@media screen and (min-width: 768px) {
+  /* トップページ用 */
+  .content { flex-direction: row; justify-content: center; gap: 60px; }
+  .content:nth-of-type(even) { flex-direction: row-reverse; }
+  .content .text, .content .img { width: 45%; }
+  
+  .skills-grid { flex-direction: row; justify-content: space-between; }
+  .skill-item { width: 31%; }
+
+  /* 詳細ページ用 */
+  .goods-grid { 
+    display:flex;
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 40px; 
+  }
+  .goods-item { 
+    width: 45%;
+    max-width: none; 
+  }
+}
+
+/* --- 8. スマホ版調整 --- */
+@media screen and (max-width: 767px) {
+  /* ヘッダー全体の余白を調整 */
+  #header {
+    flex-direction: column;
+    padding: 30px 0 0 0; /* 
+    gap: 30px; 
+  }
+
+  /* ロゴのサイズ調整 */
+  .site-title img {
+    width: 80px;
+  }
+
+  /* ナビゲーション（メニュー）の設定 */
+  #header ul {
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 30px; /* 
+  }
+
+  #header li {
+    margin: 0 10px;
+  }
+
+ 
+  /* 詳細ページ全体のレイアウト */
+.detail-container {
+  padding-top: 100px;
+}
+
+.goods-grid {
+  display: flex;
+  flex-direction: row; 
+  gap: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .goods-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .goods-item {
+    width: calc(50% - 20px); /* 2列 */
+  }
+}
+
+.work-item {
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s;
+}
+
+.work-item:hover {
+  transform: translateY(-8px);
+  /* 影も色鮮やかなサイトに合わせて、少し色味のある影にするとお洒落です */
+  box-shadow: 0 15px 30px rgba(37, 57, 156, 0.1); 
+}
+
+  /* スキル項目にも浮き上がりを適用する場合 */
+.skill-item {
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s;
+  background: #fff; /* 背景色がないと影が綺麗に見えません */
+  border-radius: 12px;
+}
+
+.skill-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(37, 57, 156, 0.1);
+}
+
+  .btn, .custom-btn {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn:hover, .custom-btn:hover {
+  background-color: var(--hover-blue); /* rootで定義した色を活用 */
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(37, 57, 156, 0.3);
+}
+
+  /* 2番目、3番目のアイテムの登場を一瞬遅らせる */
+.goods-item:nth-child(2) { transition-delay: 0.2s; }
+.goods-item:nth-child(3) { transition-delay: 0.4s; }
+.goods-item:nth-child(4) { transition-delay: 0.6s; }
+
+  /* --- 商品一覧（goods-grid）基本設定：スマホ版（1列） --- */
+.goods-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px; /* アイテム間の縦の隙間 */
+  margin: 0 auto 60px;
+  padding: 0 20px;
+}
+
+.goods-item {
+  width: 100%;      /* スマホでは横幅いっぱい（1列） */
+  max-width: 450px; /* 大きくなりすぎないよう制限 */
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.image-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* 正方形に統一 */
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+/* --- PC版設定：768px以上（2列） --- */
+@media screen and (min-width: 768px) {
+  .goods-grid {
+    gap: 40px;      /* PCでは隙間を広げる */
+    max-width: 1000px;
+  }
+
+  .goods-item {
+    /* (100% / 2列) - (隙間の半分) で計算 */
+    width: calc(50% - 20px); 
+    max-width: none; /* スマホ用の制限を解除 */
+  }
+
+  .goods-item:hover img {
+    transform: scale(1.05); /* ホバーで少し拡大 */
+  }
+}
+
+/* 1. スマホ版：縦並び（1列）にする */
+@media screen and (max-width: 767px) {
+  .goods-grid {
+    display: flex;
+    flex-direction: column; /* rowからcolumnに変更 */
+    align-items: center;
+    gap: 40px;
+  }
+
+  .goods-item {
+    width: 90%; /* 横幅いっぱい（少し余白あり） */
+    max-width: 400px; /* スマホで大きくなりすぎないように */
+  }
+}
+
+/* 2. PC版：横並び（2列）にする */
+@media screen and (min-width: 768px) {
+  .goods-grid {
+    display: flex;
+    flex-direction: row;    /* 横並び */
+    flex-wrap: wrap;        /* 折り返し許可 */
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .goods-item {
+    width: calc(50% - 25px); /* 2列計算 */
+  }
+}
+
+    .goods-item {
+  text-align: center;
+}
+
+
+/* --- スマホ・タブレット用ナビゲーション --- */
 .nav {
   position: fixed;
   top: 0;
-  right: -100%; /* 画面外 */
+  right: -100%; /* 画面の外 */
   width: 100%;
   height: 100vh;
   background: rgba(255, 255, 255, 0.98);
-  transition: right 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  z-index: 999;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 2000;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .nav.active {
-  right: 0;
+  right: 0; /* 画面内に滑り込む */
 }
 
 .nav ul {
   list-style: none;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* 縦並び */
   align-items: center;
   gap: 30px;
 }
@@ -84,422 +522,292 @@ body {
   font-weight: 800;
 }
 
-/* --- 4. Hamburger Menu Icon --- */
-.hamburger-menu {
-  display: block;
-  width: 30px;
-  height: 24px;
-  position: relative;
-  z-index: 2000;
-  cursor: pointer;
-  background: none;
-  border: none;
-}
-
-.hamburger-menu span {
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background-color: var(--primary-blue);
-  transition: all 0.3s;
-}
-
-.hamburger-menu span:nth-child(1) { top: 0; }
-.hamburger-menu span:nth-child(2) { top: 11px; }
-.hamburger-menu span:nth-child(3) { bottom: 0; }
-
-/* Active状態（三本線を×にする） */
-.hamburger-menu.active span:nth-child(1) { transform: translateY(11px) rotate(-45deg); }
-.hamburger-menu.active span:nth-child(2) { opacity: 0; }
-.hamburger-menu.active span:nth-child(3) { transform: translateY(-11px) rotate(45deg); }
-
-/* --- 5. PC Layout (min-width: 768px) --- */
+/* --- PC版表示（768px以上）の切り替え --- */
 @media screen and (min-width: 768px) {
   .hamburger-menu {
-    display: none;
+    display: none; /* PCではハンバーガーを隠す */
   }
 
   .nav {
-    position: static;
+    position: static; /* 固定を解除してヘッダー内に戻す */
     width: auto;
     height: auto;
     background: none;
-    display: block;
+    right: 0;
+    display: block; /* 常に表示 */
   }
 
   .nav ul {
-    flex-direction: row;
+    flex-direction: row; /* 横並び */
     gap: 30px;
   }
-
+  
   .nav ul li a {
-    font-size: 1.1rem;
+    font-size: 1rem; /* PCでは適切なサイズに */
   }
 }
 
-/* --- 6. Content & Animations --- */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 80vh;
-  background-color: var(--soft-pink);
+
+/* 2. スマホ・タブレットでの見た目 */
+@media screen and (max-width: 767px) {
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  /* ナビゲーションメニュー（スマホ時） */
+  .nav {
+    position: fixed;
+    top: 0;
+    right: -100%; /* 最初は隠す */
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    z-index: 9998;
+    transition: all 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav.active {
+    right: 0; /* 画面に表示 */
+  }
+
+  .nav ul {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  /* ヘッダーの中身を横並びにして端に寄せる */
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* ボタン自体の存在を確実にする */
+  .hamburger-menu {
+    display: block;
+    width: 30px;
+    height: 24px;
+    position: relative;
+    z-index: 9999; /* 他の要素より手前に */
+  }
+
+  /* 三本線の色を強制的に見えるようにする */
+  .hamburger-menu span {
+    background-color: #25399c; /* ブランドカラーの濃い青 */
+  }
+}
+/* --- スマホ用ナビゲーションの最終調整 --- */
+@media screen and (max-width: 767px) {
+  /* ヘッダーの中身を強制的に横並び（ロゴ左・ボタン右）にする */
+  .header-inner {
+    display: flex;
+    flex-direction: row; /* 縦並びを解除 */
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  /* ナビゲーションを画面外へ隠す */
+  .nav {
+    position: fixed;
+    top: 0;
+    right: -100%; /* 隠す */
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    z-index: 9998;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease;
+  }
+
+  /* JSでactiveクラスがついた時だけ表示 */
+  .nav.active {
+    right: 0;
+  }
+
+
+/* --- ナビゲーションの基本設定 --- */
+.nav {
+  position: fixed;
+  top: 0;
+  right: -100%; /* 最初は画面の外（右）に隠す */
+  width: 80%;    /* スマホでのメニュー幅 */
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.95); /* 背景色 */
+  transition: right 0.5s ease; /* スライドするアニメーション */
+  z-index: 99;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.copy {
-  font-size: clamp(2.2rem, 7vw, 4.2rem);
-  font-weight: 800;
-  color: var(--primary-blue);
-  text-shadow: 0 0 25px #fff;
+/* JSで .active がついた時に画面内に入れる */
+.nav.active {
+  right: 0;
 }
 
-/* スキル・ボタン等の共通パーツ */
-.skill-item {
-  transition: transform 0.4s ease, box-shadow 0.4s;
-  background: #fff;
-  border-radius: 12px;
+.nav ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
 }
 
-.skill-item:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 30px rgba(37, 57, 156, 0.1);
+.nav ul li {
+  margin: 20px 0;
 }
 
-.btn:hover {
-  background-color: var(--hover-blue);
-  transform: scale(1.05);
+.nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
-/* --- Online Shop Detail Layout --- */
-.detail-container {
+
+/* --- PCサイズではナビを最初から表示する --- */
+@media (min-width: 768px) {
+  .hamburger-menu {
+    display: none; /* PCではボタンを隠す */
+  }
+
+  .nav {
+    position: static; /* 固定解除 */
+    width: auto;
+    height: auto;
+    background: none;
+    right: 0;
+  }
+
+  .nav ul {
+    display: flex; /* 横並び */
+  }
+
+  .nav ul li {
+    margin: 0 0 0 20px;
+  }
+}
+
+/* --- ヘッダー全体のレイアウト調整 --- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px; /* ヘッダーの高さ */
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header-inner {
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between; /* ロゴとメニューを両端に */
+  align-items: center;
 }
 
-.back-nav {
-  margin-bottom: 40px;
+/* --- ナビゲーション（スマホ版：最初は隠す） --- */
+.nav {
+  position: fixed;
+  top: 0;
+  right: -100%; /* 画面の右側に隠しておく */
+  width: 100%;  /* 全画面メニューにする場合 */
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.98);
+  transition: all 0.5s ease;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.back-nav a {
-  text-decoration: none;
-  color: var(--primary-blue);
-  font-weight: 700;
-  font-family: 'Montserrat', sans-serif;
-  transition: opacity 0.3s;
+/* JSで active クラスがついたら右からスライドイン */
+.nav.active {
+  right: 0;
 }
 
-.back-nav a:hover {
-  opacity: 0.6;
-}
-
-/* 商品グリッド */
-.goods-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* PC時は2列 */
-  gap: 40px;
-  margin-bottom: 60px;
-}
-
-.goods-item {
-  position: relative;
-  overflow: hidden;
-}
-
-.image-wrap {
-  background-color: var(--soft-pink); /* 画像読み込み前の色 */
-  aspect-ratio: 1 / 1; /* 正方形に統一 */
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.image-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* 枠いっぱいに収める */
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-/* ホバー時に画像を少し拡大 */
-.goods-item:hover .image-wrap img {
-  transform: scale(1.08);
-}
-
-/* キャプション（01 Mag Cupなど） */
-.item-caption {
-  margin-top: 15px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  color: var(--primary-blue);
-  font-size: 0.9rem;
-  letter-spacing: 0.05em;
-}
-
-.item-caption span {
-  display: block;
-  font-size: 1.2rem;
-  color: var(--text-dark);
-  margin-top: 4px;
-}
-
-/* テキストボックス */
-.detail-text-box {
+.nav ul {
+  list-style: none;
   text-align: center;
-  max-width: 600px;
-  margin: 80px auto 0;
+  padding: 0;
 }
 
-.section-title-en {
-  display: block;
-  font-size: 0.9rem;
-  margin-bottom: 20px;
-  color: #888;
+.nav ul li {
+  margin: 30px 0;
 }
 
-.project-description {
-  margin-bottom: 40px;
-  line-height: 2;
+.nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
 }
 
-/* --- レスポンシブ調整 --- */
-@media screen and (max-width: 767px) {
-  .goods-grid {
-    grid-template-columns: 1fr; /* スマホ時は1列 */
-    gap: 30px;
-  }
-  
-  .detail-text-box {
-    margin-top: 60px;
-  }
-}
 
-/* 商品一覧の親要素 */
-.goods-grid {
-  display: grid;
-  /* デフォルト（スマホ）は1列 */
-  grid-template-columns: 1fr; 
-  gap: 40px;
-  width: 100%;
-  margin: 0 auto 60px;
-}
-
-/* PCサイズ（768px以上）の設定 */
+/* --- PC版の表示設定（横並びにする） --- */
 @media screen and (min-width: 768px) {
-  .goods-grid {
-    /* PCでは横2列（均等に1：1） */
-    grid-template-columns: repeat(2, 1fr); 
-    /* 余白を少し広げる */
-    gap: 60px 40px; 
+  .hamburger-menu {
+    display: none; /* PCではハンバーガーボタンを隠す */
+  }
+
+  .nav {
+    position: static; /* 固定解除 */
+    width: auto;
+    height: auto;
+    background: none;
+  }
+
+  .nav ul {
+    display: flex; /* 横並びに */
+  }
+
+  .nav ul li {
+    margin: 0 0 0 30px;
+  }
+
+  .nav ul li a {
+    font-size: 1rem;
   }
 }
 
-/* 各アイテムの基本設定 */
-.goods-item {
+/* --- ヘッダー内のレイアウト調整 --- */
+.header-inner {
+  display: flex;
+  justify-content: space-between; /* ロゴを左、ナビ（またはボタン）を右に */
+  align-items: center;
   width: 100%;
-}
-
-.image-wrap {
-  width: 100%;
-  aspect-ratio: 1 / 1; /* 正方形を維持 */
-  overflow: hidden;
-  background-color: var(--soft-pink);
-  border-radius: 4px;
-}
-
-.image-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* 画像を枠いっぱいに表示 */
-  display: block;
-}
-
-/* --- Online Shop Goods Grid (Integrated Version) --- */
-
-/* 1. まずは共通・スマホ（デフォルト）の設定 */
-.goods-grid {
-  display: grid;
-  grid-template-columns: 1fr; /* スマホは1列 */
-  gap: 30px;
-  width: 100%;
-  margin: 0 auto 60px;
-}
-
-/* 2. 次にPC（768px以上）の上書き設定 */
-@media screen and (min-width: 768px) {
-  .goods-grid {
-    grid-template-columns: repeat(2, 1fr); /* PCは2列 */
-    gap: 60px 40px; /* PCでは余白を広く */
-  }
-}
-
-/* アイテムのスタイリング */
-.goods-item {
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-.image-wrap {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  background-color: var(--soft-pink);
-  border-radius: 8px;
-}
-
-.image-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.goods-item:hover .image-wrap img {
-  transform: scale(1.08);
-}
-
-/* --- Base Adjustments --- */
-body {
-  font-family: 'Noto Sans JP', 'Playfair Display', serif; /* 日本語と英語のバランス */
-  color: var(--text-dark);
-  background-color: #fff;
-}
-
-.container {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-/* --- Hero Section --- */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 100vh; /* 画面いっぱいに表示 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background-color: #ffdff9; /* SVG背景色と合わせる */
-}
-
-.hero-svg-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.hero-svg-wrapper svg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* 画面に合わせて切り抜きつつ全画面表示 */
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.2); /* 文字の可読性のため薄く背景 */
-  backdrop-filter: blur(4px);
-  padding: 40px;
-  border-radius: 20px;
-}
-
-/* --- Section Titles --- */
-.section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 5vw, 3rem);
-  text-align: center;
-  margin-bottom: 50px;
-  color: var(--primary-blue);
-  position: relative;
-}
-
-/* --- LookBook (Images) --- */
-.lookbook-wrapper {
-  margin-bottom: 80px;
-}
-
-.lookbook-visual {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-}
-
-.lookbook-visual img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.8s ease;
-}
-
-.lookbook-visual:hover img {
-  transform: scale(1.05);
-}
-
-.lookbook-caption {
-  text-align: right;
-  font-family: 'Montserrat', sans-serif;
-  margin-top: 15px;
-  color: #888;
-  font-size: 0.9rem;
-}
-
-/* --- Detail (Grid) --- */
-.works-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
-  margin-top: 40px;
-}
-
-.work-item h3 {
-  font-family: 'Montserrat', sans-serif;
-  color: var(--primary-blue);
-  margin-bottom: 15px;
-  border-bottom: 2px solid var(--soft-pink);
-  display: inline-block;
-}
-
-/* --- Shop Section --- */
-#shop {
-  text-align: center;
-  padding: 100px 0;
-  background-color: var(--soft-pink);
-}
-
-.btn {
-  display: inline-block;
-  margin-top: 30px;
-  padding: 15px 40px;
-  background-color: var(--primary-blue);
-  color: #fff;
-  text-decoration: none;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  border-radius: 50px;
-  transition: all 0.3s ease;
-}
-
-/* --- Reveal Animation Classes --- */
-.js-reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease-out;
-}
-
-.js-reveal.active {
-  opacity: 1;
-  transform: translateY(0);
+/* PC版ナビゲーションを右寄せにする */
+@media screen and (min-width: 768px) {
+  .nav {
+    margin-left: auto; /* 左側に余白を作って右に押し出す */
+    display: block;
+  }
+  
+  .nav ul {
+    display: flex;
+    gap: 30px; /* メニュー間の距離 */
+  }
 }
