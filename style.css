@@ -361,3 +361,145 @@ body {
 .goods-item:hover .image-wrap img {
   transform: scale(1.08);
 }
+
+/* --- Base Adjustments --- */
+body {
+  font-family: 'Noto Sans JP', 'Playfair Display', serif; /* 日本語と英語のバランス */
+  color: var(--text-dark);
+  background-color: #fff;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- Hero Section --- */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* 画面いっぱいに表示 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #ffdff9; /* SVG背景色と合わせる */
+}
+
+.hero-svg-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-svg-wrapper svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 画面に合わせて切り抜きつつ全画面表示 */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.2); /* 文字の可読性のため薄く背景 */
+  backdrop-filter: blur(4px);
+  padding: 40px;
+  border-radius: 20px;
+}
+
+/* --- Section Titles --- */
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  text-align: center;
+  margin-bottom: 50px;
+  color: var(--primary-blue);
+  position: relative;
+}
+
+/* --- LookBook (Images) --- */
+.lookbook-wrapper {
+  margin-bottom: 80px;
+}
+
+.lookbook-visual {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.lookbook-visual img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.8s ease;
+}
+
+.lookbook-visual:hover img {
+  transform: scale(1.05);
+}
+
+.lookbook-caption {
+  text-align: right;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 15px;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+/* --- Detail (Grid) --- */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.work-item h3 {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--primary-blue);
+  margin-bottom: 15px;
+  border-bottom: 2px solid var(--soft-pink);
+  display: inline-block;
+}
+
+/* --- Shop Section --- */
+#shop {
+  text-align: center;
+  padding: 100px 0;
+  background-color: var(--soft-pink);
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 15px 40px;
+  background-color: var(--primary-blue);
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+/* --- Reveal Animation Classes --- */
+.js-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.js-reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
