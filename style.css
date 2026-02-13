@@ -216,3 +216,64 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
     padding: 0 40px;
   }
 }
+
+/* --- 商品一覧（Goods Grid）の基盤 --- */
+.goods-grid {
+  display: grid;
+  /* PC版：4列に均等分割（1つ25%弱） */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px; /* アイテム間の隙間 */
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 0 20px;
+  list-style: none;
+}
+
+.goods-item {
+  width: 100%; /* グリッドの枠いっぱいに広げる */
+  text-align: center;
+}
+
+.image-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* 正方形を維持 */
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  margin-bottom: 15px;
+}
+
+.image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 枠に合わせて切り抜き */
+  display: block;
+}
+
+/* --- レスポンシブ調整 --- */
+
+/* タブレット版（960px以下）：3列にする */
+@media (max-width: 960px) {
+  .goods-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* スマホ版（768px以下）：2列にする */
+@media (max-width: 768px) {
+  .goods-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px; /* スマホでは隙間を少し狭く */
+  }
+  .sec-title {
+    font-size: 1.8rem;
+  }
+}
+
+/* 小さなスマホ版（480px以下）：1列にする */
+@media (max-width: 480px) {
+  .goods-grid {
+    grid-template-columns: 1fr;
+    padding: 0 40px; /* 1列のときは左右に余白を多めにとると綺麗 */
+  }
+}
