@@ -402,3 +402,20 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
     text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 5px rgba(255, 255, 255, 0.8);
   }
 }
+
+.hero-svg-wrapper svg,
+.hero-svg-wrapper img {
+  width: 100vw;       /* 横幅は画面ぴったり */
+  height: 80vh;       /* 高さは少し余裕を持たせる */
+  object-fit: contain; /* 画像が切れないように収める */
+  max-width: none;    /* 制限を解除 */
+}
+
+@media (max-width: 768px) {
+  .hero-svg-wrapper svg,
+  .hero-svg-wrapper img {
+    width: 120%;      /* スマホではあえて少しはみ出させて迫力を出す */
+    height: auto;
+    transform: scale(1.05); /* わずかにズームして余白を埋める */
+  }
+}
