@@ -258,3 +258,32 @@ body {
 
   .goods-item { width: 100%; } /* スマホは1列 */
 }
+
+/* ルックブック全体のテキストを中央揃えにする */
+.goods-item {
+  text-align: center; /* 子要素（pやh3など）を中央に寄せる */
+}
+
+/* 商品説明文（pタグなど）の微調整 */
+.goods-item p, 
+.item-caption, 
+.detail-container .text {
+  text-align: center;   /* 左寄せ(justify)を解除して中央へ */
+  margin-left: auto;    /* 外枠の中で中央に配置 */
+  margin-right: auto;
+  max-width: 600px;     /* 文が長すぎる場合は幅を絞ると読みやすいです */
+}
+
+/* 画像の親要素のサイズを一定にする */
+.image-wrap {
+  width: 100%;
+  max-width: 450px;    /* 1枚の最大幅を制限（お好みで調整してください） */
+  margin: 0 auto 15px; /* 中央寄せにし、下に余白を作る */
+  aspect-ratio: 1 / 1; /* 正方形に統一する場合 */
+}
+
+.image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* 枠に合わせてきれいに切り抜く */
+}
