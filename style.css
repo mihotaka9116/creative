@@ -287,3 +287,18 @@ body {
   height: 100%;
   object-fit: cover;   /* 枠に合わせてきれいに切り抜く */
 }
+
+.goods-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* 全体を中央に寄せる */
+  align-items: flex-start; /* 上の高さを揃える */
+  gap: 40px;
+}
+
+@media (min-width: 769px) {
+  .goods-item {
+    width: calc(50% - 20px); /* PCで確実に2列にする */
+    max-width: 450px;        /* 広がりすぎ防止 */
+  }
+}
