@@ -315,3 +315,49 @@ body {
   object-fit: cover; /* 画像を枠いっぱいに表示 */
   display: block;
 }
+
+/* --- Online Shop Goods Grid (Integrated Version) --- */
+
+/* 1. まずは共通・スマホ（デフォルト）の設定 */
+.goods-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* スマホは1列 */
+  gap: 30px;
+  width: 100%;
+  margin: 0 auto 60px;
+}
+
+/* 2. 次にPC（768px以上）の上書き設定 */
+@media screen and (min-width: 768px) {
+  .goods-grid {
+    grid-template-columns: repeat(2, 1fr); /* PCは2列 */
+    gap: 60px 40px; /* PCでは余白を広く */
+  }
+}
+
+/* アイテムのスタイリング */
+.goods-item {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.image-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: var(--soft-pink);
+  border-radius: 8px;
+}
+
+.image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.goods-item:hover .image-wrap img {
+  transform: scale(1.08);
+}
