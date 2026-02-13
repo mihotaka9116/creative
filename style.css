@@ -521,8 +521,8 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 .custom-btn, 
 .btn {
   display: inline-block;
-  background-color: var(--primary-blue) !important; /* 濃い青を背景に */
-  color: #ffffff !important;                       /* 文字を白に */
+  background-color: var(--primary-blue); /* 濃い青を背景に */
+  color: #ffffff;                       /* 文字を白に */
   padding: 15px 40px;
   border-radius: 50px;                             /* 丸みのあるデザイン */
   text-decoration: none;
@@ -531,6 +531,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   border: 2px solid var(--primary-blue);
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(37, 57, 156, 0.2);   /* 存在感を出す影 */
+  margin-top: 10px;
 }
 
 /* ホバー時は色を反転させて目立たせる */
