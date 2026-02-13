@@ -560,7 +560,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 
 /* ボタンを包むコンテナの余白を増やす */
 .cta-button-container { 
-  margin-top: 60px; /* ここを大きくするほど、上の文字と離れます */
+  margin-top: 20px; /* ここを大きくするほど、上の文字と離れます */
   text-align: center; 
 }
 
