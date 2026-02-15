@@ -603,3 +603,30 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 .portfolio-item {
   overflow: hidden; /* 枠からはみ出さないように */
 }
+
+/* コンテンツ全体を少し内側に寄せて、左揃えを美しく見せる */
+.wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 40px; /* 左右にしっかり余白を取る */
+  text-align: left;
+}
+
+.section-title {
+  font-size: 2rem;
+  letter-spacing: 0.15em;
+  margin-bottom: 30px;
+  /* タイトルの下に細い線を入れると左揃えが際立ちます */
+  border-left: 3px solid #333; 
+  padding-left: 15px;
+}
+
+@media screen and (max-width: 480px) {
+  .wrapper {
+    padding: 0 25px; /* スマホでは余白を少し狭める */
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+}
