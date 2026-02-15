@@ -584,3 +584,22 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   transform: translateY(-3px); /* ホバー時に少し浮き上がる演出 */
   box-shadow: 0 6px 20px rgba(37, 57, 156, 0.4);
 }
+
+.section-title {
+  font-size: 2.5rem; /* 少し大きく */
+  letter-spacing: 0.2em; /* 字間を広げて洗練された印象に */
+  font-weight: 300; /* 細身にするとよりモダンになります */
+  margin-bottom: 40px;
+}
+
+.portfolio-item img {
+  transition: transform 0.6s ease; /* ゆっくり動かす */
+}
+
+.portfolio-item:hover img {
+  transform: scale(1.05); /* 5%だけ拡大 */
+}
+
+.portfolio-item {
+  overflow: hidden; /* 枠からはみ出さないように */
+}
