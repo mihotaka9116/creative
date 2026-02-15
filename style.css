@@ -664,3 +664,44 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 .footer, .cta-button-container {
   text-align: center !important;
 }
+
+/* ===========================================
+   FINAL ADJUSTMENT: Centered Block with Left Align
+   =========================================== */
+
+/* 1. セクション内の文章の「塊」を真ん中に寄せ、文字は左揃えにする */
+section p, 
+.description, 
+.detail-container .text, 
+.lookbook-content p {
+  display: block !important;
+  max-width: 600px !important; /* 横幅を制限 */
+  margin-left: auto !important; /* 右余白を自動 */
+  margin-right: auto !important; /* 左余白を自動 */
+  text-align: left !important;  /* 文字は左揃え */
+  padding: 0 20px !important;
+}
+
+/* 2. タイトルは「真ん中」のままにする */
+.section-title, 
+.sec-title, 
+.page-header-simple h1 {
+  text-align: center !important;
+  width: 100% !important;
+  margin: 0 auto 30px !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+/* 3. 商品一覧（Goods Grid）などのグリッド自体は真ん中に保つ */
+.goods-grid {
+  display: grid !important;
+  margin: 60px auto !important;
+  text-align: center !important; /* ここは画像とボタンのためにcenter */
+}
+
+/* 4. 商品ごとの説明文（もしあれば）も左揃えにする場合 */
+.goods-item p {
+  text-align: left !important;
+  max-width: 250px !important; /* 商品の幅に合わせる */
+}
