@@ -639,3 +639,28 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 .wrapper {
   padding-left: 40px !important;
 }
+
+/* 文章の塊を中央に寄せつつ、中身は左揃えにする */
+.detail-container .text, 
+.goods-item p, 
+.description,
+.lookbook-content p {
+  display: block;
+  max-width: 600px;      /* ★文章の最大幅を決める（お好みで調整） */
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: left !important; /* ★中身は左揃え */
+  padding: 0 20px;       /* スマホで端に張り付かないための余白 */
+}
+
+/* セクションタイトルも中央寄せにする（もし左に寄っていたら） */
+.section-title {
+  text-align: center !important;
+  border-left: none !important;
+  padding-left: 0 !important;
+}
+
+/* フッターなどはそのまま中央 */
+.footer, .cta-button-container {
+  text-align: center !important;
+}
