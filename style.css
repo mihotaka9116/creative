@@ -705,3 +705,33 @@ section p,
   text-align: left !important;
   max-width: 250px !important; /* 商品の幅に合わせる */
 }
+
+/* --- 全体のレイアウトを中央寄せにリセット --- */
+.wrapper, section {
+  text-align: center !important; /* 親要素はすべて中央寄せ */
+}
+
+/* --- 文章の「塊」だけを中央に配置し、中身の行を左揃えにする --- */
+section p, 
+.description, 
+.detail-container .text, 
+.lookbook-content p,
+.goods-item p {
+  display: inline-block !important; /* 塊の幅を内容に合わせる */
+  text-align: left !important;      /* 行の中身は左揃え */
+  max-width: 600px !important;      /* 読みやすい幅に制限 */
+  width: 100% !important;           /* スマホでは横幅いっぱい */
+  margin: 0 auto !important;        /* 塊自体を中央に配置 */
+}
+
+/* 商品説明（Goods Item）用の微調整 */
+.goods-item p {
+  max-width: 250px !important;      /* 商品の幅に合わせて狭く */
+}
+
+/* タイトルは常にど真ん中 */
+.section-title, .sec-title, .page-header-simple h1 {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
