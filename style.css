@@ -630,3 +630,8 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
     font-size: 1.5rem;
   }
 }
+
+.section-title {
+  border-left: none !important; /* 左の線を消す */
+  padding-left: 0 !important;   /* 余白もリセット */
+}
