@@ -830,3 +830,18 @@ section p,
   font-weight: 700;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
+
+.hero-content {
+  position: absolute;
+  top: 52%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  text-align: center;
+  width: 100%; /* これが抜けていると、中身の center が効きません */
+  pointer-events: none;
+}
+
+.hero-content .sub-copy {
+  text-align: center !important;
+}
