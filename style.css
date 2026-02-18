@@ -428,6 +428,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   font-weight: 700;
   margin-top: 10px;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* 白文字を読みやすくするための影 */
+  align-aitems: center;
 }
 
 /* --- 2. 窓のアニメーション設定 --- */
