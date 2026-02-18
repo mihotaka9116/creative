@@ -818,3 +818,15 @@ section p,
   margin-top: 10px;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
+
+/* --- サブコピーを真ん中に配置（修正版） --- */
+.sub-copy {
+  display: block;
+  width: 100%;           /* 画面幅いっぱいに広げる */
+  text-align: center;    /* 文字を中央に */
+  margin: 10px auto 0;  /* 左右オートで中央寄せ */
+  font-size: 1.1rem;
+  color: #ffffff !important; 
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
