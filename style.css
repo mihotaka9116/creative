@@ -806,3 +806,15 @@ section p,
   cursor: pointer;
   padding: 15px 50px;
 }
+
+/* --- サブコピーを真ん中に配置 --- */
+.sub-copy {
+  display: block;
+  width: 100%;           /* 幅いっぱいに広げて */
+  text-align: center;    /* 中身のテキストを中央寄せ */
+  font-size: 1.1rem;
+  color: #ffffff !important; 
+  font-weight: 700;
+  margin-top: 10px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
