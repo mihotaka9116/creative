@@ -845,3 +845,12 @@ section p,
 .hero-content .sub-copy {
   text-align: center !important;
 }
+
+/* 一括設定よりも優先させて、絶対に中央に寄せる記述 */
+.hero-content .sub-copy {
+  display: block !important;
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: 100% !important; /* 他の設定で 600px に制限されているのを解除 */
+}
