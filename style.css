@@ -1191,3 +1191,70 @@ h2, h3, p, .sub-copy, .copy {
     grid-template-columns: 1fr 1fr !important;
     gap: 20px !important;
 }
+
+/* 1. 全てのセクションタイトルを中央に */
+.section-title, 
+#contact .section-title, 
+#shop .section-title, 
+.sec-title {
+    text-align: center !important;
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+}
+
+/* 2. ContactとGoods Lineupの下のテキスト（リード文）を中央に */
+.contact-lead, 
+#contact p, 
+#shop p, 
+.goods-grid + p,
+.lookbook-content p {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 800px !important; /* 幅を広げつつ中央へ */
+    display: block !important;
+    width: 100% !important;
+}
+
+/* 3. Contactフォーム全体を中央に配置 */
+.contact-form-wrapper {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: left; /* フォーム内のラベルだけは左寄せが見やすいですが、これも中央なら以下をcenterに */
+}
+
+/* 4. Goods Lineup（SHOP）セクション自体の余白調整 */
+#shop, #contact {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+}
+
+/* --- 01と02のボックスサイズを統一 --- */
+#detail .works-grid {
+    display: flex !important;
+    flex-direction: row !important; /* 横並び */
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: stretch !important; /* ← これが重要！高さを揃える */
+    gap: 30px !important;
+}
+
+#detail .work-item {
+    flex: 1 !important;           /* 均等な幅にする */
+    max-width: 500px !important;    /* 広がりすぎ防止 */
+    min-width: 320px !important;    /* スマホでの最小幅 */
+    
+    display: flex !important;       /* ボックス内もFlexに */
+    flex-direction: column !important;
+    height: auto !important;        /* 高さを親に合わせる */
+}
+
+/* ボックス内のテキストの配置を整える（お好みで） */
+#detail .work-item p {
+    flex-grow: 1; /* 文章が短くても、中身を押し広げて高さを維持する */
+    text-align: center !important;
+}
