@@ -1262,7 +1262,7 @@ h2, h3, p, .sub-copy, .copy {
 /* ボタンの上の間隔をあける */
 .cta-button-container, 
 .form-submit {
-    margin-top: 60px !important; /* 数値を大きくするほど間があきます */
+    margin-top: 20px !important; /* 数値を大きくするほど間があきます */
     margin-bottom: 20px !important;
 }
 
