@@ -879,3 +879,52 @@ section p,
 .work-item h3:hover::after {
   width: 100%;
 }
+
+/* 01と02のブロックを横に並べる親要素 */
+.works-grid {
+  display: flex;
+  justify-content: flex-start; /* 左側に詰めて並べる */
+  gap: 60px;                   /* 01の文章と02の間の広めの余白 */
+  flex-wrap: wrap;             /* 画面が狭いときは折り返す */
+  margin-top: 40px;            /* セクションタイトルとの間隔 */
+}
+
+/* 各ブロック（01＋文章 / 02＋文章）の幅 */
+.work-item {
+  flex: 0 1 45%;               /* 横幅を最大45%に設定（2つ並んで少し余裕があるくらい） */
+  min-width: 300px;            /* スマホ等でこれ以上狭くなったら縦に並べる */
+  text-align: left;            /* 文章を左寄せにする */
+}
+
+/* 01, 02の見出し */
+.work-item h3 {
+  display: inline-block;
+  position: relative;
+  padding-bottom: 5px;
+  margin-bottom: 20px;         /* 文章との間隔 */
+  font-family: 'Montserrat', sans-serif; /* 英語部分をカッコよく */
+  font-size: 1.5rem;
+}
+
+/* 前にお伝えした下線のアニメーションもここに含めます */
+.work-item h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #25399c;
+  transition: width 0.3s ease;
+}
+
+.work-item h3:hover::after {
+  width: 100%;
+}
+
+/* 説明文のスタイル */
+.work-item p {
+  line-height: 1.8;            /* 行間を広げて読みやすく */
+  font-size: 0.95rem;
+  color: #333;
+}
