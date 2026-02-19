@@ -1153,3 +1153,41 @@ h2, h3, p, .sub-copy, .copy {
     flex: 0 1 45% !important; /* 横に2つ並ぶ幅 */
     min-width: 300px !important;
 }
+
+/* --- 01・02のブロックを横並びに戻す設定 --- */
+#detail .works-grid {
+    display: flex !important;
+    flex-direction: row !important; /* 縦並びを強制解除 */
+    flex-wrap: wrap !important;    /* 画面が狭いときは折り返す */
+    justify-content: center !important;
+    align-items: stretch !important; /* ボックスの高さを揃える */
+    gap: 30px !important;
+    max-width: 1100px !important;
+    margin: 40px auto !important;
+}
+
+#detail .work-item {
+    flex: 0 1 calc(50% - 40px) !important; /* 2つ並ぶように幅を調整 */
+    min-width: 320px !important;          /* スマホでは縦に並ぶ最低幅 */
+    display: flex !important;
+    flex-direction: column !important;    /* ボックス内の要素は縦に並べる */
+    justify-content: flex-start !important;
+    text-align: center !important;        /* 文字は中央寄せ */
+    padding: 40px !important;
+}
+
+/* ルックブック下のテキストを確実に中央へ */
+.lookbook-content, 
+.lookbook-content p, 
+.lookbook-visual + p {
+    text-align: center !important;
+    margin: 20px auto !important;
+    display: block !important;
+}
+
+/* SHOPの2列維持 */
+#shop .goods-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 20px !important;
+}
