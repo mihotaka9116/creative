@@ -854,3 +854,28 @@ section p,
   margin-right: auto !important;
   max-width: 100% !important; /* 他の設定で 600px に制限されているのを解除 */
 }
+
+/* 見出しのベーススタイル */
+.work-item h3 {
+  display: inline-block; /* 下線の幅を文字に合わせるため */
+  position: relative;
+  padding-bottom: 4px; /* 文字と線の隙間 */
+  cursor: pointer;      /* マウスが重なった時に指のアイコンにする */
+}
+
+/* 下線の初期状態（透明・幅0） */
+.work-item h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;          /* 下線の太さ */
+  background-color: #25399c; /* SVGで使われている青色に合わせています。お好みで変更可 */
+  transition: width 0.3s ease; /* 0.3秒かけて伸びるアニメーション */
+}
+
+/* ホバーした時に下線を100%に伸ばす */
+.work-item h3:hover::after {
+  width: 100%;
+}
