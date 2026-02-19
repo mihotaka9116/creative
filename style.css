@@ -1054,29 +1054,34 @@ section p,
   margin: 0; /* 余計なマージンをリセット */
 }
 
-/* 1. Collectionタイトルと商品名を中央寄せにする */
-.section-title, 
-.goods-item h3, 
-.goods-item p,
-.sub-copy {
+/* サイト内のほぼすべての要素を中央に強制する */
+body, section, .wrapper, .container, .works-grid, .goods-grid {
+  text-align: center !important;
+}
+
+/* 文章の塊やタイトルもすべて中央へ */
+p, h1, h2, h3, .sub-copy, .copy, .work-item, .goods-item {
   text-align: center !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
 
-/* 2. 商品一覧（Goods Grid）内の各アイテムを中央揃えに徹底する */
-.goods-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* 中身の要素を中央に配置 */
-  text-align: center;
+/* Flexboxを使っている要素の中身も中央へ */
+.works-grid, .goods-grid, .work-item {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
-/* 3. もし「Collection 2025 winter」などが特定のクラスなら以下も追加 */
-.collection-title {
-  text-align: center;
-  width: 100%;
-  margin-bottom: 30px;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
+/* 下線アニメーションの起点も中央からにする（これで見栄えがよくなります） */
+.work-item h3::after {
+  left: 50% !important;
+  transform: translateX(-50%);
+}
+
+/* 商品画像の回り込みなどを解除して中央に */
+.image-wrap {
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
