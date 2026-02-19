@@ -928,3 +928,61 @@ section p,
   font-size: 0.95rem;
   color: #333;
 }
+
+/* ---------------------------------------
+   Detail (Works) セクションのレイアウト
+--------------------------------------- */
+
+/* 親要素：01と02のブロックを横に並べる */
+.works-grid {
+  display: flex;
+  justify-content: center; /* 中央寄せ（左寄せなら flex-start） */
+  gap: 60px;               /* 01と02のブロック間の余白 */
+  flex-wrap: wrap;         /* 画面が狭いときは自動で縦並びにする */
+  margin-top: 40px;
+  max-width: 1000px;       /* 広がりすぎないよう制限（お好みで） */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 子要素：01＋文章 / 02＋文章 の各ブロック */
+.work-item {
+  flex: 1;                 /* 均等に幅をとる */
+  min-width: 300px;        /* スマホ等で300px以下になったら縦に積む */
+  text-align: left;        /* 文章を左寄せに */
+}
+
+/* 見出しのデザインと下線アニメーション */
+.work-item h3 {
+  display: inline-block;   /* 下線を文字幅に合わせる */
+  position: relative;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 20px;     /* 下の文章との間隔 */
+  padding-bottom: 5px;     /* 文字と線の隙間 */
+  cursor: pointer;
+}
+
+/* 下線の土台（最初は幅0） */
+.work-item h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #25399c; /* 窓の青色に合わせる */
+  transition: width 0.3s ease; /* 伸びる速さ */
+}
+
+/* ホバー時に線を100%に伸ばす */
+.work-item h3:hover::after {
+  width: 100%;
+}
+
+/* 説明文のスタイル */
+.work-item p {
+  line-height: 1.8;
+  font-size: 0.95rem;
+  color: #333;
+}
