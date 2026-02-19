@@ -1102,3 +1102,54 @@ h2, h3, p, .sub-copy, .copy {
     left: 50% !important;
     transform: translateX(-50%) !important;
 }
+
+/* --- 1. ルックブック下のテキストを確実に中央へ --- */
+.lookbook-content, 
+.lookbook-content p, 
+.lookbook-visual + p {
+    display: block !important;
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important;
+    max-width: 800px !important; /* 読みやすい幅 */
+}
+
+/* --- 2. SHOP (Goods Grid) の巨大化を直し、横2列にする --- */
+#shop .goods-grid {
+    display: grid !important; /* 縦並びを解除 */
+    /* ↓ここが重要！ PC・スマホ問わず「横2列」に固定 */
+    grid-template-columns: 1fr 1fr !important; 
+    gap: 20px !important;
+    max-width: 900px !important; /* 巨大化防止：適正なサイズに制限 */
+    margin: 40px auto !important;
+    padding: 0 20px !important;
+}
+
+/* 商品アイテム自体のサイズを調整 */
+#shop .goods-item {
+    display: block !important; /* 縦並び設定を上書き */
+    width: 100% !important;
+}
+
+/* 商品画像が巨大にならないように制限 */
+#shop .image-wrap {
+    width: 100% !important;
+    max-width: 300px !important; /* 画像の最大サイズ */
+    margin: 0 auto 15px !important; /* 画像を中央に */
+    aspect-ratio: 1 / 1 !important;
+}
+
+/* --- 3. 01, 02 などの横並びも維持したい場合（Detailセクション） --- */
+#detail .works-grid {
+    display: flex !important;
+    flex-direction: row !important; /* 縦並びを強制解除して横へ */
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 30px !important;
+}
+
+#detail .work-item {
+    flex: 0 1 45% !important; /* 横に2つ並ぶ幅 */
+    min-width: 300px !important;
+}
