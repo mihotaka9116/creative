@@ -1053,3 +1053,30 @@ section p,
   color: #555;
   margin: 0; /* 余計なマージンをリセット */
 }
+
+/* 1. Collectionタイトルと商品名を中央寄せにする */
+.section-title, 
+.goods-item h3, 
+.goods-item p,
+.sub-copy {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* 2. 商品一覧（Goods Grid）内の各アイテムを中央揃えに徹底する */
+.goods-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 中身の要素を中央に配置 */
+  text-align: center;
+}
+
+/* 3. もし「Collection 2025 winter」などが特定のクラスなら以下も追加 */
+.collection-title {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 30px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+}
