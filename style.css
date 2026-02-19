@@ -1258,3 +1258,15 @@ h2, h3, p, .sub-copy, .copy {
     flex-grow: 1; /* 文章が短くても、中身を押し広げて高さを維持する */
     text-align: center !important;
 }
+
+/* ボタンの上の間隔をあける */
+.cta-button-container, 
+.form-submit {
+    margin-top: 60px !important; /* 数値を大きくするほど間があきます */
+    margin-bottom: 20px !important;
+}
+
+/* もし個別のボタンに対しても設定したい場合 */
+.custom-btn, .btn {
+    margin-top: 20px; 
+}
