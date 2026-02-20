@@ -1270,3 +1270,21 @@ h2, h3, p, .sub-copy, .copy {
 .custom-btn, .btn {
     margin-top: 20px; 
 }
+
+/* セクション内のテキストを左揃えにしつつ、中央に配置 */
+section p {
+    display: inline-block;
+    text-align: left;
+    max-width: 600px; /* 必要に応じて読みやすい幅を指定 */
+    width: 100%;      /* スマホで見るときに崩れないように */
+}
+
+/* 親要素のtext-align: centerにより、上記pタグが中央に寄ります */
+section {
+    text-align: center;
+}
+
+.detail-item { /* 仮のクラス名です */
+    display: inline-block;
+    text-align: left;
+}
