@@ -1334,3 +1334,57 @@ section {
   /* 黒色を #25399c (ヒーローエリアと同じ紺) に変換するフィルタ */
   filter: invert(19%) sepia(48%) saturate(4681%) hue-rotate(224deg) brightness(91%) contrast(92%);
 }
+
+/* --- 1. 01, 02 のアイコン色をタイトルと同じにする --- */
+.work-item h3::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  /* タイトルと同じ変数を使用 */
+  background-color: var(--primary-blue); 
+  
+  /* アイコンを丸にしたい場合はこちらを有効に */
+  /* border-radius: 50%; */
+}
+
+/* --- 2. もし画像（imgタグ）でアイコンを入れている場合 --- */
+.work-item h3 img {
+  width: 24px;
+  height: 24px;
+  /* 画像の色を強制的にタイトル色の濃い青（#25399c）系に変換するフィルタ */
+  filter: invert(21%) sepia(58%) saturate(3475%) hue-rotate(224deg) brightness(89%) contrast(92%);
+}
+
+/* --- 3. 下線（after）のアニメーション色 --- */
+.work-item h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-blue); /* タイトル色に統一 */
+  transition: width 0.3s ease;
+}
+
+/* --- 4. 訪問済みリンクの色が紫にならないように固定 --- */
+.nav ul li a:visited,
+.work-item h3,
+.section-title {
+  color: var(--primary-blue) !important;
+}
+
+/* --- 5. お問い合わせボタン（初期状態） --- */
+.custom-btn, .btn {
+  background-color: var(--primary-blue) !important;
+  border: 2px solid var(--primary-blue) !important;
+  color: #ffffff !important;
+}
+
+/* ホバーした時だけ白背景＋青文字にする */
+.custom-btn:hover, .btn:hover {
+  background-color: #ffffff !important;
+  color: var(--primary-blue) !important;
+}
