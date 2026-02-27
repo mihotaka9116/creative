@@ -1388,3 +1388,106 @@ section {
   background-color: #ffffff !important;
   color: var(--primary-blue) !important;
 }
+
+/* ===========================================
+   COLOR UNIFICATION (To --primary-blue)
+   =========================================== */
+
+/* 1. タイトル・見出し・リンクの色を一括固定（訪問済みでも紫にしない） */
+.section-title,
+.sec-title,
+.work-item h3,
+.nav ul li a,
+.nav ul li a:visited,
+.footer p,
+.form-group label {
+  color: var(--primary-blue) !important;
+}
+
+/* 2. 01, 02 の横にあるアイコン（before図形）の色 */
+.work-item h3::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background-color: var(--primary-blue); /* タイトルと同じ紺色 */
+  margin-right: 10px;
+  /* 円形にしたい場合は以下を解除 */
+  /* border-radius: 50%; */
+}
+
+/* 3. タイトル下の動く下線（中央から広がる設定） */
+.work-item h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-blue);
+  transition: width 0.3s ease;
+}
+
+.work-item h3:hover::after {
+  width: 100%;
+}
+
+/* 4. ボタンの配色（初期：紺、ホバー：白背景に紺文字） */
+.custom-btn, 
+.btn, 
+.form-submit .custom-btn {
+  background-color: var(--primary-blue) !important;
+  border: 2px solid var(--primary-blue) !important;
+  color: #ffffff !important;
+  transition: all 0.3s ease !important;
+}
+
+.custom-btn:hover, 
+.btn:hover {
+  background-color: #ffffff !important;
+  color: var(--primary-blue) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(37, 57, 156, 0.3);
+}
+
+/* 5. フォーム入力中の枠線も紺色に */
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary-blue) !important;
+  box-shadow: 0 0 0 3px rgba(37, 57, 156, 0.1);
+}
+
+/* 6. ハンバーガーメニューの棒の色 */
+.hamburger-menu span {
+  background-color: var(--primary-blue);
+}
+
+/* -------------------------------------------
+   LAYOUT KEEPERS (これまでの配置修正を維持)
+   ------------------------------------------- */
+
+/* Detailセクションの2カラム維持 */
+#detail .works-grid {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: stretch !important;
+  gap: 30px !important;
+}
+
+/* Shopセクションの2列維持 */
+#shop .goods-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 20px !important;
+}
+
+/* テキストを中央配置しつつ左揃え */
+section p, .lookbook-content p {
+  display: inline-block !important;
+  text-align: left !important;
+  max-width: 600px !important;
+  margin: 0 auto !important;
+}
