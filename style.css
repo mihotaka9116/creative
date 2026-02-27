@@ -1302,3 +1302,28 @@ section {
   height: 24px;
   display: inline-block;
 }
+
+/* 01 Material のタイトルの左にアイコンを追加 */
+.work-item h3 {
+  display: flex;
+  align-items: center; /* 上下中央揃え */
+  gap: 8px;            /* 文字との間隔 */
+}
+
+.work-item h3::before {
+  content: "";
+  display: inline-block;
+  width: 18px;         /* アイコンの幅 */
+  height: 18px;        /* アイコンの高さ */
+  background-color: #000080; /* 紺色（ネイビー） */
+  
+  /* --- 形状の設定（お好みで選んでください） --- */
+  /* パターンA：正方形の場合（このまま） */
+  /* パターンB：円形にしたい場合 */
+  /* border-radius: 50%; */
+  
+  /* --- SVGアイコンを背景として入れる場合 --- */
+  /* background-image: url('path/to/your-icon.svg'); */
+  /* background-size: contain; */
+  /* background-repeat: no-repeat; */
+}
