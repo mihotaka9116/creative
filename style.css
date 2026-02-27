@@ -1491,3 +1491,37 @@ section p, .lookbook-content p {
   max-width: 600px !important;
   margin: 0 auto !important;
 }
+
+/* --- 1. 変数の定義自体を深い紺色に書き換える --- */
+:root {
+  /* 以前の #25399c から、より深い紺色 #1a2a6c または #001f3f に変更 */
+  --primary-blue: #1a2a6c; 
+  --hover-blue: #000080;
+  --text-dark: #000b2e;
+}
+
+/* --- 2. Tシャツアイコン（img）をこの「深い紺色」に合わせる --- */
+.work-item h3 img {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin-left: 10px;
+  /* 深い紺色（#1a2a6c）に変換するためのフィルタ */
+  filter: invert(12%) sepia(35%) saturate(5450%) hue-rotate(226deg) brightness(91%) contrast(101%);
+}
+
+/* --- 3. 01, 02 などの数字・見出し・リンクを確実に紺色に固定 --- */
+.section-title,
+.sec-title,
+.work-item h3,
+.nav ul li a,
+.nav ul li a:visited,
+.form-group label {
+  color: var(--primary-blue) !important;
+}
+
+/* --- 4. ボタンや下線もこの変数に連動 --- */
+.custom-btn, .btn, .work-item h3::after {
+  background-color: var(--primary-blue) !important;
+  border-color: var(--primary-blue) !important;
+}
