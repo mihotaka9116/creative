@@ -1328,8 +1328,9 @@ section {
   /* background-repeat: no-repeat; */
 }
 
-.work-item h3 img {
-  width: 24px;
-  /* 黒色のアイコンを紺色（#000080）っぽく変換するフィルタ */
-  filter: invert(8%) sepia(94%) saturate(6441%) hue-rotate(244deg) brightness(88%) contrast(145%);
+.title-icon {
+  width: 24px; /* サイズは適宜調整してください */
+  height: auto;
+  /* 黒色を #25399c (ヒーローエリアと同じ紺) に変換するフィルタ */
+  filter: invert(19%) sepia(48%) saturate(4681%) hue-rotate(224deg) brightness(91%) contrast(92%);
 }
