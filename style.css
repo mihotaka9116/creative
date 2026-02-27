@@ -1288,3 +1288,17 @@ section {
     display: inline-block;
     text-align: left;
 }
+
+/* タイトルのコンテナをFlexboxにする */
+.flex-title {
+  display: flex;
+  align-items: center; /* 垂直方向の中央揃え */
+  gap: 10px;           /* テキストとアイコンの間隔 */
+}
+
+/* アイコンのサイズ調整 */
+.title-icon {
+  width: 24px;  /* お好みのサイズに調整 */
+  height: 24px;
+  display: inline-block;
+}
