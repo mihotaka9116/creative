@@ -82,12 +82,12 @@ section p, .description, .lookbook-content p {
 }
 
 .sub-copy {
-  display: block;
-  text-align: center;
-  color: #ffffff;
+  display: block !important;
+  text-align: center !important;
+  color: #ffffff !important;
   font-weight: 700;
   font-size: 1.2rem;
-  margin: 15px auto 0;
+  margin: 15px auto 0 !important;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
