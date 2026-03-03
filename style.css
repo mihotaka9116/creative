@@ -1288,3 +1288,26 @@ section {
     display: inline-block;
     text-align: left;
 }
+
+/* コンセプト部分のテキスト */
+#concept p {
+  display: block;          /* 塊として扱う */
+  max-width: 600px;        /* 読みやすい横幅に制限 */
+  margin-left: auto;       /* 左余白を自動（中央寄せ） */
+  margin-right: auto;      /* 右余白を自動（中央寄せ） */
+  text-align: left;        /* ★文章そのものは左揃え */
+  padding: 0 20px;         /* スマホで端に張り付かないように */
+}
+
+/* ディテール（01/02）の説明文 */
+.work-item p {
+  text-align: left !important; /* 強制的に左揃えにする */
+  margin-top: 15px;
+  line-height: 1.8;
+}
+
+/* もし見出し（01 Craftsmanship等）も左に寄せたい場合 */
+.work-item h3 {
+  display: block;
+  text-align: left;
+}
