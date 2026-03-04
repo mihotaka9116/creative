@@ -1312,3 +1312,45 @@ section {
   font-size: 0.9rem;
   color: var(--text-dark);
 }
+
+/* 1. 文章の塊を中央に寄せ、中身の行を左揃えにする */
+section p, 
+.description, 
+.detail-container .text, 
+.lookbook-content p, 
+.work-item p, 
+.contact-lead {
+  display: inline-block;
+  text-align: left;
+  max-width: 600px;
+  width: 90%;
+  margin: 0 auto 20px;
+}
+
+/* 2. ボタンの視認性改善（ホバー前：背景紺・文字白 / ホバー後：背景白・文字紺） */
+.custom-btn, .btn {
+  display: inline-block;
+  background-color: #25399c; /* 紺色 */
+  color: #ffffff;            /* 文字を白に */
+  padding: 15px 45px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  margin-top: 30px;
+  border: 2px solid #25399c;
+}
+
+.custom-btn:hover, .btn:hover {
+  background-color: #ffffff; /* 背景を白に */
+  color: #25399c;            /* 文字を紺に */
+  transform: translateY(-3px);
+}
+
+/* 3. フッターの高さを出す */
+.footer {
+  padding: 180px 0 120px;    /* 上下の余白を大幅に増やして高さを確保 */
+  background-color: #fff;
+  border-top: 1px solid #fff5f8;
+  text-align: center;
+}
