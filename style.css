@@ -2769,7 +2769,7 @@ section {
     /* 字間を広げて可読性と高級感を出す */
     letter-spacing: 0.15em; 
     color: var(--primary-blue);
-    font-weight: 400;
+    font-weight: 600;
     font-family: 'Montserrat', sans-serif;
     text-decoration: none;
     transition: color 0.3s;
