@@ -155,14 +155,3 @@ section p, .description, .detail-container .text, .lookbook-content p, .goods-it
   .hero-svg-wrapper svg, .hero-svg-wrapper img { width: 120%; transform: scale(1.05); }
 }
 
-/* PC版ナビ：文字サイズを小さく、先頭のみ大文字に */
-.nav ul li a {
-  font-size: 0.75rem; 
-  letter-spacing: 0.15em;
-  color: var(--primary-blue);
-  font-weight: 700;
-  font-family: 'Montserrat', sans-serif;
-  text-decoration: none;
-  transition: color 0.3s;
-  text-transform: capitalize; /* 先頭のみ大文字、以降を小文字に設定 */
-}
