@@ -1298,22 +1298,6 @@ section {
   text-align: left;
 }
 
-/* --- 3. フッターの高さを高くする --- */
-.footer {
-  padding: 120px 0 80px; /* 上下の余白を大幅に増やす（上が120px、下が80px） */
-  background-color: #fff;
-  border-top: 1px solid var(--soft-pink);
-  text-align: center;
-}
-
-/* フッター内の文字間隔なども整えて品格を出す */
-.footer p {
-  letter-spacing: 0.1em;
-  font-size: 0.9rem;
-  color: var(--text-dark);
-}
-
-/* --- 修正の反映：ここから最下部に貼り付け --- */
 
 /* 1. 文章の塊を中央に寄せ、中身の行を左揃えにする */
 section p, 
@@ -1541,18 +1525,6 @@ section p,
     width: 100%;
 }
 
-/* 4. フッター：高さをしっかり出し、回り込みを解除 */
-footer.footer, 
-.footer {
-    display: block;
-    width: 100%;
-    clear: both;              /* 上の要素と重ならないように強制解除 */
-    padding: 180px 0 120px;   /* 上下の大きな余白 */
-    background-color: #ffffff;
-    border-top: 1px solid #fff5f8;
-    text-align: center;
-}
-
 /* 5. 各セクションのタイトル：常に中央 */
 .section-title, 
 .sec-title, 
@@ -1562,5 +1534,80 @@ footer.footer,
     width: 100%;
     margin-bottom: 40px;
     display: block;
+}
+
+/* ===========================================
+   FINAL LAYOUT FIX (ID指定による強制上書き)
+   =========================================== */
+
+/* 1. フッターを最下部に固定し、上の要素との重なりを解消 */
+#footer {
+    display: block;
+    clear: both;               /* 上の要素の浮き(float等)を完全に解除 */
+    width: 100%;
+    margin-top: 100px;         /* Shopセクションとの間に強制的に距離を作る */
+    padding: 150px 0 100px;    /* 上下に大きな余白を持たせて高さを確保 */
+    background-color: #ffffff; /* 背景色を白で塗りつぶす */
+    position: relative;
+    z-index: 999;              /* 他の要素より前面に出す */
+    text-align: center;
+    border-top: 1px solid #eee;
+}
+
+/* 2. 文章の配置：塊を中央、中身を左揃えに固定 */
+#concept .story-text,
+#detail .work-item p,
+#lookbook .lookbook-caption,
+#shop p,
+#shop .project-description,
+#contact .contact-lead {
+    display: block;
+    text-align: left;
+    max-width: 600px;
+    margin: 20px auto;         /* 左右autoで中央配置 */
+    width: 90%;
+    line-height: 1.8;
+}
+
+/* 3. ボタンの色を「濃い青」に固定（詳細度をアップ） */
+#shop .cta-button-container a.custom-btn {
+    display: inline-block;
+    background-color: #25399c;
+    color: #ffffff;
+    padding: 16px 45px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #25399c;
+    transition: all 0.3s ease;
+}
+
+#shop .cta-button-container a.custom-btn:hover {
+    background-color: #ffffff;
+    color: #25399c;
+}
+
+/* 4. Shopの2列レイアウト崩れ防止 */
+#shop .goods-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 1000px;
+    margin: 40px auto;
+}
+
+/* 5. 各セクションのタイトルを中央へ */
+.section-title {
+    text-align: center;
+    width: 100%;
+    display: block;
+    margin-bottom: 40px;
+}
+
+/* スマホ用の調整 */
+@media (max-width: 768px) {
+    #footer {
+        padding: 80px 0 40px;
+    }
 }
 
