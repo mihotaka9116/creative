@@ -166,3 +166,35 @@ section p,
 .btn:visited, .nav a:visited {
     color: inherit;
 }
+
+/* --- 1. ナビゲーション（PC版）の調整 --- */
+.nav ul li a {
+    /* 文字サイズを少し小さく */
+    font-size: 0.75rem; 
+    /* 字間を広げて可読性と高級感を出す */
+    letter-spacing: 0.15em; 
+    color: var(--primary-blue);
+    font-weight: 400;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    transition: color 0.3s;
+    text-transform: uppercase; /* 英語なら大文字にするとより綺麗です */
+}
+
+/* --- 2. フッターの余白を倍にする --- */
+.footer {
+    /* 上下のパディングを大幅に増やして高さを出します */
+    /* 前回の 120px/80px から 200px/160px 程度へ拡大 */
+    padding: 200px 0 160px; 
+    background-color: #fff;
+    border-top: 1px solid var(--soft-pink);
+    text-align: center;
+}
+
+/* フッター内のコピーライトなどの微調整 */
+.footer p {
+    letter-spacing: 0.12em;
+    font-size: 0.8rem;
+    color: var(--text-dark);
+    margin-top: 20px;
+}
