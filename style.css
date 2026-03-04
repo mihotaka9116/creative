@@ -1488,3 +1488,79 @@ section + .footer {
     display: block;
 }
 
+/* ===========================================
+   FINAL ADJUSTMENT (ボタン色・文章配置・フッター)
+   =========================================== */
+
+/* 1. 【最優先】ボタンの色を「濃い青」に固定し、文字を「白」にする */
+/* セレクタを長くして、他の設定に負けないようにしています */
+section .cta-button-container .custom-btn,
+section .cta-button-container .btn,
+#contact .form-submit .custom-btn,
+.goods-item .custom-btn {
+    display: inline-block;
+    background-color: #25399c; /* 濃い青 */
+    color: #ffffff;           /* 絶対に白 */
+    padding: 16px 45px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #25399c;
+    transition: all 0.3s ease;
+    margin-top: 30px;
+}
+
+/* ボタンホバー時：白背景に青文字 */
+section .cta-button-container .custom-btn:hover,
+section .cta-button-container .btn:hover,
+#contact .form-submit .custom-btn:hover {
+    background-color: #ffffff;
+    color: #25399c;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(37, 57, 156, 0.2);
+}
+
+/* 2. 文章の配置：中央に置いて、2行以上は左揃え */
+section p, 
+.lookbook-content p, 
+.contact-lead, 
+.description,
+#concept p {
+    display: block;
+    text-align: left;         /* 行の始まりを左に */
+    max-width: 600px;         /* 読みやすい幅 */
+    margin-left: auto;        /* 塊を中央へ */
+    margin-right: auto;       /* 塊を中央へ */
+    width: 90%;
+}
+
+/* 3. 01/02などのボックス内テキストも左揃え */
+#detail .work-item p {
+    text-align: left;
+    margin-top: 15px;
+    width: 100%;
+}
+
+/* 4. フッター：高さをしっかり出し、回り込みを解除 */
+footer.footer, 
+.footer {
+    display: block;
+    width: 100%;
+    clear: both;              /* 上の要素と重ならないように強制解除 */
+    padding: 180px 0 120px;   /* 上下の大きな余白 */
+    background-color: #ffffff;
+    border-top: 1px solid #fff5f8;
+    text-align: center;
+}
+
+/* 5. 各セクションのタイトル：常に中央 */
+.section-title, 
+.sec-title, 
+#shop .section-title, 
+#contact .section-title {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 40px;
+    display: block;
+}
+
