@@ -1313,6 +1313,8 @@ section {
   color: var(--text-dark);
 }
 
+/* --- 修正の反映：ここから最下部に貼り付け --- */
+
 /* 1. 文章の塊を中央に寄せ、中身の行を左揃えにする */
 section p, 
 .description, 
@@ -1320,37 +1322,37 @@ section p,
 .lookbook-content p, 
 .work-item p, 
 .contact-lead {
-  display: inline-block;
-  text-align: left;
-  max-width: 600px;
-  width: 90%;
-  margin: 0 auto 20px;
+  display: block !important; /* ブロック要素として扱う */
+  text-align: left !important; /* 行を左揃えに固定 */
+  max-width: 600px !important; /* 幅を制限して中央に */
+  width: 90% !important;
+  margin: 0 auto 20px !important; /* 左右中央寄せ */
 }
 
-/* 2. ボタンの視認性改善（ホバー前：背景紺・文字白 / ホバー後：背景白・文字紺） */
+/* 2. ボタンの視認性改善（ホバー前も文字を白に！） */
 .custom-btn, .btn {
-  display: inline-block;
-  background-color: #25399c; /* 紺色 */
-  color: #ffffff;            /* 文字を白に */
-  padding: 15px 45px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  margin-top: 30px;
-  border: 2px solid #25399c;
+  display: inline-block !important;
+  background-color: #25399c !important; /* 紺色 */
+  color: #ffffff !important;            /* 文字を白に！ */
+  padding: 15px 45px !important;
+  border-radius: 50px !important;
+  text-decoration: none !important;
+  font-weight: bold !important;
+  border: 2px solid #25399c !important;
+  margin-top: 30px !important;
 }
 
+/* ボタンホバー時：背景と文字色を反転 */
 .custom-btn:hover, .btn:hover {
-  background-color: #ffffff; /* 背景を白に */
-  color: #25399c;            /* 文字を紺に */
-  transform: translateY(-3px);
+  background-color: #ffffff !important; /* 背景を白に */
+  color: #25399c !important;            /* 文字を紺に */
 }
 
-/* 3. フッターの高さを出す */
+/* 3. フッターの高さをしっかり出す */
 .footer {
-  padding: 180px 0 120px;    /* 上下の余白を大幅に増やして高さを確保 */
-  background-color: #fff;
-  border-top: 1px solid #fff5f8;
-  text-align: center;
+  padding: 180px 0 120px !important; /* 余白を大きく取って高さを確保 */
+  text-align: center !important;
+  display: block !important;
 }
+
+/* --- 修正の反映：ここまで --- */
