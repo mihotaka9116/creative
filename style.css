@@ -1356,3 +1356,76 @@ section p,
 }
 
 /* --- 修正の反映：ここまで --- */
+
+/* ===========================================
+   FINAL LAYOUT FIX (整理・統合版)
+   =========================================== */
+
+/* 1. セクション内の文章：塊を中央に寄せ、中身を左揃えにする */
+section p, 
+.description, 
+.lookbook-content p, 
+.contact-lead {
+    display: block;
+    text-align: left;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+/* 2. SHOP (商品一覧) の2列レイアウトとサイズ制限 */
+#shop .goods-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+#shop .goods-item {
+    width: 100%;
+}
+
+/* 3. Detail (01/02) の横並びと高さの統一 */
+#detail .works-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch; /* ボックスの高さを揃える */
+    gap: 30px;
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+#detail .work-item {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* 01/02内の文章も左揃え */
+#detail .work-item p {
+    text-align: left;
+    margin-top: 15px;
+    flex-grow: 1; /* 文章が短くても高さを維持 */
+}
+
+/* 4. フッターの高さと配置を完全に解決 */
+.footer {
+    display: block;
+    width: 100%;
+    clear: both; /* 回り込み解除 */
+    padding: 180px 0 120px; /* 上下の余白を大きく取って高さを出す */
+    background-color: #ffffff;
+    border-top: 1px solid var(--soft-pink);
+    text-align: center;
+}
+
