@@ -1322,40 +1322,39 @@ section p,
 .lookbook-content p, 
 .work-item p, 
 .contact-lead {
-  display: block !important; /* ブロック要素として扱う */
-  text-align: left !important; /* 行を左揃えに固定 */
-  max-width: 600px !important; /* 幅を制限して中央に */
-  width: 90% !important;
-  margin: 0 auto 20px !important; /* 左右中央寄せ */
+  display: block; /* ブロック要素として扱う */
+  text-align: left; /* 行を左揃えに固定 */
+  max-width: 600px; /* 幅を制限して中央に */
+  width: 90%;
+  margin: 0 auto 20px; /* 左右中央寄せ */
 }
 
 /* 2. ボタンの視認性改善（ホバー前も文字を白に！） */
 .custom-btn, .btn {
-  display: inline-block !important;
-  background-color: #25399c !important; /* 紺色 */
-  color: #ffffff !important;            /* 文字を白に！ */
-  padding: 15px 45px !important;
-  border-radius: 50px !important;
-  text-decoration: none !important;
-  font-weight: bold !important;
-  border: 2px solid #25399c !important;
-  margin-top: 30px !important;
+  display: inline-block;
+  background-color: #25399c; /* 紺色 */
+  color: #ffffff;            /* 文字を白に！ */
+  padding: 15px 45px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid #25399c;
+  margin-top: 30px;
 }
 
 /* ボタンホバー時：背景と文字色を反転 */
 .custom-btn:hover, .btn:hover {
-  background-color: #ffffff !important; /* 背景を白に */
-  color: #25399c !important;            /* 文字を紺に */
+  background-color: #ffffff; /* 背景を白に */
+  color: #25399c;            /* 文字を紺に */
 }
 
 /* 3. フッターの高さをしっかり出す */
 .footer {
-  padding: 180px 0 120px !important; /* 余白を大きく取って高さを確保 */
-  text-align: center !important;
-  display: block !important;
+  padding: 180px 0 120px; /* 余白を大きく取って高さを確保 */
+  text-align: center;
+  display: block;
 }
 
-/* --- 修正の反映：ここまで --- */
 
 /* ===========================================
    FINAL LAYOUT FIX (整理・統合版)
@@ -1427,5 +1426,65 @@ section p,
     background-color: #ffffff;
     border-top: 1px solid var(--soft-pink);
     text-align: center;
+}
+
+/* --- 文章の塊を中央に寄せ、中身の行を左揃えにする（詳細度を上げた設定） --- */
+
+/* コンセプトやリード文、グッズ説明のテキスト */
+section .lookbook-content p, 
+section .contact-lead, 
+section .description,
+section .works-grid + p,
+#concept p {
+    display: block;
+    text-align: left;         /* 2行以上のとき左で揃う */
+    max-width: 600px;         /* 読みやすい幅 */
+    margin-left: auto;        /* 塊を中央へ */
+    margin-right: auto;       /* 塊を中央へ */
+    width: fit-content;       /* 中身の長さに合わせる */
+    min-width: 280px;         /* 極端に短くなるのを防ぐ */
+}
+
+/* 01 Material / 02 Craftsmanship のボックス内テキスト */
+#detail .work-item p {
+    text-align: left;
+    margin-top: 15px;
+    display: block;
+    width: 100%;
+}
+
+/* グッズ名（01 Mag Cupなど）の下のテキスト */
+.goods-item p {
+    text-align: left;
+    display: block;
+    max-width: 250px;         /* 商品の幅に合わせる */
+    margin: 10px auto 0;      /* 商品画像の下で中央に配置しつつ中身は左揃え */
+}
+
+/* --- フッターの未解決問題を解消 --- */
+/* 他の要素の回り込みを完全に排除し、高さを出す */
+footer.footer, 
+section + .footer {
+    display: block;
+    clear: both;
+    padding: 160px 0 100px;   /* 上に大きな余白 */
+    background-color: #ffffff;
+    border-top: 1px solid var(--soft-pink);
+    text-align: center;
+    height: auto;
+    min-height: 300px;        /* 物理的な高さを保証 */
+}
+
+/* フッター内のコピーライト */
+.footer p {
+    text-align: center;       /* ここは1行なので中央でOK */
+    margin: 0 auto;
+}
+
+/* --- タイトルは常に中央 --- */
+.section-title, .sec-title, .work-item h3 {
+    text-align: center;
+    width: 100%;
+    display: block;
 }
 
