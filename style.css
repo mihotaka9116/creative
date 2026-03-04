@@ -83,13 +83,13 @@ body {
 .nav ul {
   display: flex;
   list-style: none;
-  gap: 30px;
+  gap: 20px;
 }
 
 .nav ul li a {
-  font-size: 0.9rem; 
+  font-size: 0.8rem; 
   color: var(--primary-blue);
-  font-weight: 800;
+  font-weight: 600;
   font-family: 'Montserrat', sans-serif;
   text-decoration: none;
   transition: color 0.3s;
