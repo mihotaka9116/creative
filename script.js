@@ -67,40 +67,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const cartButtons = document.querySelectorAll('.add-to-cart-btn');
   const cartCountElement = document.getElementById('cart-count');
 
-  // カートのバッジ（数字）を更新する関数
   function updateCartBadge() {
     if (!cartCountElement) return;
     const cart = JSON.parse(localStorage.getItem('miho_cart_data')) || [];
     cartCountElement.textContent = cart.length;
-    // 0個のときは非表示、1個以上のときは表示
     cartCountElement.style.display = cart.length > 0 ? 'flex' : 'none';
   }
 
-  // 初期表示
   updateCartBadge();
 
   cartButtons.forEach(button => {
     button.addEventListener('click', () => {
-      // データの取得
       let cart = JSON.parse(localStorage.getItem('miho_cart_data')) || [];
       
       const product = {
         name: button.getAttribute('data-name'),
         price: parseInt(button.getAttribute('data-price')),
+        image: button.getAttribute('data-image'), // ★ここを追加しました！
         id: Date.now()
       };
 
-      // 保存
       cart.push(product);
       localStorage.setItem('miho_cart_data', JSON.stringify(cart));
-
-      // 数字の更新
       updateCartBadge();
 
-      // ボタンの演出
       const originalText = button.innerText;
       button.innerText = "追加しました！";
-      button.style.backgroundColor = "#28a745"; // 一時的に緑色に
+      button.style.backgroundColor = "#28a745"; 
       
       setTimeout(() => {
         button.innerText = originalText;
