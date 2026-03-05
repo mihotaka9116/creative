@@ -1611,3 +1611,49 @@ section p,
     }
 }
 
+/* 価格のスタイリング */
+.item-price {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #333;
+    margin: 10px 0 5px;
+    text-align: center;
+}
+
+.item-price small {
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: #888;
+}
+
+/* カートボタンのスタイリング */
+.shop-btn {
+    display: inline-block;
+    width: 80%;
+    margin: 0 auto 15px;
+    padding: 8px 0;
+    background-color: #25399c; /* ロゴに使われている青 */
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.shop-btn:hover {
+    background-color: #3657ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* goods-item自体の中央揃え */
+.goods-item {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
