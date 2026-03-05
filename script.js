@@ -124,3 +124,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // -----------------------------------------
+    // 1. カートへの追加処理
+    // -----------------------------------------
+    const cartButtons = document.querySelectorAll('.add-to-cart-btn');
+    const cartCountElement = document.getElementById('cart-count');
+
+    // ページ読み込み時にバッジの数字を更新
+    updateCartCount();
+
+    cartButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // ローカルストレージから既存のカートを取得（名前を "miho_cart_data" で統一）
+            let cart = JSON.parse(localStorage.getItem('miho_cart_data')) || [];
+
+            // ボタンのdata属性から商品情報を取得
+            const product = {
+                name: button.getAttribute('data-name'),
+                price: parseInt(button.getAttribute('data-price')),
+                id: Date.now() // 削除時に識別するためのID
+            };
+
+            // 配列に追加して保存
+            cart.push(product);
+            localStorage.setItem('miho_cart_data', JSON.stringify(cart));
+
+            // バッジの数字を更新
+            updateCartCount();
+
+            // ボタンのアニメーション演出
+            const originalText = button.innerText;
+            button.innerText = "追加しました！";
+            button.classList.add('added'); // 必要ならCSSで色を変える用
+            
+            setTimeout(() => {
+                button.innerText = originalText;
+                button.classList.remove('added');
+            }, 1000);
+        });
+    });
+
+    // カートの個数をバッジに反映させる関数
+    function updateCartCount() {
+        if (!cartCountElement) return;
+        const cart = JSON.parse(localStorage.getItem('miho_cart_data')) || [];
+        cartCountElement.textContent = cart.length
