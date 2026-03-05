@@ -1671,3 +1671,40 @@ section p,
     margin-left: 3px;
 }
 
+/* セクションのタイトルなどは中央 */
+.section-title, 
+.section-title-en {
+    text-align: center;
+    display: block;
+    margin-bottom: 30px;
+}
+
+/* ストーリーや説明文のブロック */
+.story-text, 
+.project-description {
+    text-align: left;      /* 左揃えにする */
+    display: inline-block; /* 中身の幅に合わせる */
+    max-width: 600px;      /* 広がりすぎないように制限 */
+    margin: 0 auto;        /* ブロック自体を中央に寄せる */
+}
+
+/* 各アイテム（商品）の設定 */
+.goods-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 中身を左側に寄せる */
+    text-align: left;        /* テキストを左揃えにする */
+}
+
+/* 画像は中央にしたい場合はここを調整 */
+.image-wrap {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* ボタンだけは中央、または左寄せ（お好みで） */
+.shop-btn {
+    margin: 10px 0 0; /* 左寄せにする場合（margin-left: 0） */
+}
+
+
