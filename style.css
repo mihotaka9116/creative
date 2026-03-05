@@ -1707,4 +1707,15 @@ section p,
     margin: 10px 0 0; /* 左寄せにする場合（margin-left: 0） */
 }
 
+.form-group {
+    max-width: 500px;  /* フォームの幅を制限 */
+    margin: 0 auto 20px;
+    text-align: left;  /* ラベルと入力欄を左揃えに */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
 
