@@ -2017,23 +2017,23 @@ section p,
 .cart-floating-icon span,
 .cart-icon {
     /* ハンバーガーメニュー用の設定をすべてリセット */
-    position: static !important;    /* 絶対配置を解除 */
-    transform: none !important;    /* 回転を解除 */
-    opacity: 1 !important;         /* 透明化を解除 */
-    display: inline-block !important;
-    width: auto !important;        /* 横幅を絵文字サイズに戻す */
-    height: auto !important;
-    background-color: transparent !important; /* 背景色（青い線）を消す */
-    transition: none !important;    /* アニメーションを停止 */
+    position: static;    /* 絶対配置を解除 */
+    transform: none;    /* 回転を解除 */
+    opacity: 1;         /* 透明化を解除 */
+    display: inline-block;
+    width: auto;        /* 横幅を絵文字サイズに戻す */
+    height: auto;
+    background-color: transparent; /* 背景色（青い線）を消す */
+    transition: none;    /* アニメーションを停止 */
 }
 
 /* 2. カートの数字（0）の位置がズレるのを防ぐ */
 #cart-count {
-    position: absolute !important; /* 数字だけは右上に配置 */
-    top: -5px !important;
-    right: -5px !important;
-    background-color: #ff4d4d !important; /* 通知の赤 */
-    color: white !important;
+    position: absolute; /* 数字だけは右上に配置 */
+    top: -5px;
+    right: -5px;
+    background-color: #ff4d4d; /* 通知の赤 */
+    color: white;
     border-radius: 50%;
     padding: 2px 6px;
     font-size: 10px;
@@ -2097,6 +2097,94 @@ section p,
 
 /* 3番目：中央(11px)に上がってきてからマイナス45度回転 */
 #js-hamburger.active span:nth-child(3) {
-  top: 11px !important;
+  top: 11px;
   transform: rotate(-45deg);
+}
+
+/* ===========================================
+   FINAL FIX: カートアイコン救出 & ボタン・文章調整
+   =========================================== */
+
+/* 1. 【最重要】カートアイコン（🛒）を白い丸の中に復元 */
+#js-cart-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: #ffffff; /* 白い丸 */
+    border-radius: 50%;
+    position: fixed; /* 右下に固定 */
+    bottom: 20px;
+    right: 20px;
+    z-index: 10000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    text-decoration: none;
+}
+
+/* 🛒マークを「棒」から「絵文字」に戻す */
+#js-cart-icon .cart-icon {
+    display: block;
+    font-size: 22px;
+    line-height: 1;
+    position: static;   /* ハンバーガーのtop指定を解除 */
+    transform: none;    /* ハンバーガーの回転を解除 */
+    opacity: 1;         /* 透明化を解除 */
+    background-color: transparent; /* 青い棒（背景色）を消す */
+    width: auto;        /* 棒の幅を解除 */
+    height: auto;       /* 棒の太さを解除 */
+}
+
+/* カートの数字（赤い丸）を右上に配置 */
+#cart-count {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #ff4d4d;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 10px;
+    transform: translate(20%, -20%);
+    z-index: 10001;
+}
+
+/* 2. ボタンの視認性：常に濃い青背景に白文字 */
+.custom-btn, .btn, #contact .form-submit .custom-btn {
+    display: inline-block;
+    background-color: #25399c; /* 濃い青 */
+    color: #ffffff;           /* 文字は白 */
+    padding: 16px 45px;
+    border-radius: 50px;
+    text-decoration: none;
+    border: 2px solid #25399c;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.custom-btn:hover, .btn:hover {
+    background-color: #ffffff;
+    color: #25399c;
+    transform: translateY(-3px);
+}
+
+/* 3. 文章の配置：中央に置いて、2行以上は左揃え */
+section p, 
+.lookbook-content p, 
+.contact-lead, 
+#concept p, 
+#detail .work-item p {
+    text-align: left;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+/* 4. タイトルは常に中央 */
+.section-title, .sec-title, .work-item h3 {
+    text-align: center;
+    width: 100%;
 }
