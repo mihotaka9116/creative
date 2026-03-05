@@ -1979,3 +1979,8 @@ section p,
     margin: 40px auto;
     text-align: left;
 }
+
+/* 修正案：ハンバーガーメニューの中のspanだけを指定 */
+#js-hamburger.active span:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
