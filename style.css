@@ -1955,3 +1955,27 @@ section p,
     text-align: center;    /* ボタンは中央に */
     width: 100%;
 }
+
+/* --- 注意書きのスタイル --- */
+.caution-text {
+    display: block;
+    margin-top: 15px;
+    color: #d9534f; /* 警告色（薄い赤）または var(--primary-blue) でもOK */
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.form-note {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 15px !important; /* ボタンとの間隔 */
+    text-align: center !important; /* 強制的に中央寄せ */
+}
+
+/* フォームの横幅を固定して細長くなるのを防ぐ（前回の修正の再掲） */
+.contact-form-wrapper {
+    max-width: 600px;
+    width: 100%;
+    margin: 40px auto;
+    text-align: left;
+}
