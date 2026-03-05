@@ -1984,3 +1984,28 @@ section p,
 #js-hamburger.active span:nth-child(1) {
   transform: translateY(10px) rotate(45deg);
 }
+
+/* ショップ写真：PCは2列、スマホは1列 */
+#shop .goods-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    #shop .goods-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* ハンバーガーメニューがスマホで見えない場合は以下を追加 */
+    .hamburger-menu {
+        display: block !important;
+    }
+}
+
+/* カートアイコンが消える問題の対策 */
+.cart-icon img {
+    display: block !important;
+    width: 30px;
+    height: auto;
+}
