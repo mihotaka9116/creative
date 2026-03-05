@@ -6,14 +6,18 @@
   <title>Your Cart - Miho Takahashi</title>
   <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css"> <style>
-    /* カートページ専用の簡易スタイル */
+  <link rel="stylesheet" href="style.css"> 
+  <style>
+    /* カートページ専用スタイル */
     .cart-container { max-width: 800px; margin: 100px auto; padding: 0 20px; }
-    .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid #eee; }
+    .cart-item { display: flex; align-items: center; padding: 20px 0; border-bottom: 1px solid #eee; gap: 20px; }
+    .cart-item img { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; background: #f9f9f9; }
+    .cart-item-info { flex-grow: 1; }
     .cart-total { text-align: right; font-size: 1.5rem; margin-top: 30px; font-weight: bold; }
     .empty-msg { text-align: center; margin-top: 50px; color: #888; }
-    .clear-cart { background: #eee; color: #333; padding: 10px 20px; border: none; cursor: pointer; margin-top: 20px; }
-    .back-link { display: inline-block; margin-top: 40px; color: var(--primary-blue); }
+    .clear-cart { background: #eee; color: #333; padding: 10px 20px; border: none; cursor: pointer; margin-top: 20px; border-radius: 5px; }
+    .back-link { display: inline-block; margin-top: 40px; color: #000; text-decoration: underline; }
+    .remove-btn { color: #e2393c; font-size: 0.8rem; border: 1px solid #e2393c; padding: 4px 8px; border-radius: 4px; background: none; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -27,7 +31,7 @@
       <div class="cart-total">合計金額: <span id="total-price">¥0</span></div>
       <div style="text-align: right;">
         <button class="clear-cart" id="js-clear-cart">カートを空にする</button>
-        <button class="custom-btn" style="margin-top:20px; width: 100%;">購入手続きへ（デモ）</button>
+        <button class="custom-btn" style="margin-top:20px; width: 100%; cursor: pointer;">購入手続きへ（デモ）</button>
       </div>
     </div>
 
@@ -35,29 +39,52 @@
   </div>
 
   <script>
+    // 保存名を統一
+    const STORAGE_KEY = 'miho_cart_data';
+
     document.addEventListener('DOMContentLoaded', () => {
+      renderCart();
+
+      // カートを空にする機能
+      document.getElementById('js-clear-cart').addEventListener('click', () => {
+        if(confirm('カートを空にしますか？')) {
+          localStorage.removeItem(STORAGE_KEY);
+          renderCart();
+        }
+      });
+    });
+
+    // カートを描画する関数
+    function renderCart() {
       const listContainer = document.getElementById('cart-items-list');
       const summary = document.getElementById('cart-summary');
       const totalPriceElement = document.getElementById('total-price');
 
       // ローカルストレージから取得
-      let cart = JSON.parse(localStorage.getItem('miho_portfolio_cart')) || [];
+      let cart = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
       if (cart.length === 0) {
         listContainer.innerHTML = '<p class="empty-msg">カートは空です。</p>';
+        summary.style.display = 'none';
       } else {
+        listContainer.innerHTML = ''; // 一旦クリア
         summary.style.display = 'block';
         let total = 0;
 
         cart.forEach((item, index) => {
           const itemDiv = document.createElement('div');
           itemDiv.className = 'cart-item';
+          
+          // 画像がない場合のフォールバック
+          const imgSrc = item.image ? item.image : 'placeholder.png';
+
           itemDiv.innerHTML = `
-            <div>
+            <img src="${imgSrc}" alt="${item.name}">
+            <div class="cart-item-info">
               <p style="font-weight:bold;">${item.name}</p>
               <p style="color:#666;">¥${Number(item.price).toLocaleString()}</p>
             </div>
-            <button onclick="removeItem(${index})" style="color:#e2393c; font-size:0.8rem;">削除</button>
+            <button onclick="removeItem(${index})" class="remove-btn">削除</button>
           `;
           listContainer.appendChild(itemDiv);
           total += Number(item.price);
@@ -65,22 +92,14 @@
 
         totalPriceElement.textContent = `¥${total.toLocaleString()}`;
       }
-
-      // カートを空にする機能
-      document.getElementById('js-clear-cart').addEventListener('click', () => {
-        if(confirm('カートを空にしますか？')) {
-          localStorage.removeItem('miho_portfolio_cart');
-          location.reload();
-        }
-      });
-    });
+    }
 
     // 特定のアイテムを削除する関数
     function removeItem(index) {
-      let cart = JSON.parse(localStorage.getItem('miho_portfolio_cart')) || [];
+      let cart = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
       cart.splice(index, 1);
-      localStorage.setItem('miho_portfolio_cart', JSON.stringify(cart));
-      location.reload();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+      renderCart();
     }
   </script>
 </body>
