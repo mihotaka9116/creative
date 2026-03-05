@@ -1788,3 +1788,42 @@ section p,
     border: 2px solid #fff;
     display: none; /* 最初は非表示 */
 }
+
+/* グッズ全体の枠組み */
+.goods-grid {
+    display: grid;
+    /* 画面幅に合わせて、最小240pxの幅で自動整列 */
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 40px 20px; /* 上下40px、左右20pxの余白 */
+    margin: 40px 0;
+}
+
+/* 各グッズのアイテム */
+.goods-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 中身を中央寄せ */
+}
+
+/* 画像の入れ物（サイズを統一する） */
+.image-wrap {
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 1 / 1; /* 正方形に固定 */
+    overflow: hidden;
+    background-color: #f9f9f9;
+    border-radius: 8px; /* 角を少し丸くすると今風になります */
+    margin-bottom: 15px;
+}
+
+.image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 枠いっぱいにきれいに収める */
+    transition: transform 0.3s ease;
+}
+
+/* ホバーした時に少し浮き上がる演出 */
+.goods-item:hover img {
+    transform: scale(1.05);
+}
