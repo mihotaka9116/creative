@@ -2492,3 +2492,29 @@ section p,
   display: none;
 }
 
+/* アイコンを少し小さくして枠内に収まりを良くする */
+.cart-floating-icon svg {
+  width: 26px;
+  height: 26px;
+  stroke: #fff;
+  /* ほんの少し左に寄せるとカートの持ち手とのバランスが取れます */
+  transform: translateX(-1px); 
+}
+
+/* 通知バッジ（数字）の位置を調整 */
+#cart-count {
+  position: absolute;
+  top: -5px; /* 少し外側に出す */
+  right: -5px;
+  background-color: #25399c; 
+  color: #fff;
+  font-size: 11px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fe8d1c; /* 土台のオレンジと同じ色で縁取ると馴染みます */
+}
+
