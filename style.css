@@ -2181,3 +2181,41 @@ section p,
     text-align: center;
     width: 100%;
 }
+
+/* --- 修正：ヘッダーのカートアイコンを正常化 --- */
+.header .nav ul li a img, 
+.header .cart-icon {
+  width: 24px !important;    /* 適切なサイズに固定 */
+  height: auto !important;
+  background: transparent !important; /* 白い背景を消す */
+  border-radius: 0 !important;      /* 角丸（丸）を解除 */
+  box-shadow: none !important;      /* 影を解除 */
+  object-fit: contain !important;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* リンク自体の背景もリセット */
+.header .nav ul li a {
+  background: transparent !important;
+  padding: 0;
+}
+
+/* --- 修正：コンタクトフォームを横いっぱいに広げる --- */
+.contact-form-wrapper .form-group input,
+.contact-form-wrapper .form-group textarea {
+    display: block !important;    /* inline-blockを解除 */
+    width: 100% !important;       /* 横幅いっぱい */
+    max-width: none !important;   /* 600px制限を解除 */
+    box-sizing: border-box;       /* パディングを含めた100% */
+}
+
+/* 送信ボタン下の注意書き（前回の追加分） */
+.caution-text {
+    display: block;
+    margin-top: 10px;
+    color: #d9534f;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-align: center;
+}
