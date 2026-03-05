@@ -81,3 +81,46 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const cartButtons = document.querySelectorAll('.add-to-cart-btn');
+    const cartCountElement = document.getElementById('cart-count');
+
+    // ブラウザの保存領域からカートの中身を読み込む
+    let cart = JSON.parse(localStorage.getItem('myCart')) || [];
+
+    // ページを開いた瞬間に数字を更新
+    const updateBadge = () => {
+        const totalItems = cart.length;
+        cartCountElement.textContent = totalItems;
+        cartCountElement.style.display = totalItems > 0 ? 'flex' : 'none';
+    };
+
+    updateBadge();
+
+    cartButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const product = {
+                name: button.dataset.name,
+                price: button.dataset.price,
+                id: Date.now() // 簡易的な個別ID
+            };
+
+            // 配列に追加
+            cart.push(product);
+            // 保存
+            localStorage.setItem('myCart', JSON.stringify(cart));
+            // 数字を更新
+            updateBadge();
+
+            // 小さな通知（お好みで）
+            button.innerText = "追加しました！";
+            button.style.backgroundColor = "#28a745"; // 一時的に緑色に
+            
+            setTimeout(() => {
+                button.innerText = "カートに入れる";
+                button.style.backgroundColor = ""; // 元の色に戻す
+            }, 2000);
+        });
+    });
+});
