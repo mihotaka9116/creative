@@ -2221,3 +2221,64 @@ section p,
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
+/* モバイル（デフォルト）のスタイル */
+.hamburger-menu {
+  display: block; /* スマホでは表示 */
+  cursor: pointer;
+}
+
+/* PC（幅768px以上）のスタイル */
+@media screen and (min-width: 768px) {
+  .hamburger-menu {
+    display: none; /* PCでは非表示にする */
+  }
+
+  .nav {
+    display: block !important; /* スマホで閉じていてもPCでは表示 */
+    position: static;
+    background: none;
+  }
+
+  .nav ul {
+    display: flex; /* 横並びにする */
+    gap: 20px;
+  }
+}
+
+.cart-floating-icon {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #25399c; /* SVGで使っている濃い青色に合わせる */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.cart-floating-icon:hover {
+  transform: scale(1.1);
+}
+
+.cart-icon {
+  font-size: 24px;
+}
+
+#cart-count {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #e2393c; /* 通知バッジのような赤色 */
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
