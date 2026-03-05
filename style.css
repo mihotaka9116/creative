@@ -2056,3 +2056,47 @@ section p,
     right: 20px;
     z-index: 1000;
 }
+
+/* --- ハンバーガーメニュー基本設定 --- */
+.hamburger-menu {
+  display: block;
+  width: 30px;
+  height: 24px;
+  position: relative;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.hamburger-menu span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #25399c; /* 窓の青色 */
+  position: absolute;
+  left: 0;
+  transition: all 0.4s ease; /* アニメーションを滑らかに */
+}
+
+/* 3本の線の初期位置を固定 */
+.hamburger-menu span:nth-child(1) { top: 0; }
+.hamburger-menu span:nth-child(2) { top: 11px; }
+.hamburger-menu span:nth-child(3) { top: 22px; }
+
+/* --- 閉じている時（×にする）の動き --- */
+
+/* 1番上：中央(11px)に降りてきてから45度回転 */
+#js-hamburger.active span:nth-child(1) {
+  top: 11px !important;
+  transform: rotate(45deg);
+}
+
+/* 2番目：その場で透明にして消す */
+#js-hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+/* 3番目：中央(11px)に上がってきてからマイナス45度回転 */
+#js-hamburger.active span:nth-child(3) {
+  top: 11px !important;
+  transform: rotate(-45deg);
+}
