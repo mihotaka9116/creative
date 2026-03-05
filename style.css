@@ -1717,3 +1717,74 @@ section p,
     display: block;
     margin-bottom: 5px;
 }
+
+/* 商品内のテキスト配置を整える */
+.goods-item .item-info {
+    text-align: left; /* テキストは左揃え */
+    width: 100%;
+    max-width: 280px; /* 画像の幅に合わせる */
+    margin: 15px auto 0;
+}
+
+.item-name {
+    font-weight: bold;
+    color: var(--primary-blue);
+    margin-bottom: 5px;
+}
+
+.item-price {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* カートボタンの幅を調整 */
+.add-to-cart-btn {
+    width: 100%;
+    padding: 12px 0 !important;
+    font-size: 0.85rem;
+}
+
+/* 右下の浮遊カートアイコン */
+.cart-floating-icon {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--primary-blue);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 10px 25px rgba(37, 57, 156, 0.3);
+    z-index: 2000;
+    transition: transform 0.3s ease;
+}
+
+.cart-floating-icon:hover {
+    transform: scale(1.1);
+}
+
+.cart-icon { font-size: 24px; }
+
+/* カートの数字バッジ */
+#cart-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #ff4b5c;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fff;
+    display: none; /* 最初は非表示 */
+}
