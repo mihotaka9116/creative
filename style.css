@@ -1917,3 +1917,41 @@ section p,
     gap: 15px; /* スマホでは少し詰める */
   }
 }
+
+/* --- Contact Form の幅を最適化 --- */
+.contact-form-wrapper {
+    max-width: 700px;      /* フォーム全体の最大幅を少し広めに設定 */
+    width: 90%;            /* スマホでは画面幅の90% */
+    margin: 0 auto;        /* 中央寄せ */
+    padding: 40px;
+    text-align: left;      /* 内部のラベルなどは左揃え */
+}
+
+.form-group {
+    width: 100%;           /* グループ全体を横いっぱいに */
+    margin-bottom: 25px;
+}
+
+/* 入力欄（一行）とテキストエリア（複数行）を横いっぱいに広げる */
+.form-group input,
+.form-group textarea {
+    display: block;        /* ブロック要素にして幅指定を有効にする */
+    width: 100% !important; /* 強制的に親要素（wrapper）の幅100%にする */
+    max-width: none;       /* 他の p タグなどの制限（600px等）を解除 */
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-sizing: border-box; /* パディングを含めて100%にする */
+}
+
+/* テキストエリアの高さ */
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;      /* 上下方向のみサイズ変更可能に */
+}
+
+/* 送信ボタンのコンテナ */
+.form-submit {
+    text-align: center;    /* ボタンは中央に */
+    width: 100%;
+}
