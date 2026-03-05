@@ -751,28 +751,39 @@
     </div>
   </section>
 
-  <section id="contact" class="js-reveal">
-    <div class="container">
-      <h2 class="section-title">Contact</h2>
-      <div class="contact-form-wrapper">
-        <form action="https://ssgform.com/s/i3Sq73o4HaZU" method="post">
-          <div class="form-group">
-            <label for="name">Name <span>お名前</span></label>
-            <input type="text" id="name" name="name" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email <span>メールアドレス</span></label>
-            <input type="email" id="email" name="email" required>
-          </div>
-          <div class="form-group">
-            <label for="message">Message <span>お問い合わせ内容</span></label>
-            <textarea id="message" name="message" rows="6" required></textarea>
-          </div>
-          <button type="submit" class="submit-btn" disabled style="background-color: #ccc;">現在受付停止中です</button>
-        </form>
-      </div>
+ <section id="contact">
+  <div class="wrapper">
+    <h2 class="section-title js-reveal">Contact</h2>
+    
+    <p class="contact-lead js-reveal">
+      制作に関するご相談、グッズへのお問い合わせは下記フォームよりお願いいたします。<br>
+      <span class="caution-text">※現在、本サイトは制作課題として公開しているため、メッセージの送信機能は停止しております。</span>
+    </p>
+
+    <div class="contact-form-wrapper js-reveal">
+      <form>
+        <div class="form-group">
+          <label for="name">Name <span>必須</span></label>
+          <input type="text" id="name" name="name" placeholder="高橋 美穂" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email <span>必須</span></label>
+          <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message <span>必須</span></label>
+          <textarea id="message" name="message" rows="5" placeholder="お問い合わせ内容をご記入ください" required></textarea>
+        </div>
+        
+        <div class="form-submit">
+          <button type="button" class="custom-btn">Send Message</button>
+          
+          <p class="form-note">※送信ボタンを押してもデータは送信されません。</p>
+        </div>
+      </form>
     </div>
-  </section>
+  </div>
+</section>
 </main>
 
 <footer class="footer">
