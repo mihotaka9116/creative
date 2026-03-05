@@ -2439,3 +2439,56 @@ section p,
   padding: 0;
 }
 
+/* カート全体を右下に固定 */
+.cart-floating-icon {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 64px;
+  height: 64px;
+  background-color: #fe8d1c; /* オレンジ */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  text-decoration: none;
+}
+
+.cart-floating-icon:hover {
+  transform: scale(1.1);
+}
+
+/* アイコン自体のサイズ */
+.cart-floating-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: #fff;
+}
+
+/* 通知バッジ（数字の部分） */
+#cart-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #25399c; /* 濃い青 */
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff; /* 白枠をつけて見やすく */
+}
+
+/* 0のときは隠したい場合はこちら（お好みで） */
+#cart-count:empty,
+#cart-count[data-count="0"] {
+  display: none;
+}
+
