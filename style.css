@@ -2330,3 +2330,54 @@ section p,
   font-weight: bold;
 }
 
+/* カートボタン本体 */
+.cart-floating-icon {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #25399c; /* 紺色 */
+  width: 64px;
+  height: 64px;
+  border-radius: 50%; /* 正円にする */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  z-index: 1000;
+}
+
+.cart-floating-icon:hover {
+  transform: scale(1.1);
+  background-color: #1a2a7a; /* ホバー時に少し暗く */
+}
+
+/* アイコン自体の色とサイズ */
+.cart-icon {
+  color: #ffffff !important; /* 強制的に白にする */
+  font-size: 28px;
+  /* 四角い枠や×マークが出るのを防ぐ */
+  border: none;
+  outline: none;
+}
+
+/* バッジ（数字）の装飾 */
+#cart-count {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #e2393c; /* 赤色 */
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: bold;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  border: 2px solid #25399c; /* 紺色のフチをつけて見やすく */
+}
+
