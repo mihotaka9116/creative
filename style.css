@@ -2023,74 +2023,6 @@ section p,
   transform: rotate(-45deg);
 }
 
-/* ===========================================
-   FINAL FIX: カートアイコン救出 & ボタン・文章調整
-   =========================================== */
-
-/* 1. 【最重要】カートアイコン（🛒）を白い丸の中に復元 */
-#js-cart-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    background-color: #ffffff; /* 白い丸 */
-    border-radius: 50%;
-    position: fixed; /* 右下に固定 */
-    bottom: 20px;
-    right: 20px;
-    z-index: 10000;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    text-decoration: none;
-}
-
-/* 🛒マークを「棒」から「絵文字」に戻す */
-#js-cart-icon .cart-icon {
-    display: block;
-    font-size: 22px;
-    line-height: 1;
-    position: static;   /* ハンバーガーのtop指定を解除 */
-    transform: none;    /* ハンバーガーの回転を解除 */
-    opacity: 1;         /* 透明化を解除 */
-    background-color: transparent; /* 青い棒（背景色）を消す */
-    width: auto;        /* 棒の幅を解除 */
-    height: auto;       /* 棒の太さを解除 */
-}
-
-/* カートの数字（赤い丸）を右上に配置 */
-#cart-count {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: #ff4d4d;
-    color: #ffffff;
-    font-size: 11px;
-    font-weight: bold;
-    padding: 2px 6px;
-    border-radius: 10px;
-    transform: translate(20%, -20%);
-    z-index: 10001;
-}
-
-/* 2. ボタンの視認性：常に濃い青背景に白文字 */
-.custom-btn, .btn, #contact .form-submit .custom-btn {
-    display: inline-block;
-    background-color: #25399c; /* 濃い青 */
-    color: #ffffff;           /* 文字は白 */
-    padding: 16px 45px;
-    border-radius: 50px;
-    text-decoration: none;
-    border: 2px solid #25399c;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.custom-btn:hover, .btn:hover {
-    background-color: #ffffff;
-    color: #25399c;
-    transform: translateY(-3px);
-}
 
 /* 3. 文章の配置：中央に置いて、2行以上は左揃え */
 section p, 
@@ -2111,31 +2043,20 @@ section p,
     width: 100%;
 }
 
-/* --- 修正：ヘッダーのカートアイコンを正常化 --- */
-.header .nav ul li a img, 
-.header .cart-icon {
-  width: 24px !important;    /* 適切なサイズに固定 */
-  height: auto !important;
-  background: transparent !important; /* 白い背景を消す */
-  border-radius: 0 !important;      /* 角丸（丸）を解除 */
-  box-shadow: none !important;      /* 影を解除 */
-  object-fit: contain !important;
-  display: inline-block;
-  vertical-align: middle;
-}
+
 
 /* リンク自体の背景もリセット */
 .header .nav ul li a {
-  background: transparent !important;
+  background: transparent;
   padding: 0;
 }
 
 /* --- 修正：コンタクトフォームを横いっぱいに広げる --- */
 .contact-form-wrapper .form-group input,
 .contact-form-wrapper .form-group textarea {
-    display: block !important;    /* inline-blockを解除 */
-    width: 100% !important;       /* 横幅いっぱい */
-    max-width: none !important;   /* 600px制限を解除 */
+    display: block;    /* inline-blockを解除 */
+    width: 100%;       /* 横幅いっぱい */
+    max-width: none;   /* 600px制限を解除 */
     box-sizing: border-box;       /* パディングを含めた100% */
 }
 
@@ -2149,27 +2070,7 @@ section p,
     text-align: center;
 }
 
-/* カートボタンのスタイリング */
-.shop-btn {
-    display: inline-block;
-    width: 80%;
-    margin: 0 auto 15px;
-    padding: 8px 0;
-    background-color: #25399c; /* ロゴに使われている青 */
-    color: #fff;
-    text-align: center;
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: bold;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-}
 
-.shop-btn:hover {
-    background-color: #3657ff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
 
 /* モバイル（デフォルト）のスタイル */
 .hamburger-menu {
@@ -2184,7 +2085,7 @@ section p,
   }
 
   .nav {
-    display: block !important; /* スマホで閉じていてもPCでは表示 */
+    display: block; /* スマホで閉じていてもPCでは表示 */
     position: static;
     background: none;
   }
@@ -2195,199 +2096,7 @@ section p,
   }
 }
 
-.cart-floating-icon {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background-color: #25399c; /* SVGで使っている濃い青色に合わせる */
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  transition: transform 0.3s ease;
-}
 
-.cart-floating-icon:hover {
-  transform: scale(1.1);
-}
-
-.cart-icon {
-  font-size: 24px;
-}
-
-#cart-count {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background-color: #e2393c; /* 通知バッジのような赤色 */
-  color: white;
-  font-size: 12px;
-  padding: 2px 6px;
-  border-radius: 10px;
-  font-weight: bold;
-}
-
-/* 1. カートボタンの土台（青い丸）を作成 */
-.cart-floating-icon {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 60px;      /* 丸の幅 */
-  height: 60px;     /* 丸の高さ */
-  background-color: #25399c; /* あなたのブランドカラー（濃い青） */
-  border-radius: 50%;        /* 正円にする */
-  display: flex;    /* 中身を中央寄せにするため */
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;    /* 最前面に表示 */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  text-decoration: none;
-}
-
-/* 2. カートの中の「白いアイコン」の調整 */
-.cart-floating-icon i, 
-.cart-floating-icon .cart-icon,
-.cart-floating-icon svg {
-  color: #ffffff;   /* アイコンを白に */
-  fill: #ffffff;    /* SVGの場合 */
-  font-size: 24px;             /* アイコンのサイズ */
-  width: 24px;
-  height: auto;
-}
-
-/* 3. ホバーした時の動き */
-.cart-floating-icon:hover {
-  background-color: #3657ff; /* ホバーで少し明るい青に */
-  transform: scale(1.1);               /* 少し大きく */
-}
-
-/* 4. カートの数字（もしあれば）を右上に配置 */
-#cart-count {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: #ff4d4d; /* 通知の赤色 */
-  color: white;
-  font-size: 12px;
-  padding: 2px 6px;
-  border-radius: 10px;
-  font-weight: bold;
-}
-
-/* カートボタン本体 */
-.cart-floating-icon {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background-color: #25399c; /* 紺色 */
-  width: 64px;
-  height: 64px;
-  border-radius: 50%; /* 正円にする */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  z-index: 1000;
-}
-
-.cart-floating-icon:hover {
-  transform: scale(1.1);
-  background-color: #1a2a7a; /* ホバー時に少し暗く */
-}
-
-/* アイコン自体の色とサイズ */
-.cart-icon {
-  color: #ffffff !important; /* 強制的に白にする */
-  font-size: 28px;
-  /* 四角い枠や×マークが出るのを防ぐ */
-  border: none;
-  outline: none;
-}
-
-/* バッジ（数字）の装飾 */
-#cart-count {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background-color: #e2393c; /* 赤色 */
-  color: #ffffff;
-  font-size: 11px;
-  font-weight: bold;
-  min-width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 4px;
-  border: 2px solid #25399c; /* 紺色のフチをつけて見やすく */
-}
-
-/* --- カートアイコンの構造を維持する設定 --- */
-
-#js-cart-icon {
-  /* 浮遊ボタンの位置とサイズ */
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 60px;
-  height: 60px;
-  background-color: var(--primary-blue);
-  border-radius: 50%;
-  z-index: 2000;
-  
-  /* 中身の配置設定（ここが重要！） */
-  display: flex !important;      /* 縦並び設定を上書きしてFlexに */
-  flex-direction: row !important; /* 横並び（というか重ねるための土台） */
-  align-items: center;
-  justify-content: center;
-  
-  text-decoration: none;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
-}
-
-#js-cart-icon:hover {
-  transform: scale(1.1);
-}
-
-/* カートのSVGバッグ */
-.cart-svg {
-  width: 26px;
-  height: 26px;
-  stroke: #ffffff; /* 白い線 */
-  display: block;
-  margin: 0; /* 余計なマージンを消去 */
-}
-
-/* カートの数字（バッジ） */
-#cart-count {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background-color: #e2393c; /* 赤 */
-  color: #ffffff !important;
-  font-size: 11px;
-  font-weight: bold;
-  min-width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid var(--primary-blue); /* 紺色のフチ */
-  /* 文字配置の修正 */
-  line-height: 1;
-  padding: 0;
-}
 
 /* カート全体を右下に固定 */
 .cart-floating-icon {
@@ -2474,49 +2183,4 @@ section p,
     padding: 12px 0;
     font-size: 0.85rem;
 }
-
-/* 右下の浮遊カートアイコン */
-.cart-floating-icon {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    background-color: var(--primary-blue);
-    color: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    box-shadow: 0 10px 25px rgba(37, 57, 156, 0.3);
-    z-index: 2000;
-    transition: transform 0.3s ease;
-}
-
-.cart-floating-icon:hover {
-    transform: scale(1.1);
-}
-
-.cart-icon { font-size: 24px; }
-
-/* カートの数字バッジ */
-#cart-count {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: #ff4b5c;
-    color: #fff;
-    font-size: 12px;
-    font-weight: bold;
-    min-width: 20px;
-    height: 20px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid #fff;
-    display: none; /* 最初は非表示 */
-}
-
 
