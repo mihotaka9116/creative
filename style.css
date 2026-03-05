@@ -1859,3 +1859,61 @@ section p,
   font-size: 0.75rem;
   color: #999;
 }
+
+/* --- フッターの最終調整 --- */
+.footer {
+  display: block;
+  width: 100%;
+  clear: both;
+  padding: 100px 0 60px; /* 上の余白を大きく、下を適度に */
+  background-color: #ffffff;
+  border-top: 1px solid var(--soft-pink);
+  text-align: center;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* リンクを横並びにする設定 */
+.footer-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 25px; /* リンク同士の間隔 */
+  margin-bottom: 30px;
+  flex-wrap: wrap; /* スマホで入り切らない時は折り返す */
+}
+
+.footer-links li a {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+  text-decoration: none;
+  transition: opacity 0.3s;
+  letter-spacing: 0.05em;
+}
+
+.footer-links li a:hover {
+  opacity: 0.6;
+}
+
+/* コピーライト */
+.copyright {
+  font-size: 0.75rem;
+  color: #999;
+  letter-spacing: 0.1em;
+}
+
+/* スマホ用微調整 */
+@media (max-width: 768px) {
+  .footer {
+    padding: 80px 0 40px;
+  }
+  .footer-links {
+    gap: 15px; /* スマホでは少し詰める */
+  }
+}
