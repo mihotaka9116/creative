@@ -1741,7 +1741,7 @@ section p,
 /* カートボタンの幅を調整 */
 .add-to-cart-btn {
     width: 100%;
-    padding: 12px 0 !important;
+    padding: 12px 0;
     font-size: 0.85rem;
 }
 
@@ -1936,7 +1936,7 @@ section p,
 .form-group input,
 .form-group textarea {
     display: block;        /* ブロック要素にして幅指定を有効にする */
-    width: 100% !important; /* 強制的に親要素（wrapper）の幅100%にする */
+    width: 100%; /* 強制的に親要素（wrapper）の幅100%にする */
     max-width: none;       /* 他の p タグなどの制限（600px等）を解除 */
     padding: 15px;
     border: 1px solid #e0e0e0;
@@ -1968,8 +1968,8 @@ section p,
 .form-note {
     font-size: 0.8rem;
     color: #888;
-    margin-top: 15px !important; /* ボタンとの間隔 */
-    text-align: center !important; /* 強制的に中央寄せ */
+    margin-top: 15px; /* ボタンとの間隔 */
+    text-align: center; /* 強制的に中央寄せ */
 }
 
 /* フォームの横幅を固定して細長くなるのを防ぐ（前回の修正の再掲） */
@@ -1988,24 +1988,24 @@ section p,
 /* ショップ写真：PCは2列、スマホは1列 */
 #shop .goods-grid {
     display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(2, 1fr);
     gap: 30px;
 }
 
 @media (max-width: 768px) {
     #shop .goods-grid {
-        grid-template-columns: 1fr !important;
+        grid-template-columns: 1fr;
     }
     
     /* ハンバーガーメニューがスマホで見えない場合は以下を追加 */
     .hamburger-menu {
-        display: block !important;
+        display: block;
     }
 }
 
 /* カートアイコンが消える問題の対策 */
 .cart-icon img {
-    display: block !important;
+    display: block;
     width: 30px;
     height: auto;
 }
