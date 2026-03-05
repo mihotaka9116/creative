@@ -2381,3 +2381,61 @@ section p,
   border: 2px solid #25399c; /* 紺色のフチをつけて見やすく */
 }
 
+/* --- カートアイコンの構造を維持する設定 --- */
+
+#js-cart-icon {
+  /* 浮遊ボタンの位置とサイズ */
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background-color: var(--primary-blue);
+  border-radius: 50%;
+  z-index: 2000;
+  
+  /* 中身の配置設定（ここが重要！） */
+  display: flex !important;      /* 縦並び設定を上書きしてFlexに */
+  flex-direction: row !important; /* 横並び（というか重ねるための土台） */
+  align-items: center;
+  justify-content: center;
+  
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+#js-cart-icon:hover {
+  transform: scale(1.1);
+}
+
+/* カートのSVGバッグ */
+.cart-svg {
+  width: 26px;
+  height: 26px;
+  stroke: #ffffff; /* 白い線 */
+  display: block;
+  margin: 0; /* 余計なマージンを消去 */
+}
+
+/* カートの数字（バッジ） */
+#cart-count {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #e2393c; /* 赤 */
+  color: #ffffff !important;
+  font-size: 11px;
+  font-weight: bold;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--primary-blue); /* 紺色のフチ */
+  /* 文字配置の修正 */
+  line-height: 1;
+  padding: 0;
+}
+
