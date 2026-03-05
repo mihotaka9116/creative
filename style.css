@@ -1620,27 +1620,6 @@ section p,
     color: #888;
 }
 
-/* カートボタンのスタイリング */
-.shop-btn {
-    display: inline-block;
-    width: 80%;
-    margin: 0 auto 15px;
-    padding: 8px 0;
-    background-color: #25399c; /* ロゴに使われている青 */
-    color: #fff;
-    text-align: center;
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: bold;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-}
-
-.shop-btn:hover {
-    background-color: #3657ff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
 
 /* goods-item自体の中央揃え */
 .goods-item {
@@ -2219,3 +2198,26 @@ section p,
     font-weight: bold;
     text-align: center;
 }
+
+/* カートボタンのスタイリング */
+.shop-btn {
+    display: inline-block;
+    width: 80%;
+    margin: 0 auto 15px;
+    padding: 8px 0;
+    background-color: #25399c; /* ロゴに使われている青 */
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.shop-btn:hover {
+    background-color: #3657ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
