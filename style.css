@@ -1657,3 +1657,17 @@ section p,
     justify-content: space-between;
 }
 
+.item-price {
+    font-family: 'Montserrat', sans-serif; /* 数字が綺麗に見えるフォント */
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #333;
+    margin-top: 5px;
+}
+.item-price small {
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: #888;
+    margin-left: 3px;
+}
+
