@@ -2260,3 +2260,32 @@ section p,
   border: 2px solid #ffffff; /* 紺色との間に白縁を入れて視認性アップ */
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
+
+/* --- ショップ (Goods Grid) の中央寄せ修正 --- */
+#shop .goods-item {
+    text-align: center; /* テキスト全体を中央寄せ */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 子要素（画像・ボタン・テキスト）を中央寄せ */
+}
+
+/* 商品名（タイトル） */
+#shop .goods-item .item-name {
+    text-align: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1rem; /* 文字サイズはお好みで */
+    margin-top: 15px; /* 写真との間隔 */
+}
+
+/* 価格（テキスト） */
+#shop .goods-item .item-price {
+    text-align: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--primary-blue); /* 色は濃い青に */
+    font-weight: 700;
+    font-family: 'Noto Sans JP', sans-serif; /* 日本語フォントを適用 */
+}
