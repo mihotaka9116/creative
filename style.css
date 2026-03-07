@@ -2604,3 +2604,19 @@ section p,
     gap: 50px;
   }
 }
+
+/* タイトルの数字（02）だけ少し細く、あるいは色を変える */
+.craftsmanship-title::before {
+  content: "02 ";
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  color: #ea99eb; /* 背景に使っているピンク系 */
+  margin-right: 10px;
+}
+
+/* 本文の行間を少し広めに（マティスの風通しの良さを表現） */
+.craftsmanship-text {
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+  color: #444;
+}
