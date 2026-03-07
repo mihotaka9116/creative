@@ -1989,6 +1989,131 @@ section p,
     font-family: 'Noto Sans JP', sans-serif; /* 日本語フォントを適用 */
 }
 
+/* ===========================================
+   1. 基本レイアウト（文章の配置）
+   =========================================== */
+
+/* セクション全体のタイトルは常に中央 */
+.section-title, 
+.sec-title, 
+.page-header-simple h1 {
+  text-align: center !important;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+/* 文章の「塊」を中央に寄せ、中身のテキストは「左揃え」にする */
+/* 対象：コンセプト、リード文、詳細説明、ルックブック説明、お問い合わせリード */
+#concept p,
+.contact-lead,
+.description,
+.lookbook-content p,
+.work-item p,
+.project-description {
+  display: block;
+  text-align: left;         /* 行の始まりは左揃え */
+  max-width: 600px;         /* 読みやすい幅に制限 */
+  margin-left: auto;        /* 右余白を自動（中央寄せ） */
+  margin-right: auto;       /* 左余白を自動（中央寄せ） */
+  width: 90%;               /* スマホでの余白確保 */
+  line-height: 1.8;
+}
+
+/* ===========================================
+   2. ボタンのスタイル（視認性向上）
+   =========================================== */
+
+/* リンク済み（紫）になるのを防ぎ、濃い青×白文字を維持 */
+.custom-btn, .btn, .form-submit .custom-btn {
+  display: inline-block;
+  background-color: var(--primary-blue) !important;
+  color: #ffffff !important; /* 絶対に白文字 */
+  padding: 16px 45px;
+  border-radius: 50px;
+  text-decoration: none !important;
+  font-weight: bold;
+  border: 2px solid var(--primary-blue);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(37, 57, 156, 0.2);
+  cursor: pointer;
+}
+
+/* ホバー時の挙動：白背景に青文字 */
+.custom-btn:hover, .btn:hover {
+  background-color: #ffffff !important;
+  color: var(--primary-blue) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(37, 57, 156, 0.3);
+}
+
+/* ===========================================
+   3. SHOP (Goods Grid) 2列レイアウト
+   =========================================== */
+
+#shop .goods-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 常に横2列 */
+  gap: 30px;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+@media (max-width: 480px) {
+  #shop .goods-grid {
+    gap: 15px; /* スマホでは隙間を狭める */
+  }
+}
+
+/* ===========================================
+   4. DETAIL (01/02) ボックスの横並び
+   =========================================== */
+
+.works-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch; /* 高さを揃える */
+  gap: 30px;
+  max-width: 1100px;
+  margin: 40px auto;
+}
+
+.work-item {
+  flex: 1;
+  min-width: 300px; /* スマホで縦並びになる閾値 */
+  max-width: 500px;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 01/02見出しの下線アニメーションを中央から広げる */
+.work-item h3 {
+  display: inline-block;
+  margin: 0 auto 20px;
+  position: relative;
+}
+
+.work-item h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-blue);
+  transition: width 0.3s ease;
+}
+
+.work-item h3:hover::after {
+  width: 100%;
+}
+
 
 
 
