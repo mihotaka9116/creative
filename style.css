@@ -2330,3 +2330,10 @@ section p,
 .material-symbols-outlined {
   font-size: 28px;
 }
+
+.cart-button, 
+.cart-icon, 
+.header .nav .cart, 
+[class*="cart"] {
+    display: inline-block !important;
+    color: #fff;
