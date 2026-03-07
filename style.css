@@ -2308,60 +2308,74 @@ section p,
   }
 }
 
-/* Look Book Section */
+/* --- Look Book Section --- */
 #lookbook {
-  padding: 100px 0;
+  padding: 80px 0;
+  background-color: #fff;
 }
 
+/* 横並びのコンテナ設定 */
 .lookbook-grid {
   display: flex;
-  justify-content: space-between;
-  gap: 40px; /* 画像同士の間の余白 */
+  justify-content: center; /* 中央に寄せる */
+  gap: 60px; /* 写真の間のゆったりした余白 */
   margin-top: 40px;
+  max-width: 1000px; /* 全体の幅を制限して写真が大きくなりすぎないようにする */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .lookbook-item {
-  flex: 1; /* 2つのアイテムを均等な幅にする */
-  text-align: left; /* テキストを左揃えに */
+  flex: 1;
+  text-align: center; /* 写真の下のテキストを中央に */
 }
 
+/* 写真のサイズと動きの抑制 */
 .lookbook-image {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   overflow: hidden;
-  background-color: #f5f5f5; /* 画像がない場合のバックアップ色 */
 }
 
 .lookbook-image img {
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 0.5s ease;
+  /* transitionやtransformを削除、またはnoneに設定 */
+  transition: none; 
 }
 
+/* マウスを重ねても動かないように指定 */
 .lookbook-item:hover .lookbook-image img {
-  transform: scale(1.05); /* ホバー時に少しズーム */
+  transform: none;
 }
 
+/* テキストのフォントとサイズ（CONCEPTセクションに合わせる） */
 .collection-year {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.85rem;
+  font-family: 'Montserrat', sans-serif; /* 英字フォント */
+  font-size: 0.9rem;
   color: #888;
-  letter-spacing: 0.1em;
-  margin-bottom: 8px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
 .lookbook-item-title {
-  font-family: 'Noto Sans JP', sans-serif;
-  font-size: 1.25rem;
+  font-family: 'Noto Sans JP', sans-serif; /* CONCEPTと同じ日本語フォント */
+  font-size: 1.4rem; /* CONCEPTの見出しに近いサイズ感 */
   font-weight: 700;
   color: #333;
+  line-height: 1.5;
 }
 
-/* スマホ表示（768px以下）では縦並びにする */
+/* スマホ表示 */
 @media (max-width: 768px) {
   .lookbook-grid {
     flex-direction: column;
-    gap: 60px; /* 縦並び時のアイテム間の余白 */
+    gap: 50px;
+    padding: 0 20px;
+  }
+  .lookbook-item-title {
+    font-size: 1.2rem;
   }
 }
