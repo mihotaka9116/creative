@@ -2245,4 +2245,68 @@ table, .cart-form {
     margin: 0 auto !important;
 }
 
+/* --- 1. カートアイコン（右下固定）の修正 --- */
+.cart-floating-icon {
+    position: fixed !important;
+    bottom: 30px !important;
+    right: 30px !important;
+    z-index: 9999 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 60px !important;
+    height: 60px !important;
+    background: #25399c !important; /* SVGの青色に合わせる */
+    color: #ffffff !important;
+    border-radius: 50% !important;
+    text-decoration: none !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
+    margin: 0 !important; /* 隙間の原因を削除 */
+    padding: 0 !important;
+}
+
+/* カートの数字のバッジ */
+#cart-count {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    background: #e2393c !important; /* SVGの赤色に合わせる */
+    color: white !important;
+    font-size: 12px !important;
+    width: 20px !important;
+    height: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    font-family: 'Montserrat', sans-serif;
+    transform: translate(20%, -20%);
+}
+
+/* --- 2. カートページ（購入画面）の中央寄せ --- */
+/* cart.html や他のページでメインコンテンツが左に寄るのを防ぐ */
+.container, 
+.wrapper, 
+main > section {
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+}
+
+/* カートページ専用のメインエリア（もしあれば） */
+.cart-main, 
+#cart-items-container {
+    max-width: 800px !important;
+    margin: 40px auto !important;
+    padding: 0 20px !important;
+}
+
+/* --- 3. セクション間の余計な隙間を防止 --- */
+section {
+    padding: 80px 0;
+    overflow: hidden; /* SVGのはみ出しによる崩れを防止 */
+}
+
 
