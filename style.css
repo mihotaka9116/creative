@@ -640,10 +640,6 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
   padding-left: 0;
 }
 
-/* フッターなどはそのまま中央 */
-.footer, .cta-button-container {
-  text-align: center;
-}
 
 /* ===========================================
    FINAL ADJUSTMENT: Centered Block with Left Align
@@ -1285,7 +1281,7 @@ section {
   line-height: 1.8;
 }
 
-/* もし見出し（01 Craftsmanship等）も左に寄せたい場合 */
+/* もし見出し（01 Craftsmanship等）を左に寄せる */
 .work-item h3 {
   display: block;
   text-align: left;
@@ -1325,12 +1321,6 @@ section p,
   color: #25399c;            /* 文字を紺に */
 }
 
-/* 3. フッターの高さをしっかり出す */
-.footer {
-  padding: 180px 0 120px; /* 余白を大きく取って高さを確保 */
-  text-align: center;
-  display: block;
-}
 
 
 /* ===========================================
@@ -1394,16 +1384,6 @@ section p,
     flex-grow: 1; /* 文章が短くても高さを維持 */
 }
 
-/* 4. フッターの高さと配置を完全に解決 */
-.footer {
-    display: block;
-    width: 100%;
-    clear: both; /* 回り込み解除 */
-    padding: 180px 0 120px; /* 上下の余白を大きく取って高さを出す */
-    background-color: #ffffff;
-    border-top: 1px solid var(--soft-pink);
-    text-align: center;
-}
 
 /* --- 文章の塊を中央に寄せ、中身の行を左揃えにする（詳細度を上げた設定） --- */
 
@@ -1438,25 +1418,8 @@ section .works-grid + p,
     margin: 10px auto 0;      /* 商品画像の下で中央に配置しつつ中身は左揃え */
 }
 
-/* --- フッターの未解決問題を解消 --- */
-/* 他の要素の回り込みを完全に排除し、高さを出す */
-footer.footer, 
-section + .footer {
-    display: block;
-    clear: both;
-    padding: 160px 0 100px;   /* 上に大きな余白 */
-    background-color: #ffffff;
-    border-top: 1px solid var(--soft-pink);
-    text-align: center;
-    height: auto;
-    min-height: 300px;        /* 物理的な高さを保証 */
-}
 
-/* フッター内のコピーライト */
-.footer p {
-    text-align: center;       /* ここは1行なので中央でOK */
-    margin: 0 auto;
-}
+
 
 /* --- タイトルは常に中央 --- */
 .section-title, .sec-title, .work-item h3 {
@@ -2072,7 +2035,9 @@ section p,
     font-weight: 700;
     font-family: 'Noto Sans JP', sans-serif; /* 日本語フォントを適用 */
 }
-
+/* カートの数字のバッジ */
+#cart-count {
+    background: #e2393c; /* 赤色 */
 
 
 
