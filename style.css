@@ -2206,3 +2206,32 @@ section p,
 [class*="cart"] {
     display: inline-block;
     color: #fff;
+
+/* --- カートアイコンの下の余白を強制リセット --- */
+.nav .cart, 
+.nav a[href*="cart"], 
+.cart-icon-container {
+    display: flex !important;
+    flex-direction: row !important; /* 縦並びを阻止 */
+    align-items: center !important;  /* 上下中央に配置 */
+    justify-content: center !important;
+    margin: 0 !important;           /* 外側の余白（下あき）をゼロにする */
+    padding: 0 !important;          /* 内側の余白をゼロにする */
+    height: 100%;                   /* ヘッダーの高さに合わせる */
+    line-height: 1 !important;      /* 行間による隙間を排除 */
+}
+
+/* アイコン画像やiタグ自体の下の余白も消す */
+.nav .cart i, 
+.nav .cart img, 
+.nav .cart svg {
+    margin-bottom: 0 !important;    /* 下にあいているスペースを消す */
+    display: block;                 /* 隙間の原因になるインライン要素をブロック化 */
+}
+
+/* ヘッダー内のリスト要素(li)が原因の場合の対策 */
+.nav ul li {
+    display: flex;
+    align-items: center;            /* 縦方向のズレを防止 */
+    margin-bottom: 0 !important;    /* リストの下余白を消す */
+}
