@@ -1,361 +1,163 @@
-@charset "UTF-8";
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Miho Takahashi Portfolio | 想いを色鮮やかにカタチにする</title>
+  <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Noto+Sans+JP:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <p class="logo">
+      <a href="index.html" style="text-decoration: none; color: inherit;">
+        <span class="logo-text">Miho Takahashi</span>
+      </a>
+    </p>
 
-/* --- 1. Fonts & Variables --- */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Playfair+Display:wght@400;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+    <div class="hamburger-menu" id="js-hamburger">
+      <span></span><span></span><span></span>
+    </div>
 
-:root {
-  --primary-blue: #25399c;
-  --hover-blue: #3657ff;
-  --soft-pink: #fff5f8; 
-  --text-dark: #191970;
-}
+    <nav class="nav" id="js-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#concept">Concept</a></li>
+        <li><a href="#detail">Detail</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-/* --- 2. Base --- */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<main>
+  <section id="home" class="hero">
+    <div class="hero-svg-wrapper">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1079" width="1920" height="1079">
+        <defs>
+          <style>
+            .st0 { fill: #ffdff9; } .st1, .st2 { fill: #fe8d1c; } .st3 { stroke: #000; fill: none; }
+            .st4, .st13, .st14, .st15 { stroke-width: 5px; }
+            .st4, .st13, .st14, .st2, .st9 { stroke: #f5f5f5; fill: none; }
+            .st12, .st13 { fill: #25399c; }
+            .st14 { fill: #3657ff; } .st15 { fill: #ffd89a; stroke: #25399c; }
+            .st16 { fill: #e2393c; } .st17 { fill: #fff; } .st18 { fill: #baf0f6; }
+            .st19 { fill: #5fced2; } .st20 { fill: #ea99eb; }
+            .st5, .st15, .st7, .st10, .st11 { stroke: #25399c; fill: none; }
+            .st7 { stroke-width: .4px; stroke-linecap: round; }
+            .st8 { stroke: #fff; fill: none; } .st10 { stroke-width: .1px; stroke-linecap: round; }
+            .st21 { fill: #f5f5f5; }
+            .st22 { clip-path: url(#clippath); }
+          </style>
+          <clipPath id="clippath"><rect y="0" width="1920" height="1078.6" fill="none"/></clipPath>
+        </defs>
+        <g class="st22">
+          <rect class="st0" y="0" width="1920" height="1078.7"/>
+          
+          <rect id="window-base" class="st14" x="773.5" y="284.5" width="373" height="471"/>
+          <path class="st4" d="M960,282v474M774,528h374"/>
+          
+          <ellipse class="st18" cx="1699" cy="1030" rx="433" ry="211"/>
+          <path class="st4" d="M1667,859.5s3-34.5,10.5-55c8.3-22.8,31.5-53.5,31.5-53.5M1648,856s-12.2-50.2-16-83c-3.5-30.5-3.5-78.5-3.5-78.5M1621.5,860s-6-86.4-35-130.5c-14.2-21.6-44.5-49-44.5-49M1604,882.5s-13.6-47.4-28.5-75c-6.2-11.5-17.5-28.5-17.5-28.5"/>
+          <path class="st1" d="M1636.7,650.8l6.3,11.6-6.3,9.4-15.2.3-5.5-9.7,5.5-11.6h15.2Z"/>
+          <path class="st12" d="M1592.5,651l5.5,10h17l5-10-5.5-9.5h-15.5l-6.5,9.5Z"/><path class="st3" d="M1592.5,651l5.5,10h17l5-10-5.5-9.5h-15.5l-6.5,9.5Z"/>
+          <path class="st1" d="M1726.7,721.7l5.7,11.9-6.7,9.1-15.2-.5-5-9.9,6.1-11.3,15.2.7Z"/>
+          
+          <rect class="st15" x="228.5" y="323.5" width="288" height="389"/>
+          <path class="st5" d="M261.5,431.5s45-66,97-39,66,57,112,42"/>
+          <path class="st16" d="M375.5,502.5s-23,43-69,32-47-59-47-59c0,0-13,67,41,83s87-41,87-41l-12-15Z"/>
+          
+          <rect class="st13" x="607.5" y="284.5" width="166" height="471"/>
+          <rect class="st13" x="1146.5" y="284.5" width="166" height="471"/>
+          
+          <path class="st16" d="M1687.8,949.8c0,83.3-45.5,71.9-67.5,71.9s-59.5,11.4-59.5-71.9,33-111.4,59.5-108.4c41.5,0,67.5,25.1,67.5,108.4Z"/>
+          <path class="st20" d="M1302.5,972.5c0,42.5-44.3,76.9-99,76.9s-99-34.4-99-76.9,44.3-76.9,99-76.9,99,34.4,99,76.9Z"/>
+        </g>
+      </svg>
+    </div>
+    <div class="hero-content">
+      <h1 class="copy js-split-text">Creative & Colorful</h1>
+      <p class="sub-copy js-reveal">
+        <span>想いを色鮮やかに、カタチにする。</span>
+      </p>
+    </div>
+  </section>
 
-html, body {
-  width: 100%;
-  overflow-x: hidden;
-  position: relative;
-  scroll-behavior: smooth;
-}
+  <section id="concept" class="js-reveal">
+    <div class="container">
+      <h2 class="section-title">Concept</h2>
+      <p>Figmaで制作したSVGアニメーションを主役にしたブランドサイトです。JavaScriptを使用し、ユーザーの視線に合わせてコンテンツが展開します。</p>
+    </div>
+  </section>
 
-body {
-  font-family: 'Noto Sans JP', 'Playfair Display', serif;
-  line-height: 1.8;
-  color: var(--text-dark);
-  background-color: #fff;
-  padding-top: 80px; /* ヘッダーの高さ分 */
-}
+  <section id="detail" class="js-reveal">
+    <div class="container">
+      <h2 class="section-title">Detail</h2>
+      <div class="works-grid">
+        <article class="work-item">
+          <h3>01 Material</h3>
+          <p>毎日手に触れるものだからこそ、心地よく時の流れとともに愛着が増す素材を厳選。マグカップには陶器を、アパレルにはコットンを採用しています。</p>
+        </article>
+        <article class="work-item">
+          <h3>02 Craftsmanship</h3>
+          <p>「窓の青」をアクセントに、背景には「ピンク」を配置。カラフルでありながら、落ち着きと信頼感を感じさせる配色を追求しました。</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
-/* --- 3. Header & Navigation --- */
-.header {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 80px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
+  <section id="shop" class="js-reveal">
+    <div class="container">
+      <h2 class="section-title">Shop</h2>
+      <div class="goods-grid">
+        <div class="goods-item">
+          <div class="image-wrap"><img src="mag.png" alt="Mag Cup"></div>
+          <h3 class="item-name">01 Mag Cup</h3>
+          <p class="item-price">¥2,500</p>
+          <button class="custom-btn">カートに入れる</button>
+        </div>
+        <div class="goods-item">
+          <div class="image-wrap"><img src="shirt.png" alt="T-Shirt"></div>
+          <h3 class="item-name">02 T-Shirt</h3>
+          <p class="item-price">¥4,800</p>
+          <button class="custom-btn">カートに入れる</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
+  <section id="contact">
+    <div class="wrapper">
+      <h2 class="section-title">Contact</h2>
+      <p class="contact-lead">制作に関するご相談、グッズへのお問い合わせは下記フォームよりお願いいたします。</p>
+      <div class="contact-form-wrapper">
+        <form>
+          <div class="form-group">
+            <label for="name">Name <span>必須</span></label>
+            <input type="text" id="name" placeholder="高橋 美穂">
+          </div>
+          <div class="form-group">
+            <label for="message">Message <span>必須</span></label>
+            <textarea id="message" rows="5" placeholder="内容をご記入ください"></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="button" class="custom-btn">Send Message</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
 
-.logo-text {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
-  color: var(--primary-blue);
-  font-size: 1.2rem;
-}
+<footer class="footer">
+  <p class="copyright">©2026 Miho Takahashi</p>
+</footer>
 
-/* ハンバーガーメニュー (スマホ用) */
-.hamburger-menu {
-  display: none;
-  width: 30px;
-  height: 24px;
-  position: relative;
-  z-index: 9999;
-  cursor: pointer;
-}
-
-.hamburger-menu span {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background-color: var(--primary-blue);
-  position: absolute;
-  transition: 0.3s;
-}
-
-.hamburger-menu span:nth-child(1) { top: 0; }
-.hamburger-menu span:nth-child(2) { top: 11px; }
-.hamburger-menu span:nth-child(3) { bottom: 0; }
-
-/* PC用ナビ */
-.nav ul {
-  display: flex;
-  list-style: none;
-  gap: 30px;
-}
-
-.nav ul li a {
-  font-size: 0.9rem; 
-  color: var(--primary-blue);
-  font-weight: 800;
-  font-family: 'Montserrat', sans-serif;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.nav ul li a:hover { color: var(--hover-blue); }
-
-/* --- 4. Hero Section (メインビジュアル) --- */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 90vh;
-  background-color: var(--soft-pink);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-svg-wrapper {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-svg-wrapper svg {
-  width: 100vw;
-  height: 80vh;
-  object-fit: contain;
-}
-
-.hero-content {
-  position: absolute;
-  top: 52%; left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 100;
-  text-align: center;
-  width: 100%;
-  pointer-events: none;
-}
-
-.copy {
-  font-size: clamp(2.2rem, 7vw, 4.2rem); 
-  font-weight: 800;
-  color: var(--primary-blue);
-  text-shadow: 0 0 25px #fff;
-  line-height: 1.1;
-}
-
-.sub-copy {
-  display: block;
-  font-size: 1.1rem;
-  color: #ffffff; 
-  font-weight: 700;
-  margin-top: 10px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-}
-
-/* --- 5. Common Section Style --- */
-section {
-  padding: 100px 0;
-  text-align: center;
-}
-
-section:nth-of-type(even) { background-color: #fff; }
-section:nth-of-type(odd) { background-color: var(--soft-pink); }
-
-.section-title {
-  font-size: 2.5rem;
-  letter-spacing: 0.2em;
-  margin-bottom: 40px;
-  color: var(--primary-blue);
-}
-
-/* 文章の配置：塊を中央に、中身は左揃え */
-section p, .lookbook-content p, .contact-lead, #concept p {
-  display: block;
-  text-align: left;
-  max-width: 600px;
-  margin: 0 auto 20px;
-  width: 90%;
-  letter-spacing: 0.05em;
-}
-
-/* --- 6. Detail (01/02 Box) --- */
-.works-grid {
-  display: flex;
-  justify-content: center;
-  align-items: stretch; /* 高さを揃える */
-  gap: 30px;
-  max-width: 1100px;
-  margin: 40px auto;
-  flex-wrap: wrap;
-  padding: 0 20px;
-}
-
-.work-item {
-  flex: 1;
-  min-width: 320px;
-  max-width: 500px;
-  background: #ffffff;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s;
-}
-
-.work-item:hover { transform: translateY(-5px); }
-
-.work-item h3 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.6rem;
-  color: var(--primary-blue);
-  margin-bottom: 20px;
-  position: relative;
-  display: inline-block;
-  align-self: center; /* タイトルは中央 */
-}
-
-.work-item p {
-  text-align: left;
-  width: 100%;
-  flex-grow: 1;
-}
-
-/* --- 7. Shop (Goods Grid) --- */
-#shop .goods-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2列固定 */
-  gap: 30px;
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 0 20px;
-}
-
-.goods-item {
-  text-align: center;
-}
-
-.image-wrap {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  margin-bottom: 15px;
-}
-
-.image-wrap img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s;
-}
-
-.goods-item:hover img { transform: scale(1.05); }
-
-.item-name { font-weight: 700; margin-bottom: 5px; }
-.item-price { color: #888; margin-bottom: 15px; }
-
-/* --- 8. Buttons (重要：紺背景・白文字) --- */
-.custom-btn, .btn {
-  display: inline-block;
-  background-color: var(--primary-blue) !important;
-  color: #ffffff !important;
-  padding: 16px 45px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: bold;
-  border: 2px solid var(--primary-blue);
-  transition: all 0.3s ease;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(37, 57, 156, 0.3);
-}
-
-.custom-btn:hover, .btn:hover {
-  background-color: #ffffff !important;
-  color: var(--primary-blue) !important;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(37, 57, 156, 0.4);
-}
-
-.cta-button-container { margin-top: 40px; }
-
-/* --- 9. Contact Form --- */
-.contact-form-wrapper {
-  max-width: 600px;
-  margin: 40px auto;
-  background: #fff;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  text-align: left;
-}
-
-.form-group { margin-bottom: 25px; }
-.form-group label { display: block; font-weight: 700; color: var(--primary-blue); margin-bottom: 8px; }
-.form-group input, .form-group textarea {
-  width: 100%; padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 1rem;
-}
-
-/* --- 10. Footer --- */
-.footer {
-  display: block;
-  width: 100%;
-  clear: both;
-  padding: 160px 0 100px; /* 高さをしっかり出す */
-  background-color: #ffffff;
-  border-top: 1px solid var(--soft-pink);
-  text-align: center;
-}
-
-.copyright {
-  font-size: 0.8rem;
-  color: #888;
-}
-
-/* --- 11. Animations --- */
-.js-reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: 0.8s ease-out;
-}
-.js-reveal.is-visible { opacity: 1; transform: translateY(0); }
-
-/* 窓の光アニメーション */
-#window-base {
-  animation: window-glow 4s infinite alternate ease-in-out;
-}
-@keyframes window-glow {
-  0% { fill: #25399c; filter: brightness(1); }
-  100% { fill: #3657ff; filter: brightness(1.2) drop-shadow(0 0 15px rgba(54, 87, 255, 0.4)); }
-}
-
-/* --- 12. Responsive --- */
-@media (max-width: 768px) {
-  .hamburger-menu { display: block; }
-  
-  .nav {
-    position: fixed;
-    top: 0; right: -100%;
-    width: 100%; height: 100vh;
-    background: rgba(255, 255, 255, 0.98);
-    display: flex;
-    align-items: center; justify-content: center;
-    transition: 0.5s ease;
-    z-index: 999;
-  }
-  .nav.active { right: 0; }
-  .nav ul { flex-direction: column; text-align: center; }
-
-  .hero { height: 75vh; }
-  .hero-svg-wrapper svg { width: 130%; transform: scale(1.1); }
-  
-  .copy { font-size: 2.2rem; }
-  
-  #shop .goods-grid { gap: 15px; }
-  .section-title { font-size: 1.8rem; }
-}
+<script src="script.js"></script>
+</body>
+</html>
