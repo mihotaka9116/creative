@@ -2044,38 +2044,6 @@ section p,
 }
 
 
-
-/* --- カートアイコンの最終調整（ここを一番下に貼り付けてください） --- */
-
-.cart-floating-icon {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 60px;
-  height: 60px;
-  background-color: #25399c; /* 窓の青と同じ紺色 */
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease;
-  z-index: 2000; /* 他の要素より必ず上にくるように */
-  text-decoration: none;
-}
-
-.cart-floating-icon:hover {
-  transform: scale(1.1);
-}
-
-.cart-floating-icon svg {
-  width: 26px;
-  height: 26px;
-  stroke: #ffffff; /* アイコンは白 */
-  stroke-width: 2.5;
-}
-
-
 /* --- ショップ (Goods Grid) の中央寄せ修正 --- */
 #shop .goods-item {
     text-align: center; /* テキスト全体を中央寄せ */
@@ -2105,23 +2073,6 @@ section p,
     font-family: 'Noto Sans JP', sans-serif; /* 日本語フォントを適用 */
 }
 
-.cart-floating-icon {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background-color: #25399c; /* SVGの窓の色に合わせた濃い青 */
-  color: #fff;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  z-index: 1000;
-  transition: transform 0.3s ease;
-}
 
 
 
