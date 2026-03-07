@@ -2197,6 +2197,7 @@ section p,
   transition: transform 0.3s ease;
   z-index: 2000; /* 他の要素より必ず上にくるように */
   text-decoration: none;
+  color: #ffffff; 
 }
 
 .cart-floating-icon:hover {
@@ -2207,6 +2208,7 @@ section p,
   width: 26px;
   height: 26px;
   stroke: #ffffff; /* アイコンは白 */
+  color: #ffffff; 
   stroke-width: 2.5;
 }
 
