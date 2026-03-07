@@ -2535,3 +2535,72 @@ section p,
   line-height: 1.5;
   margin: 0 auto;
 }
+
+/* --- Look Book Section 修正版 --- */
+
+.lookbook-grid {
+  display: flex;
+  justify-content: center; /* アイテム全体を中央寄せ */
+  gap: 60px;
+  margin-top: 40px;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lookbook-item {
+  flex: 1;
+  display: flex; /* 縦方向のフレックスボックスにする */
+  flex-direction: column;
+  align-items: center; /* 中の要素をすべて中央に寄せる */
+  text-align: center; /* テキスト自体も中央揃え */
+}
+
+.lookbook-image {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  margin-bottom: 24px;
+  overflow: hidden;
+  background-color: #fdfdfd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lookbook-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* 全体が見えるように（引き） */
+  display: block;
+}
+
+/* 2025 WINTER / 2026 SPRING */
+.collection-year {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  color: #a0a0a0;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 0 0 8px 0; /* 上下のマージンのみ */
+  width: 100%; /* 幅を広げて中央揃えを確実に */
+}
+
+/* Sinkai / New Bloom */
+.lookbook-item-title {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #25399c;
+  line-height: 1.5;
+  margin: 0;
+  width: 100%;
+}
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+  .lookbook-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+  }
+}
