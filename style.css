@@ -2258,3 +2258,52 @@ section p,
     font-weight: 700;
     font-family: 'Noto Sans JP', sans-serif; /* 日本語フォントを適用 */
 }
+
+/* コンセプトエリアのスタイリング */
+#concept {
+  padding: 100px 0;
+  text-align: center; /* 中央揃えにすることで詩的な印象に */
+}
+
+.concept-lead {
+  font-family: 'Playfair Display', 'serif'; /* 既存のフォントセットを活用 */
+  font-size: 2rem;
+  line-height: 1.5;
+  color: #25399c; /* SVGで使用されている濃い青をアクセントに */
+  margin-bottom: 40px;
+  position: relative;
+  display: inline-block;
+}
+
+/* タイトルの下にさりげない装飾線（任意） */
+.concept-lead::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background-color: #fe8d1c; /* SVGのオレンジ色をリピート */
+}
+
+.story-text {
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 2;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* スマホ用の改行制御 */
+.sp-only {
+  display: none;
+}
+@media (max-width: 768px) {
+  .sp-only {
+    display: block;
+  }
+  .concept-lead {
+    font-size: 1.5rem;
+  }
+}
