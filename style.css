@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 /* --- 1. Fonts & Variables --- */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Playfair+Display:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Playfair+Display:wght@400;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap');
 
 :root {
   --primary-blue: #25399c;
@@ -25,11 +25,11 @@ html, body {
 }
 
 body {
-  font-family: 'Playfair Display', serif;
-  line-height: 1.7;
+  font-family: 'Noto Sans JP', 'Playfair Display', serif;
+  line-height: 1.8;
   color: var(--text-dark);
   background-color: #fff;
-  padding-top: 60px; /* ヘッダー固定用 */
+  padding-top: 80px; /* ヘッダーの高さ分 */
 }
 
 /* --- 3. Header & Navigation --- */
@@ -56,9 +56,16 @@ body {
   padding: 0 20px;
 }
 
-/* --- 修正：ハンバーガーメニューの表示切り替え --- */
+.logo-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  color: var(--primary-blue);
+  font-size: 1.2rem;
+}
+
+/* ハンバーガーメニュー (スマホ用) */
 .hamburger-menu {
-  display: none; /* 基本（PC）は非表示 */
+  display: none;
   width: 30px;
   height: 24px;
   position: relative;
@@ -66,13 +73,20 @@ body {
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
-  .hamburger-menu {
-    display: block; /* スマホ（768px以下）のみ表示 */
-  }
+.hamburger-menu span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-blue);
+  position: absolute;
+  transition: 0.3s;
 }
 
-/* PC版ナビ */
+.hamburger-menu span:nth-child(1) { top: 0; }
+.hamburger-menu span:nth-child(2) { top: 11px; }
+.hamburger-menu span:nth-child(3) { bottom: 0; }
+
+/* PC用ナビ */
 .nav ul {
   display: flex;
   list-style: none;
@@ -90,7 +104,7 @@ body {
 
 .nav ul li a:hover { color: var(--hover-blue); }
 
-/* --- 4. Hero Section --- */
+/* --- 4. Hero Section (メインビジュアル) --- */
 .hero {
   position: relative;
   width: 100%;
@@ -100,6 +114,20 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.hero-svg-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-svg-wrapper svg {
+  width: 100vw;
+  height: 80vh;
+  object-fit: contain;
 }
 
 .hero-content {
@@ -113,7 +141,6 @@ body {
 }
 
 .copy {
-  display: block;
   font-size: clamp(2.2rem, 7vw, 4.2rem); 
   font-weight: 800;
   color: var(--primary-blue);
@@ -121,19 +148,96 @@ body {
   line-height: 1.1;
 }
 
-/* --- 5. Goods Grid (商品一覧) --- */
-.goods-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* PCは4列 */
+.sub-copy {
+  display: block;
+  font-size: 1.1rem;
+  color: #ffffff; 
+  font-weight: 700;
+  margin-top: 10px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* --- 5. Common Section Style --- */
+section {
+  padding: 100px 0;
+  text-align: center;
+}
+
+section:nth-of-type(even) { background-color: #fff; }
+section:nth-of-type(odd) { background-color: var(--soft-pink); }
+
+.section-title {
+  font-size: 2.5rem;
+  letter-spacing: 0.2em;
+  margin-bottom: 40px;
+  color: var(--primary-blue);
+}
+
+/* 文章の配置：塊を中央に、中身は左揃え */
+section p, .lookbook-content p, .contact-lead, #concept p {
+  display: block;
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto 20px;
+  width: 90%;
+  letter-spacing: 0.05em;
+}
+
+/* --- 6. Detail (01/02 Box) --- */
+.works-grid {
+  display: flex;
+  justify-content: center;
+  align-items: stretch; /* 高さを揃える */
   gap: 30px;
   max-width: 1100px;
-  margin: 60px auto;
+  margin: 40px auto;
+  flex-wrap: wrap;
+  padding: 0 20px;
+}
+
+.work-item {
+  flex: 1;
+  min-width: 320px;
+  max-width: 500px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s;
+}
+
+.work-item:hover { transform: translateY(-5px); }
+
+.work-item h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem;
+  color: var(--primary-blue);
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+  align-self: center; /* タイトルは中央 */
+}
+
+.work-item p {
+  text-align: left;
+  width: 100%;
+  flex-grow: 1;
+}
+
+/* --- 7. Shop (Goods Grid) --- */
+#shop .goods-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2列固定 */
+  gap: 30px;
+  max-width: 900px;
+  margin: 40px auto;
   padding: 0 20px;
 }
 
 .goods-item {
   text-align: center;
-  transition: transform 0.4s ease;
 }
 
 .image-wrap {
@@ -141,24 +245,79 @@ body {
   aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
   margin-bottom: 15px;
 }
 
 .image-wrap img {
   width: 100%; height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: transform 0.4s;
 }
 
-.goods-item:hover { transform: translateY(-8px); }
 .goods-item:hover img { transform: scale(1.05); }
 
-/* --- 6. Section & Animations --- */
-section { padding: 100px 0; width: 100%; text-align: center; }
-section:nth-of-type(even) { background-color: #ffffff; }
-section:nth-of-type(odd) { background-color: var(--soft-pink); }
+.item-name { font-weight: 700; margin-bottom: 5px; }
+.item-price { color: #888; margin-bottom: 15px; }
 
+/* --- 8. Buttons (重要：紺背景・白文字) --- */
+.custom-btn, .btn {
+  display: inline-block;
+  background-color: var(--primary-blue) !important;
+  color: #ffffff !important;
+  padding: 16px 45px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid var(--primary-blue);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(37, 57, 156, 0.3);
+}
+
+.custom-btn:hover, .btn:hover {
+  background-color: #ffffff !important;
+  color: var(--primary-blue) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(37, 57, 156, 0.4);
+}
+
+.cta-button-container { margin-top: 40px; }
+
+/* --- 9. Contact Form --- */
+.contact-form-wrapper {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  text-align: left;
+}
+
+.form-group { margin-bottom: 25px; }
+.form-group label { display: block; font-weight: 700; color: var(--primary-blue); margin-bottom: 8px; }
+.form-group input, .form-group textarea {
+  width: 100%; padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 1rem;
+}
+
+/* --- 10. Footer --- */
+.footer {
+  display: block;
+  width: 100%;
+  clear: both;
+  padding: 160px 0 100px; /* 高さをしっかり出す */
+  background-color: #ffffff;
+  border-top: 1px solid var(--soft-pink);
+  text-align: center;
+}
+
+.copyright {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* --- 11. Animations --- */
 .js-reveal {
   opacity: 0;
   transform: translateY(20px);
@@ -166,2126 +325,37 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 }
 .js-reveal.is-visible { opacity: 1; transform: translateY(0); }
 
-/* --- 7. Responsive (スマホ対応) --- */
+/* 窓の光アニメーション */
+#window-base {
+  animation: window-glow 4s infinite alternate ease-in-out;
+}
+@keyframes window-glow {
+  0% { fill: #25399c; filter: brightness(1); }
+  100% { fill: #3657ff; filter: brightness(1.2) drop-shadow(0 0 15px rgba(54, 87, 255, 0.4)); }
+}
+
+/* --- 12. Responsive --- */
 @media (max-width: 768px) {
   .hamburger-menu { display: block; }
-
-  /* スマホナビ：画面外に隠す */
+  
   .nav {
     position: fixed;
     top: 0; right: -100%;
     width: 100%; height: 100vh;
     background: rgba(255, 255, 255, 0.98);
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center; justify-content: center;
     transition: 0.5s ease;
     z-index: 999;
   }
-
   .nav.active { right: 0; }
+  .nav ul { flex-direction: column; text-align: center; }
 
-  .nav ul {
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  .nav ul li a { font-size: 1.5rem; }
-
-  /* 商品一覧：2列にする */
-  .goods-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
-  .hero { height: 60vh; }
-  .copy { font-size: 1.8rem; }
-}
-
-@media (max-width: 480px) {
-  /* スマホ（小）：1列にする */
-  .goods-grid {
-    grid-template-columns: 1fr;
-    padding: 0 40px;
-  }
-}
-
-/* --- 商品一覧（Goods Grid）の基盤 --- */
-.goods-grid {
-  display: grid;
-  /* PC版：4列に均等分割（1つ25%弱） */
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px; /* アイテム間の隙間 */
-  max-width: 1100px;
-  margin: 60px auto;
-  padding: 0 20px;
-  list-style: none;
-}
-
-.goods-item {
-  width: 100%; /* グリッドの枠いっぱいに広げる */
-  text-align: center;
-}
-
-.image-wrap {
-  width: 100%;
-  aspect-ratio: 1 / 1; /* 正方形を維持 */
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  margin-bottom: 15px;
-}
-
-.image-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* 枠に合わせて切り抜き */
-  display: block;
-}
-
-/* --- レスポンシブ調整 --- */
-
-/* タブレット版（960px以下）：3列にする */
-@media (max-width: 960px) {
-  .goods-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* スマホ版（768px以下）：2列にする */
-@media (max-width: 768px) {
-  .goods-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px; /* スマホでは隙間を少し狭く */
-  }
-  .sec-title {
-    font-size: 1.8rem;
-  }
-}
-
-/* 小さなスマホ版（480px以下）：1列にする */
-@media (max-width: 480px) {
-  .goods-grid {
-    grid-template-columns: 1fr;
-    padding: 0 40px; /* 1列のときは左右に余白を多めにとると綺麗 */
-  }
-}
-
-/* --- 1. メインビジュアル（Hero）の修正 --- */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 80vh; /* スマホで見やすい高さに調整 */
-  background-color: var(--soft-pink);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-svg-wrapper {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px; /* 窓が画面端に当たらないよう余白を作る */
-}
-
-/* 窓の画像/SVGが巨大化してはみ出すのを防ぐ */
-.hero-svg-wrapper svg,
-.hero-svg-wrapper img {
-  width: auto;
-  height: auto;
-  max-width: 90%;  /* 画面幅の90%までに制限 */
-  max-height: 80%; /* 画面の高さからもはみ出さないように制限 */
-  object-fit: contain; /* アスペクト比を維持して収める */
-}
-
-/* --- 2. ルックブック（Lookbook）の巨大化修正 --- */
-.lookbook-visual {
-  width: 100%;
-  max-width: 500px; /* PCでの最大サイズを制限 */
-  margin: 40px auto;
-  padding: 0 20px;
-  display: flex;
-  justify-content: center;
-}
-
-/* 中の画像が親要素を突き破らないようにする最重要設定 */
-.lookbook-visual img,
-.lookbook-visual svg {
-  width: 100% !important; /* 親要素の幅に合わせる */
-  height: auto !important; /* 高さは自動計算（歪まないように） */
-  display: block;
-}
-
-/* --- 3. スマホ専用の微調整 --- */
-@media (max-width: 768px) {
-  .hero {
-    height: 60vh; /* スマホでは高さを少し抑える */
-  }
+  .hero { height: 75vh; }
+  .hero-svg-wrapper svg { width: 130%; transform: scale(1.1); }
   
-  .hero-svg-wrapper {
-    padding: 20px;
-  }
-
-  .copy {
-    font-size: 1.8rem; /* 文字が画像に被りすぎないよう調整 */
-    text-shadow: 0 0 10px #fff; /* 背景が白くても読めるように */
-  }
-
-  .lookbook-visual {
-    max-width: 100%; /* スマホでは画面いっぱいに（左右余白あり） */
-  }
-}
-
-/* --- 1. メインビジュアル（Hero）のサイズ拡大 --- */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 90vh; /* 画面の高さ90%分を贅沢に使う */
-  background-color: var(--soft-pink);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-svg-wrapper {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0; /* 余白をなくして画像を大きく見せる */
-}
-
-.hero-svg-wrapper svg,
-.hero-svg-wrapper img {
-  width: 100%;       /* 横幅いっぱいに広げる */
-  height: 85%;       /* 高さに少し余裕を持たせて見切れを防ぐ */
-  max-width: 1200px;  /* PCで広がりすぎないよう上限を設定 */
-  object-fit: contain; /* アスペクト比を守りつつ最大化 */
-}
-
-/* --- 2. スマホ（768px以下）での迫力アップ --- */
-@media (max-width: 768px) {
-  .hero {
-    height: 75vh; /* スマホでも高さをしっかり確保 */
-  }
-
-  .hero-svg-wrapper svg,
-  .hero-svg-wrapper img {
-    width: 150%;        /* あえて100%以上にし、少しはみ出すくらいで迫力を出す */
-    max-width: none;    /* 上限を解除 */
-    height: auto;
-    /* 窓の中央が画面の真ん中に来るように微調整 */
-    transform: scale(1.1); 
-  }
-
-  .hero-content {
-    top: 50%; /* キャッチコピーの位置を中央に固定 */
-  }
-
-  .copy {
-    font-size: 2.2rem; /* スマホでもコピーを読みやすく大きく */
-    letter-spacing: 0.05em;
-    /* 画像が大きく重なるので、白背景でなくても文字を浮き立たせる */
-    text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 5px rgba(255, 255, 255, 0.8);
-  }
-}
-
-.hero-svg-wrapper svg,
-.hero-svg-wrapper img {
-  width: 100vw;       /* 横幅は画面ぴったり */
-  height: 80vh;       /* 高さは少し余裕を持たせる */
-  object-fit: contain; /* 画像が切れないように収める */
-  max-width: none;    /* 制限を解除 */
-}
-
-@media (max-width: 768px) {
-  .hero-svg-wrapper svg,
-  .hero-svg-wrapper img {
-    width: 120%;      /* スマホではあえて少しはみ出させて迫力を出す */
-    height: auto;
-    transform: scale(1.05); /* わずかにズームして余白を埋める */
-  }
-}
-
-/* --- 1. サブコピーの色を白に --- */
-.sub-copy {
-  display: block;
-  font-size: 1.1rem;
-  color: #ffffff !; /* 強制的に白にする */
-  font-weight: 700;
-  margin-top: 10px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* 白文字を読みやすくするための影 */
-  align-aitems: center;
-}
-
-/* --- 2. 窓のアニメーション設定 --- */
-
-/* 窓の「枠」や「ベース」に適用する場合（HTMLのID名を確認してください） */
-#window-base, 
-#window,
-.hero-svg-wrapper svg path[fill="#25399c"] { /* 元の濃い青を指定している部分 */
-  animation: window-glow 4s infinite alternate ease-in-out;
-}
-
-@keyframes window-glow {
-  0% {
-    fill: #25399c; /* 元の濃い青 */
-    filter: brightness(1);
-  }
-  100% {
-    fill: #3657ff; /* 少し明るい青（あるいは窓が光っているような色） */
-    /* 外側に光が漏れているような効果 */
-    filter: brightness(1.3) drop-shadow(0 0 15px rgba(54, 87, 255, 0.6));
-  }
-}
-
-/* 窓の「ガラス面」を白っぽく光らせる場合 */
-#window-glass {
-  animation: shine 3s infinite alternate ease-in-out;
-}
-
-@keyframes shine {
-  0% { 
-    opacity: 0.6;
-    fill: #fdfae2; /* 柔らかい光の色 */
-  }
-  100% { 
-    opacity: 1; 
-    fill: #fffde7; 
-  }
-}
-
-.footer{
-  text-align: center;
-}
-
-/* --- 1. DETAIL本文（テキスト）の視認性アップ --- */
-.detail-container .text, 
-.goods-item p,
-.item-caption {
-  line-height: 1.8;          /* 行間を広げてゆとりを持たせる */
-  letter-spacing: 0.05em;    /* 文字同士がくっつきすぎないように */
-  color: var(--text-dark);   /* ぼやけないよう、しっかりした色味に */
-  text-align: justify;       /* 文字の端を揃えて綺麗に見せる */
-  margin-bottom: 20px;
-}
-
-/* 本文内の日本語フォントを少し太く（500）設定 */
-.detail-container p {
-  font-weight: 500;
-  font-family: 'Noto Sans JP', sans-serif;
-}
-
-/* --- 2. リンク済みのボタンが紫にならない設定 --- */
-/* ボタン（btn, custom-btn）やリンク（aタグ）すべてに適用 */
-.btn, .custom-btn, .nav a, .site-title a, .goods-item a {
-  text-decoration: none;
-}
-
-/* 訪問済み（:visited）でも色を変えない */
-.btn:visited, 
-.custom-btn:visited, 
-.nav a:visited, 
-.site-title a:visited,
-.goods-item a:visited {
-  color: inherit; /* 親要素の色をそのまま引き継ぐ */
-}
-
-/* ボタン専用：訪問済みでも背景色を維持 */
-.btn:visited, .custom-btn:visited {
-  background-color: var(--primary-blue);
-  color: #191970;;
-}
-
-/* ホバー時の設定（念のため再定義） */
-.btn:hover, .custom-btn:hover {
-  background-color: var(--hover-blue);
-  color: #191970; 
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(37, 57, 156, 0.3);
-}
-
-/* --- 2. 「グッズについて問い合わせる」ボタンの視認性アップ --- */
-.custom-btn, 
-.btn {
-  display: inline-block;
-  background-color: var(--primary-blue); /* 濃い青を背景に */
-  color: #ffffff;                       /* 文字を白に */
-  padding: 15px 40px;
-  border-radius: 50px;                             /* 丸みのあるデザイン */
-  text-decoration: none;
-  font-weight: bold;
-  font-family: 'Montserrat', sans-serif;
-  border: 2px solid var(--primary-blue);
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(37, 57, 156, 0.2);   /* 存在感を出す影 */
+  .copy { font-size: 2.2rem; }
   
-}
-
-/* ホバー時は色を反転させて目立たせる */
-.custom-btn:hover, 
-.btn:hover {
-  background-color: #ffffff;
-  color: var(--primary-blue);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(37, 57, 156, 0.3);
-}
-
-
-/* ボタンを包むコンテナの余白を増やす */
-.cta-button-container { 
-  margin-top: 20px; /* ここを大きくするほど、上の文字と離れます */
-  text-align: center; 
-}
-
-/* ボタン自体のスタイル */
-.custom-btn, .btn {
-  display: inline-block;
-  background-color: var(--primary-blue) ;
-  color: #ffffff;
-  padding: 16px 45px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: bold;
-  border: 2px solid var(--primary-blue);
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(37, 57, 156, 0.3); /* 少し影を濃くして浮き立たせました */
-}
-
-.custom-btn:hover, .btn:hover {
-  background-color: #ffffff;
-  color: var(--primary-blue);
-  transform: translateY(-3px); /* ホバー時に少し浮き上がる演出 */
-  box-shadow: 0 6px 20px rgba(37, 57, 156, 0.4);
-}
-
-.section-title {
-  font-size: 2.5rem; /* 少し大きく */
-  letter-spacing: 0.2em; /* 字間を広げて洗練された印象に */
-  font-weight: 300; /* 細身にするとよりモダンになります */
-  margin-bottom: 40px;
-}
-
-.portfolio-item img {
-  transition: transform 0.6s ease; /* ゆっくり動かす */
-}
-
-.portfolio-item:hover img {
-  transform: scale(1.05); /* 5%だけ拡大 */
-}
-
-.portfolio-item {
-  overflow: hidden; /* 枠からはみ出さないように */
-}
-
-/* コンテンツ全体を少し内側に寄せて、左揃えを美しく見せる */
-.wrapper {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 40px; /* 左右にしっかり余白を取る */
-  text-align: left;
-}
-
-.section-title {
-  font-size: 2rem;
-  letter-spacing: 0.15em;
-  margin-bottom: 30px;
-  /* タイトルの下に細い線を入れると左揃えが際立ちます */
-  border-left: 3px solid #333; 
-  padding-left: 15px;
-}
-
-@media screen and (max-width: 480px) {
-  .wrapper {
-    padding: 0 25px; /* スマホでは余白を少し狭める */
-  }
-  
-  .section-title {
-    font-size: 1.5rem;
-  }
-}
-
-.section-title {
-  border-left: none; /* 左の線を消す */
-  padding-left: 0;   /* 余白もリセット */
-}
-
-.wrapper {
-  padding-left: 40px;
-}
-
-/* 文章の塊を中央に寄せつつ、中身は左揃えにする */
-.detail-container .text, 
-.goods-item p, 
-.description,
-.lookbook-content p {
-  display: block;
-  max-width: 600px;      /* ★文章の最大幅を決める（お好みで調整） */
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left; /* ★中身は左揃え */
-  padding: 0 20px;       /* スマホで端に張り付かないための余白 */
-}
-
-/* セクションタイトルも中央寄せにする（もし左に寄っていたら） */
-.section-title {
-  text-align: center;
-  border-left: none;
-  padding-left: 0;
-}
-
-/* フッターなどはそのまま中央 */
-.footer, .cta-button-container {
-  text-align: center;
-}
-
-/* ===========================================
-   FINAL ADJUSTMENT: Centered Block with Left Align
-   =========================================== */
-
-/* 1. セクション内の文章の「塊」を真ん中に寄せ、文字は左揃えにする */
-section p, 
-.description, 
-.detail-container .text, 
-.lookbook-content p {
-  display: block;
-  max-width: 600px; /* 横幅を制限 */
-  margin-left: auto; /* 右余白を自動 */
-  margin-right: auto; /* 左余白を自動 */
-  text-align: left;  /* 文字は左揃え */
-  padding: 0 20px;
-}
-
-/* 2. タイトルは「真ん中」のままにする */
-.section-title, 
-.sec-title, 
-.page-header-simple h1 {
-  text-align: center;
-  width: 100%;
-  margin: 0 auto 30px;
-  border: none;
-  padding: 0;
-}
-
-/* 3. 商品一覧（Goods Grid）などのグリッド自体は真ん中に保つ */
-.goods-grid {
-  display: grid;
-  margin: 60px auto;
-  text-align: center; /* ここは画像とボタンのためにcenter */
-}
-
-/* 4. 商品ごとの説明文（もしあれば）も左揃えにする場合 */
-.goods-item p {
-  text-align: left;
-  max-width: 250px; /* 商品の幅に合わせる */
-}
-
-/* --- 全体のレイアウトを中央寄せにリセット --- */
-.wrapper, section {
-  text-align: center; /* 親要素はすべて中央寄せ */
-}
-
-/* --- 文章の「塊」だけを中央に配置し、中身の行を左揃えにする --- */
-section p, 
-.description, 
-.detail-container .text, 
-.lookbook-content p,
-.goods-item p {
-  display: inline-block; /* 塊の幅を内容に合わせる */
-  text-align: left;      /* 行の中身は左揃え */
-  max-width: 600px;      /* 読みやすい幅に制限 */
-  width: 100%;           /* スマホでは横幅いっぱい */
-  margin: 0 auto;        /* 塊自体を中央に配置 */
-}
-
-/* 商品説明（Goods Item）用の微調整 */
-.goods-item p {
-  max-width: 250px;      /* 商品の幅に合わせて狭く */
-}
-
-/* タイトルは常に真ん中 */
-.section-title, .sec-title, .page-header-simple h1 {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Contact Section */
-#contact {
-  padding: 100px 0;
-  background-color: #fffafb; /* ほんのりピンク */
-}
-
-.contact-lead {
-  text-align: center;
-  margin-bottom: 50px;
-  line-height: 1.8;
-  color: #555;
-}
-
-.contact-form-wrapper {
-  max-width: 600px;
-  margin: 0 auto;
-  background: #fff;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-}
-
-.form-group {
-  margin-bottom: 25px;
-}
-
-.form-group label {
-  display: block;
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: #25399c; /* SVGで使われている青 */
-}
-
-.form-group label span {
-  font-size: 0.8rem;
-  font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 400;
-  margin-left: 10px;
-  color: #888;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: #25399c;
-  box-shadow: 0 0 0 3px rgba(37, 57, 156, 0.1);
-}
-
-.form-submit {
-  text-align: center;
-  margin-top: 30px;
-}
-
-.form-submit .custom-btn {
-  border: none;
-  cursor: pointer;
-  padding: 15px 50px;
-}
-
-/* --- サブコピーを真ん中に配置 --- */
-.sub-copy {
-  display: block;
-  width: 100%;           /* 幅いっぱいに広げて */
-  text-align: center;    /* 中身のテキストを中央寄せ */
-  font-size: 1.1rem;
-  color: #ffffff; 
-  font-weight: 700;
-  margin-top: 10px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* --- サブコピーを真ん中に配置（修正版） --- */
-.sub-copy {
-  display: block;
-  width: 100%;           /* 画面幅いっぱいに広げる */
-  text-align: center;    /* 文字を中央に */
-  margin: 10px auto 0;  /* 左右オートで中央寄せ */
-  font-size: 1.1rem;
-  color: #ffffff; 
-  font-weight: 700;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-.hero-content {
-  position: absolute;
-  top: 52%; 
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 100;
-  text-align: center;
-  width: 100%; /* これが抜けていると、中身の center が効きません */
-  pointer-events: none;
-}
-
-.hero-content .sub-copy {
-  text-align: center;
-}
-
-/* 一括設定よりも優先させて、絶対に中央に寄せる記述 */
-.hero-content .sub-copy {
-  display: block;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 100%; /* 他の設定で 600px に制限されているのを解除 */
-}
-
-/* 見出しのベーススタイル */
-.work-item h3 {
-  display: inline-block; /* 下線の幅を文字に合わせるため */
-  position: relative;
-  padding-bottom: 4px; /* 文字と線の隙間 */
-  cursor: pointer;      /* マウスが重なった時に指のアイコンにする */
-}
-
-/* 下線の初期状態（透明・幅0） */
-.work-item h3::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;          /* 下線の太さ */
-  background-color: #25399c; /* SVGで使われている青色に合わせています。お好みで変更可 */
-  transition: width 0.3s ease; /* 0.3秒かけて伸びるアニメーション */
-}
-
-/* ホバーした時に下線を100%に伸ばす */
-.work-item h3:hover::after {
-  width: 100%;
-}
-
-/* 01と02のブロックを横に並べる親要素 */
-.works-grid {
-  display: flex;
-  justify-content: flex-start; /* 左側に詰めて並べる */
-  gap: 60px;                   /* 01の文章と02の間の広めの余白 */
-  flex-wrap: wrap;             /* 画面が狭いときは折り返す */
-  margin-top: 40px;            /* セクションタイトルとの間隔 */
-}
-
-/* 各ブロック（01＋文章 / 02＋文章）の幅 */
-.work-item {
-  flex: 0 1 45%;               /* 横幅を最大45%に設定（2つ並んで少し余裕があるくらい） */
-  min-width: 300px;            /* スマホ等でこれ以上狭くなったら縦に並べる */
-  text-align: left;            /* 文章を左寄せにする */
-}
-
-/* 01, 02の見出し */
-.work-item h3 {
-  display: inline-block;
-  position: relative;
-  padding-bottom: 5px;
-  margin-bottom: 20px;         /* 文章との間隔 */
-  font-family: 'Montserrat', sans-serif; /* 英語部分をカッコよく */
-  font-size: 1.5rem;
-}
-
-/* 下線のアニメーションもここに含める */
-.work-item h3::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: #25399c;
-  transition: width 0.3s ease;
-}
-
-.work-item h3:hover::after {
-  width: 100%;
-}
-
-/* 説明文のスタイル */
-.work-item p {
-  line-height: 1.8;            /* 行間を広げて読みやすく */
-  font-size: 0.95rem;
-  color: #333;
-}
-
-/* ---------------------------------------
-   Detail (Works) セクションのレイアウト
---------------------------------------- */
-
-/* 親要素：01と02のブロックを横に並べる */
-.works-grid {
-  display: flex;
-  justify-content: center; /* 中央寄せ（左寄せなら flex-start） */
-  gap: 60px;               /* 01と02のブロック間の余白 */
-  flex-wrap: wrap;         /* 画面が狭いときは自動で縦並びにする */
-  margin-top: 40px;
-  max-width: 1000px;       /* 広がりすぎないよう制限（お好みで） */
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* 子要素：01＋文章 / 02＋文章 の各ブロック */
-.work-item {
-  flex: 1;                 /* 均等に幅をとる */
-  min-width: 300px;        /* スマホ等で300px以下になったら縦に積む */
-  text-align: left;        /* 文章を左寄せに */
-}
-
-/* 見出しのデザインと下線アニメーション */
-.work-item h3 {
-  display: inline-block;   /* 下線を文字幅に合わせる */
-  position: relative;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.5rem;
-  margin-bottom: 20px;     /* 下の文章との間隔 */
-  padding-bottom: 5px;     /* 文字と線の隙間 */
-  cursor: pointer;
-}
-
-/* 下線の土台（最初は幅0） */
-.work-item h3::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: #25399c; /* 窓の青色に合わせる */
-  transition: width 0.3s ease; /* 伸びる速さ */
-}
-
-/* ホバー時に線を100%に伸ばす */
-.work-item h3:hover::after {
-  width: 100%;
-}
-
-/* 説明文のスタイル */
-.work-item p {
-  line-height: 1.8;
-  font-size: 0.95rem;
-  color: #333;
-}
-
-/* 1. 親要素：横並びの設定 */
-.works-grid {
-  display: flex;
-  justify-content: center;
-  gap: 30px;               /* ボックス同士の隙間 */
-  flex-wrap: wrap;
-  margin: 60px auto;
-  max-width: 1100px;
-  padding: 0 20px;
-}
-
-/* 2. 子要素：各アイテムを「ボックス（カード）」にする */
-.work-item {
-  flex: 1;
-  min-width: 320px;         /* スマホで狭くなりすぎない幅 */
-  background: #ffffff;      /* ボックスの背景色 */
-  padding: 40px;            /* ボックス内の余白（重要！） */
-  border-radius: 15px;      /* 角を少し丸める */
-  text-align: left;
-  
-  /* ほんのり影をつけて立体感を出す */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  border: 1px solid var(--soft-pink); /* 枠線を薄く入れる */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* ボックス全体にホバーした時の動き（お好みで） */
-.work-item:hover {
-  transform: translateY(-5px); /* 少し浮き上がる */
-  box-shadow: 0 15px 40px rgba(37, 57, 156, 0.1);
-}
-
-/* 3. 見出し：01, 02のスタイル */
-.work-item h3 {
-  display: inline-block;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.6rem;
-  color: var(--primary-blue);
-  margin-bottom: 20px;
-  position: relative;
-  padding-bottom: 8px;
-}
-
-/* 下線アニメーション（そのまま維持） */
-.work-item h3::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--primary-blue);
-  transition: width 0.3s ease;
-}
-
-.work-item h3:hover::after {
-  width: 100%;
-}
-
-/* 4. 説明文の微調整 */
-.work-item p {
-  line-height: 1.8;
-  font-size: 0.95rem;
-  color: #555;
-  margin: 0; /* 余計なマージンをリセット */
-}
-
-/* --- どんな要素も強制的に中央寄せにする設定 --- */
-
-/* 1. 全てのセクションとテキストを中央に */
-section, 
-.container, 
-.wrapper, 
-.works-grid, 
-.goods-grid, 
-.work-item, 
-.goods-item {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* 2. 全ての見出しと文章の幅をリセットして中央に */
-h2, h3, p, .sub-copy, .copy {
-    text-align: center;
-    max-width: 100%; /* 横幅の制限を解除 */
-    margin: 10px auto;
-    width: 100%;
-}
-
-/* 3. 01, 02 などのボックス（work-item）の幅調整 */
-.work-item {
-    width: 100%;
-    max-width: 500px; /* ボックスが広がりすぎないように */
-    margin-bottom: 30px;
-}
-
-/* 4. 商品一覧（goods-grid）の横並びを維持しつつ中央寄せ */
-.goods-grid {
-    display: grid; /* ここだけはgridに戻す */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    width: 100%;
-    max-width: 1100px;
-    gap: 30px;
-}
-
-/* 5. 下線のアニメーションも中央から広がるように変更 */
-.work-item h3::after {
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-/* --- 1. ルックブック下のテキストを確実に中央へ --- */
-.lookbook-content, 
-.lookbook-content p, 
-.lookbook-visual + p {
-    display: block;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    max-width: 800px; /* 読みやすい幅 */
-}
-
-/* --- 2. SHOP (Goods Grid) の巨大化を直し、横2列にする --- */
-#shop .goods-grid {
-    display: grid; /* 縦並びを解除 */
-    /* ↓ここが重要！ PC・スマホ問わず「横2列」に固定 */
-    grid-template-columns: 1fr 1fr; 
-    gap: 20px;
-    max-width: 900px; /* 巨大化防止：適正なサイズに制限 */
-    margin: 40px auto;
-    padding: 0 20px;
-}
-
-/* 商品アイテム自体のサイズを調整 */
-#shop .goods-item {
-    display: block; /* 縦並び設定を上書き */
-    width: 100%;
-}
-
-/* 商品画像が巨大にならないように制限 */
-#shop .image-wrap {
-    width: 100%t;
-    max-width: 300px; /* 画像の最大サイズ */
-    margin: 0 auto 15px; /* 画像を中央に */
-    aspect-ratio: 1 / 1;
-}
-
-/* --- 3. 01, 02 などの横並びも維持したい場合（Detailセクション） --- */
-#detail .works-grid {
-    display: flex;
-    flex-direction: row; /* 縦並びを強制解除して横へ */
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-}
-
-#detail .work-item {
-    flex: 0 1 45%; /* 横に2つ並ぶ幅 */
-    min-width: 300px;
-}
-
-/* --- 01・02のブロックを横並びに戻す設定 --- */
-#detail .works-grid {
-    display: flex;
-    flex-direction: row; /* 縦並びを強制解除 */
-    flex-wrap: wrap;    /* 画面が狭いときは折り返す */
-    justify-content: center;
-    align-items: stretch; /* ボックスの高さを揃える */
-    gap: 30px;
-    max-width: 1100px;
-    margin: 40px auto;
-}
-
-#detail .work-item {
-    flex: 0 1 calc(50% - 40px); /* 2つ並ぶように幅を調整 */
-    min-width: 320px;          /* スマホでは縦に並ぶ最低幅 */
-    display: flex;
-    flex-direction: column;    /* ボックス内の要素は縦に並べる */
-    justify-content: flex-start;
-    text-align: center;        /* 文字は中央寄せ */
-    padding: 40px;
-}
-
-/* ルックブック下のテキストを確実に中央へ */
-.lookbook-content, 
-.lookbook-content p, 
-.lookbook-visual + p {
-    text-align: center;
-    margin: 20px auto;
-    display: block;
-}
-
-/* SHOPの2列維持 */
-#shop .goods-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-/* 1. 全てのセクションタイトルを中央に */
-.section-title, 
-#contact .section-title, 
-#shop .section-title, 
-.sec-title {
-    text-align: center;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-}
-
-/* 2. ContactとGoods Lineupの下のテキスト（リード文）を中央に */
-.contact-lead, 
-#contact p, 
-#shop p, 
-.goods-grid + p,
-.lookbook-content p {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 800px; /* 幅を広げつつ中央へ */
-    display: block;
-    width: 100%;
-}
-
-/* 3. Contactフォーム全体を中央に配置 */
-.contact-form-wrapper {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left; /* フォーム内のラベルだけは左寄せが見やすいですが、これも中央なら以下をcenterに */
-}
-
-/* 4. Goods Lineup（SHOP）セクション自体の余白調整 */
-#shop, #contact {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-/* --- 01と02のボックスサイズを統一 --- */
-#detail .works-grid {
-    display: flex;
-    flex-direction: row; /* 横並び */
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: stretch; /* ← これが重要！高さを揃える */
-    gap: 30px;
-}
-
-#detail .work-item {
-    flex: 1;           /* 均等な幅にする */
-    max-width: 500px;    /* 広がりすぎ防止 */
-    min-width: 320px;    /* スマホでの最小幅 */
-    
-    display: flex;       /* ボックス内もFlexに */
-    flex-direction: column;
-    height: auto;        /* 高さを親に合わせる */
-}
-
-/* ボックス内のテキストの配置を整える（お好みで） */
-#detail .work-item p {
-    flex-grow: 1; /* 文章が短くても、中身を押し広げて高さを維持する */
-    text-align: center;
-}
-
-/* ボタンの上の間隔をあける */
-.cta-button-container, 
-.form-submit {
-    margin-top: 20px; /* 数値を大きくするほど間があきます */
-    margin-bottom: 20px;
-}
-
-/* もし個別のボタンに対しても設定したい場合 */
-.custom-btn, .btn {
-    margin-top: 20px; 
-}
-
-/* セクション内のテキストを左揃えにしつつ、中央に配置 */
-section p {
-    display: inline-block;
-    text-align: left;
-    max-width: 600px; /* 必要に応じて読みやすい幅を指定 */
-    width: 100%;      /* スマホで見るときに崩れないように */
-}
-
-/* 親要素のtext-align: centerにより、上記pタグが中央に寄ります */
-section {
-    text-align: center;
-}
-
-.detail-item { /* 仮のクラス名です */
-    display: inline-block;
-    text-align: left;
-}
-
-/* コンセプト部分のテキスト */
-#concept p {
-  display: block;          /* 塊として扱う */
-  max-width: 600px;        /* 読みやすい横幅に制限 */
-  margin-left: auto;       /* 左余白を自動（中央寄せ） */
-  margin-right: auto;      /* 右余白を自動（中央寄せ） */
-  text-align: left;        /* ★文章そのものは左揃え */
-  padding: 0 20px;         /* スマホで端に張り付かないように */
-}
-
-/* ディテール（01/02）の説明文 */
-.work-item p {
-  text-align: left; /* 強制的に左揃えにする */
-  margin-top: 15px;
-  line-height: 1.8;
-}
-
-/* もし見出し（01 Craftsmanship等）も左に寄せたい場合 */
-.work-item h3 {
-  display: block;
-  text-align: left;
-}
-
-
-/* 1. 文章の塊を中央に寄せ、中身の行を左揃えにする */
-section p, 
-.description, 
-.detail-container .text, 
-.lookbook-content p, 
-.work-item p, 
-.contact-lead {
-  display: block; /* ブロック要素として扱う */
-  text-align: left; /* 行を左揃えに固定 */
-  max-width: 600px; /* 幅を制限して中央に */
-  width: 90%;
-  margin: 0 auto 20px; /* 左右中央寄せ */
-}
-
-/* 2. ボタンの視認性改善（ホバー前も文字を白に！） */
-.custom-btn, .btn {
-  display: inline-block;
-  background-color: #25399c; /* 紺色 */
-  color: #ffffff;            /* 文字を白に！ */
-  padding: 15px 45px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: bold;
-  border: 2px solid #25399c;
-  margin-top: 30px;
-}
-
-/* ボタンホバー時：背景と文字色を反転 */
-.custom-btn:hover, .btn:hover {
-  background-color: #ffffff; /* 背景を白に */
-  color: #25399c;            /* 文字を紺に */
-}
-
-/* 3. フッターの高さをしっかり出す */
-.footer {
-  padding: 180px 0 120px; /* 余白を大きく取って高さを確保 */
-  text-align: center;
-  display: block;
-}
-
-
-/* ===========================================
-   FINAL LAYOUT FIX (整理・統合版)
-   =========================================== */
-
-/* 1. セクション内の文章：塊を中央に寄せ、中身を左揃えにする */
-section p, 
-.description, 
-.lookbook-content p, 
-.contact-lead {
-    display: block;
-    text-align: left;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
-}
-
-/* 2. SHOP (商品一覧) の2列レイアウトとサイズ制限 */
-#shop .goods-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    max-width: 900px;
-    margin: 40px auto;
-}
-
-#shop .goods-item {
-    width: 100%;
-}
-
-/* 3. Detail (01/02) の横並びと高さの統一 */
-#detail .works-grid {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: stretch; /* ボックスの高さを揃える */
-    gap: 30px;
-    max-width: 1100px;
-    margin: 40px auto;
-}
-
-#detail .work-item {
-    flex: 1;
-    min-width: 300px;
-    max-width: 500px;
-    display: flex;
-    flex-direction: column;
-    padding: 40px;
-    background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-}
-
-/* 01/02内の文章も左揃え */
-#detail .work-item p {
-    text-align: left;
-    margin-top: 15px;
-    flex-grow: 1; /* 文章が短くても高さを維持 */
-}
-
-/* 4. フッターの高さと配置を完全に解決 */
-.footer {
-    display: block;
-    width: 100%;
-    clear: both; /* 回り込み解除 */
-    padding: 180px 0 120px; /* 上下の余白を大きく取って高さを出す */
-    background-color: #ffffff;
-    border-top: 1px solid var(--soft-pink);
-    text-align: center;
-}
-
-/* --- 文章の塊を中央に寄せ、中身の行を左揃えにする（詳細度を上げた設定） --- */
-
-/* コンセプトやリード文、グッズ説明のテキスト */
-section .lookbook-content p, 
-section .contact-lead, 
-section .description,
-section .works-grid + p,
-#concept p {
-    display: block;
-    text-align: left;         /* 2行以上のとき左で揃う */
-    max-width: 600px;         /* 読みやすい幅 */
-    margin-left: auto;        /* 塊を中央へ */
-    margin-right: auto;       /* 塊を中央へ */
-    width: fit-content;       /* 中身の長さに合わせる */
-    min-width: 280px;         /* 極端に短くなるのを防ぐ */
-}
-
-/* 01 Material / 02 Craftsmanship のボックス内テキスト */
-#detail .work-item p {
-    text-align: left;
-    margin-top: 15px;
-    display: block;
-    width: 100%;
-}
-
-/* グッズ名（01 Mag Cupなど）の下のテキスト */
-.goods-item p {
-    text-align: left;
-    display: block;
-    max-width: 250px;         /* 商品の幅に合わせる */
-    margin: 10px auto 0;      /* 商品画像の下で中央に配置しつつ中身は左揃え */
-}
-
-/* --- フッターの未解決問題を解消 --- */
-/* 他の要素の回り込みを完全に排除し、高さを出す */
-footer.footer, 
-section + .footer {
-    display: block;
-    clear: both;
-    padding: 160px 0 100px;   /* 上に大きな余白 */
-    background-color: #ffffff;
-    border-top: 1px solid var(--soft-pink);
-    text-align: center;
-    height: auto;
-    min-height: 300px;        /* 物理的な高さを保証 */
-}
-
-/* フッター内のコピーライト */
-.footer p {
-    text-align: center;       /* ここは1行なので中央でOK */
-    margin: 0 auto;
-}
-
-/* --- タイトルは常に中央 --- */
-.section-title, .sec-title, .work-item h3 {
-    text-align: center;
-    width: 100%;
-    display: block;
-}
-
-/* ===========================================
-   FINAL ADJUSTMENT (ボタン色・文章配置・フッター)
-   =========================================== */
-
-/* 1. 【最優先】ボタンの色を「濃い青」に固定し、文字を「白」にする */
-/* セレクタを長くして、他の設定に負けないようにしています */
-section .cta-button-container .custom-btn,
-section .cta-button-container .btn,
-#contact .form-submit .custom-btn,
-.goods-item .custom-btn {
-    display: inline-block;
-    background-color: #25399c; /* 濃い青 */
-    color: #ffffff;           /* 絶対に白 */
-    padding: 16px 45px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: bold;
-    border: 2px solid #25399c;
-    transition: all 0.3s ease;
-    margin-top: 30px;
-}
-
-/* ボタンホバー時：白背景に青文字 */
-section .cta-button-container .custom-btn:hover,
-section .cta-button-container .btn:hover,
-#contact .form-submit .custom-btn:hover {
-    background-color: #ffffff;
-    color: #25399c;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(37, 57, 156, 0.2);
-}
-
-/* 2. 文章の配置：中央に置いて、2行以上は左揃え */
-section p, 
-.lookbook-content p, 
-.contact-lead, 
-.description,
-#concept p {
-    display: block;
-    text-align: left;         /* 行の始まりを左に */
-    max-width: 600px;         /* 読みやすい幅 */
-    margin-left: auto;        /* 塊を中央へ */
-    margin-right: auto;       /* 塊を中央へ */
-    width: 90%;
-}
-
-/* 3. 01/02などのボックス内テキストも左揃え */
-#detail .work-item p {
-    text-align: left;
-    margin-top: 15px;
-    width: 100%;
-}
-
-/* 5. 各セクションのタイトル：常に中央 */
-.section-title, 
-.sec-title, 
-#shop .section-title, 
-#contact .section-title {
-    text-align: center;
-    width: 100%;
-    margin-bottom: 40px;
-    display: block;
-}
-
-/* ===========================================
-   FINAL LAYOUT FIX (ID指定による強制上書き)
-   =========================================== */
-
-/* 1. フッターを最下部に固定し、上の要素との重なりを解消 */
-#footer {
-    display: block;
-    clear: both;               /* 上の要素の浮き(float等)を完全に解除 */
-    width: 100%;
-    margin-top: 100px;         /* Shopセクションとの間に強制的に距離を作る */
-    padding: 150px 0 100px;    /* 上下に大きな余白を持たせて高さを確保 */
-    background-color: #ffffff; /* 背景色を白で塗りつぶす */
-    position: relative;
-    z-index: 999;              /* 他の要素より前面に出す */
-    text-align: center;
-    border-top: 1px solid #eee;
-}
-
-/* 2. 文章の配置：塊を中央、中身を左揃えに固定 */
-#concept .story-text,
-#detail .work-item p,
-#lookbook .lookbook-caption,
-#shop p,
-#shop .project-description,
-#contact .contact-lead {
-    display: block;
-    text-align: left;
-    max-width: 600px;
-    margin: 20px auto;         /* 左右autoで中央配置 */
-    width: 90%;
-    line-height: 1.8;
-}
-
-/* 3. ボタンの色を「濃い青」に固定（詳細度をアップ） */
-#shop .cta-button-container a.custom-btn {
-    display: inline-block;
-    background-color: #25399c;
-    color: #ffffff;
-    padding: 16px 45px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: bold;
-    border: 2px solid #25399c;
-    transition: all 0.3s ease;
-}
-
-#shop .cta-button-container a.custom-btn:hover {
-    background-color: #ffffff;
-    color: #25399c;
-}
-
-/* 4. Shopの2列レイアウト崩れ防止 */
-#shop .goods-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    max-width: 1000px;
-    margin: 40px auto;
-}
-
-/* 5. 各セクションのタイトルを中央へ */
-.section-title {
-    text-align: center;
-    width: 100%;
-    display: block;
-    margin-bottom: 40px;
-}
-
-/* スマホ用の調整 */
-@media (max-width: 768px) {
-    #footer {
-        padding: 80px 0 40px;
-    }
-}
-
-/* 価格のスタイリング */
-.item-price {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: #333;
-    margin: 10px 0 5px;
-    text-align: center;
-}
-
-.item-price small {
-    font-size: 0.7rem;
-    font-weight: 400;
-    color: #888;
-}
-
-
-/* goods-item自体の中央揃え */
-.goods-item {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.item-price {
-    font-family: 'Montserrat', sans-serif; /* 数字が綺麗に見えるフォント */
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #333;
-    margin-top: 5px;
-}
-.item-price small {
-    font-size: 0.7rem;
-    font-weight: 400;
-    color: #888;
-    margin-left: 3px;
-}
-
-/* セクションのタイトルなどは中央 */
-.section-title, 
-.section-title-en {
-    text-align: center;
-    display: block;
-    margin-bottom: 30px;
-}
-
-/* ストーリーや説明文のブロック */
-.story-text, 
-.project-description {
-    text-align: left;      /* 左揃えにする */
-    display: inline-block; /* 中身の幅に合わせる */
-    max-width: 600px;      /* 広がりすぎないように制限 */
-    margin: 0 auto;        /* ブロック自体を中央に寄せる */
-}
-
-/* 各アイテム（商品）の設定 */
-.goods-item {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* 中身を左側に寄せる */
-    text-align: left;        /* テキストを左揃えにする */
-}
-
-/* 画像は中央にしたい場合はここを調整 */
-.image-wrap {
-    width: 100%;
-    margin-bottom: 15px;
-}
-
-/* ボタンだけは中央、または左寄せ（お好みで） */
-.shop-btn {
-    margin: 10px 0 0; /* 左寄せにする場合（margin-left: 0） */
-}
-
-.form-group {
-    max-width: 500px;  /* フォームの幅を制限 */
-    margin: 0 auto 20px;
-    text-align: left;  /* ラベルと入力欄を左揃えに */
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-/* 商品内のテキスト配置を整える */
-.goods-item .item-info {
-    text-align: left; /* テキストは左揃え */
-    width: 100%;
-    max-width: 280px; /* 画像の幅に合わせる */
-    margin: 15px auto 0;
-}
-
-.item-name {
-    font-weight: bold;
-    color: var(--primary-blue);
-    margin-bottom: 5px;
-}
-
-.item-price {
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 15px;
-}
-
-
-/* グッズ全体の枠組み */
-.goods-grid {
-    display: grid;
-    /* 画面幅に合わせて、最小240pxの幅で自動整列 */
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 40px 20px; /* 上下40px、左右20pxの余白 */
-    margin: 40px 0;
-}
-
-/* 各グッズのアイテム */
-.goods-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* 中身を中央寄せ */
-}
-
-/* 画像の入れ物（サイズを統一する） */
-.image-wrap {
-    width: 100%;
-    max-width: 280px;
-    aspect-ratio: 1 / 1; /* 正方形に固定 */
-    overflow: hidden;
-    background-color: #f9f9f9;
-    border-radius: 8px; /* 角を少し丸くすると今風になります */
-    margin-bottom: 15px;
-}
-
-.image-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* 枠いっぱいにきれいに収める */
-    transition: transform 0.3s ease;
-}
-
-/* ホバーした時に少し浮き上がる演出 */
-.goods-item:hover img {
-    transform: scale(1.05);
-}
-
-/* Footer Styles */
-#footer {
-  padding: 40px 0;
-  background-color: #f5f5f5; /* 背景色はお好みで */
-  text-align: center;
-}
-
-.footer-links {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 20px; /* リンク同士の間隔 */
-  margin-bottom: 20px;
-  flex-wrap: wrap; /* スマホで折り返すように */
-}
-
-.footer-links a {
-  text-decoration: none;
-  color: #666;
-  font-size: 0.85rem;
-  transition: color 0.3s;
-}
-
-.footer-links a:hover {
-  color: #25399c; /* SVGで使われている青色に合わせる */
-}
-
-.copyright {
-  font-size: 0.75rem;
-  color: #999;
-}
-
-/* --- フッターの最終調整 --- */
-.footer {
-  display: block;
-  width: 100%;
-  clear: both;
-  padding: 100px 0 60px; /* 上の余白を大きく、下を適度に */
-  background-color: #ffffff;
-  border-top: 1px solid var(--soft-pink);
-  text-align: center;
-}
-
-.footer-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* リンクを横並びにする設定 */
-.footer-links {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 25px; /* リンク同士の間隔 */
-  margin-bottom: 30px;
-  flex-wrap: wrap; /* スマホで入り切らない時は折り返す */
-}
-
-.footer-links li a {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--primary-blue);
-  text-decoration: none;
-  transition: opacity 0.3s;
-  letter-spacing: 0.05em;
-}
-
-.footer-links li a:hover {
-  opacity: 0.6;
-}
-
-/* コピーライト */
-.copyright {
-  font-size: 0.75rem;
-  color: #999;
-  letter-spacing: 0.1em;
-}
-
-/* スマホ用微調整 */
-@media (max-width: 768px) {
-  .footer {
-    padding: 80px 0 40px;
-  }
-  .footer-links {
-    gap: 15px; /* スマホでは少し詰める */
-  }
-}
-
-/* --- Contact Form の幅を最適化 --- */
-.contact-form-wrapper {
-    max-width: 700px;      /* フォーム全体の最大幅を少し広めに設定 */
-    width: 90%;            /* スマホでは画面幅の90% */
-    margin: 0 auto;        /* 中央寄せ */
-    padding: 40px;
-    text-align: left;      /* 内部のラベルなどは左揃え */
-}
-
-.form-group {
-    width: 100%;           /* グループ全体を横いっぱいに */
-    margin-bottom: 25px;
-}
-
-/* 入力欄（一行）とテキストエリア（複数行）を横いっぱいに広げる */
-.form-group input,
-.form-group textarea {
-    display: block;        /* ブロック要素にして幅指定を有効にする */
-    width: 100%; /* 強制的に親要素（wrapper）の幅100%にする */
-    max-width: none;       /* 他の p タグなどの制限（600px等）を解除 */
-    padding: 15px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    box-sizing: border-box; /* パディングを含めて100%にする */
-}
-
-/* テキストエリアの高さ */
-.form-group textarea {
-    min-height: 150px;
-    resize: vertical;      /* 上下方向のみサイズ変更可能に */
-}
-
-/* 送信ボタンのコンテナ */
-.form-submit {
-    text-align: center;    /* ボタンは中央に */
-    width: 100%;
-}
-
-/* --- 注意書きのスタイル --- */
-.caution-text {
-    display: block;
-    margin-top: 15px;
-    color: #d9534f; /* 警告色（薄い赤）または var(--primary-blue) でもOK */
-    font-size: 0.9rem;
-    font-weight: bold;
-}
-
-.form-note {
-    font-size: 0.8rem;
-    color: #888;
-    margin-top: 15px; /* ボタンとの間隔 */
-    text-align: center; /* 強制的に中央寄せ */
-}
-
-/* フォームの横幅を固定して細長くなるのを防ぐ（前回の修正の再掲） */
-.contact-form-wrapper {
-    max-width: 600px;
-    width: 100%;
-    margin: 40px auto;
-    text-align: left;
-}
-
-/* 修正案：ハンバーガーメニューの中のspanだけを指定 */
-#js-hamburger.active span:nth-child(1) {
-  transform: translateY(10px) rotate(45deg);
-}
-
-/* ショップ写真：PCは2列、スマホは1列 */
-#shop .goods-grid {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-}
-
-@media (max-width: 768px) {
-    #shop .goods-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    /* ハンバーガーメニューがスマホで見えない場合は以下を追加 */
-    .hamburger-menu {
-        display: block;
-    }
-}
-
-/* カートアイコンが消える問題の対策 */
-.cart-icon img {
-    display: block;
-    width: 30px;
-    height: auto;
-}
-
-/* --- カートアイコンが「×」になるのを防ぐ専用設定 --- */
-
-/* 1. カート内のspanにはハンバーガーの動き（回転・移動）を一切させない */
-#js-cart-icon span,
-.cart-floating-icon span,
-.cart-icon {
-    /* ハンバーガーメニュー用の設定をすべてリセット */
-    position: static;    /* 絶対配置を解除 */
-    transform: none;    /* 回転を解除 */
-    opacity: 1;         /* 透明化を解除 */
-    display: inline-block;
-    width: auto;        /* 横幅を絵文字サイズに戻す */
-    height: auto;
-    background-color: transparent; /* 背景色（青い線）を消す */
-    transition: none;    /* アニメーションを停止 */
-}
-
-/* 2. カートの数字（0）の位置がズレるのを防ぐ */
-#cart-count {
-    position: absolute; /* 数字だけは右上に配置 */
-    top: -5px;
-    right: -5px;
-    background-color: #ff4d4d; /* 通知の赤 */
-    color: white;
-    border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 10px;
-    line-height: 1;
-}
-
-/* 3. カートボタン自体の形を整える（丸いアイコンを維持） */
-.cart-floating-icon {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    background-color: #fff;
-    border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    text-decoration: none;
-    position: fixed; /* 浮遊させる場合 */
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-}
-
-/* --- ハンバーガーメニュー基本設定 --- */
-.hamburger-menu {
-  display: block;
-  width: 30px;
-  height: 24px;
-  position: relative;
-  cursor: pointer;
-  z-index: 9999;
-}
-
-.hamburger-menu span {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background-color: #25399c; /* 窓の青色 */
-  position: absolute;
-  left: 0;
-  transition: all 0.4s ease; /* アニメーションを滑らかに */
-}
-
-/* 3本の線の初期位置を固定 */
-.hamburger-menu span:nth-child(1) { top: 0; }
-.hamburger-menu span:nth-child(2) { top: 11px; }
-.hamburger-menu span:nth-child(3) { top: 22px; }
-
-/* --- 閉じている時（×にする）の動き --- */
-
-/* 1番上：中央(11px)に降りてきてから45度回転 */
-#js-hamburger.active span:nth-child(1) {
-  top: 11px !important;
-  transform: rotate(45deg);
-}
-
-/* 2番目：その場で透明にして消す */
-#js-hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-/* 3番目：中央(11px)に上がってきてからマイナス45度回転 */
-#js-hamburger.active span:nth-child(3) {
-  top: 11px;
-  transform: rotate(-45deg);
-}
-
-
-/* 3. 文章の配置：中央に置いて、2行以上は左揃え */
-section p, 
-.lookbook-content p, 
-.contact-lead, 
-#concept p, 
-#detail .work-item p {
-    text-align: left;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-}
-
-/* 4. タイトルは常に中央 */
-.section-title, .sec-title, .work-item h3 {
-    text-align: center;
-    width: 100%;
-}
-
-
-
-/* リンク自体の背景もリセット */
-.header .nav ul li a {
-  background: transparent;
-  padding: 0;
-}
-
-/* --- 修正：コンタクトフォームを横いっぱいに広げる --- */
-.contact-form-wrapper .form-group input,
-.contact-form-wrapper .form-group textarea {
-    display: block;    /* inline-blockを解除 */
-    width: 100%;       /* 横幅いっぱい */
-    max-width: none;   /* 600px制限を解除 */
-    box-sizing: border-box;       /* パディングを含めた100% */
-}
-
-/* 送信ボタン下の注意書き（前回の追加分） */
-.caution-text {
-    display: block;
-    margin-top: 10px;
-    color: #d9534f;
-    font-size: 0.85rem;
-    font-weight: bold;
-    text-align: center;
-}
-
-
-
-/* モバイル（デフォルト）のスタイル */
-.hamburger-menu {
-  display: block; /* スマホでは表示 */
-  cursor: pointer;
-}
-
-/* PC（幅768px以上）のスタイル */
-@media screen and (min-width: 768px) {
-  .hamburger-menu {
-    display: none; /* PCでは非表示にする */
-  }
-
-  .nav {
-    display: block; /* スマホで閉じていてもPCでは表示 */
-    position: static;
-    background: none;
-  }
-
-  .nav ul {
-    display: flex; /* 横並びにする */
-    gap: 20px;
-  }
-}
-
-
-
-/* カート全体を右下に固定 */
-.cart-floating-icon {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 64px;
-  height: 64px;
-  background-color: #fe8d1c; /* オレンジ */
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  transition: transform 0.3s ease;
-  z-index: 1000;
-  text-decoration: none;
-}
-
-.cart-floating-icon:hover {
-  transform: scale(1.1);
-}
-
-/* アイコン自体のサイズ */
-.cart-floating-icon svg {
-  width: 28px;
-  height: 28px;
-  stroke: #fff;
-}
-
-/* 通知バッジ（数字の部分） */
-#cart-count {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: #25399c; /* 濃い青 */
-  color: #fff;
-  font-size: 12px;
-  font-weight: bold;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #fff; /* 白枠をつけて見やすく */
-}
-
-/* 0のときは隠したい場合はこちら（お好みで） */
-#cart-count:empty,
-#cart-count[data-count="0"] {
-  display: none;
-}
-
-/* アイコンを少し小さくして枠内に収まりを良くする */
-.cart-floating-icon svg {
-  width: 26px;
-  height: 26px;
-  stroke: #fff;
-  /* ほんの少し左に寄せるとカートの持ち手とのバランスが取れます */
-  transform: translateX(-1px); 
-}
-
-/* 通知バッジ（数字）の位置を調整 */
-#cart-count {
-  position: absolute;
-  top: -5px; /* 少し外側に出す */
-  right: -5px;
-  background-color: #25399c; 
-  color: #fff;
-  font-size: 11px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #fe8d1c; /* 土台のオレンジと同じ色で縁取ると馴染みます */
-}
-
-/* カートボタンの幅を調整 */
-.add-to-cart-btn {
-    width: 100%;
-    padding: 12px 0;
-    font-size: 0.85rem;
-}
-
-/* カートの数字バッジ */
-#cart-count {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  
-  /* 背景を鮮やかな赤に */
-  background-color: #e2393c; 
-  color: #ffffff;
-  
-  /* 数字をはっきりさせる設定 */
-  font-size: 12px;
-  font-weight: bold;
-  font-family: sans-serif; /* 数字が見やすいフォント */
-  
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  /* 土台のオレンジとの境界線を白にして浮き立たせる */
-  border: 2px solid #ffffff; 
-  
-  /* 少し影をつけて立体感を出す */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-/* --- カートアイコンの最終調整（ここを一番下に貼り付けてください） --- */
-
-.cart-floating-icon {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 60px;
-  height: 60px;
-  background-color: #25399c; /* 窓の青と同じ紺色 */
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease;
-  z-index: 2000; /* 他の要素より必ず上にくるように */
-  text-decoration: none;
-}
-
-.cart-floating-icon:hover {
-  transform: scale(1.1);
-}
-
-.cart-floating-icon svg {
-  width: 26px;
-  height: 26px;
-  stroke: #ffffff; /* アイコンは白 */
-  stroke-width: 2.5;
-}
-
-#cart-count {
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  background-color: #e2393c; /* 鮮やかな赤 */
-  color: #ffffff;           /* 数字は白 */
-  font-size: 11px;
-  font-weight: bold;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #ffffff; /* 紺色との間に白縁を入れて視認性アップ */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-/* --- ショップ (Goods Grid) の中央寄せ修正 --- */
-#shop .goods-item {
-    text-align: center; /* テキスト全体を中央寄せ */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* 子要素（画像・ボタン・テキスト）を中央寄せ */
-}
-
-/* 商品名（タイトル） */
-#shop .goods-item .item-name {
-    text-align: center;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 1.1rem; /* 文字サイズはお好みで */
-    margin-top: 15px; /* 写真との間隔 */
-}
-
-/* 価格（テキスト） */
-#shop .goods-item .item-price {
-    text-align: center;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    color: var(--primary-blue); /* 色は濃い青に */
-    font-weight: 700;
-    font-family: 'Noto Sans JP', sans-serif; /* 日本語フォントを適用 */
+  #shop .goods-grid { gap: 15px; }
+  .section-title { font-size: 1.8rem; }
 }
