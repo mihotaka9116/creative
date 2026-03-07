@@ -1321,8 +1321,6 @@ section p,
   color: #25399c;            /* 文字を紺に */
 }
 
-
-
 /* ===========================================
    FINAL LAYOUT FIX (整理・統合版)
    =========================================== */
@@ -1385,8 +1383,6 @@ section p,
 }
 
 
-/* --- 文章の塊を中央に寄せ、中身の行を左揃えにする（詳細度を上げた設定） --- */
-
 /* コンセプトやリード文、グッズ説明のテキスト */
 section .lookbook-content p, 
 section .contact-lead, 
@@ -1417,9 +1413,6 @@ section .works-grid + p,
     max-width: 250px;         /* 商品の幅に合わせる */
     margin: 10px auto 0;      /* 商品画像の下で中央に配置しつつ中身は左揃え */
 }
-
-
-
 
 /* --- タイトルは常に中央 --- */
 .section-title, .sec-title, .work-item h3 {
@@ -1495,20 +1488,6 @@ section p,
 /* ===========================================
    FINAL LAYOUT FIX (ID指定による強制上書き)
    =========================================== */
-
-/* 1. フッターを最下部に固定し、上の要素との重なりを解消 */
-#footer {
-    display: block;
-    clear: both;               /* 上の要素の浮き(float等)を完全に解除 */
-    width: 100%;
-    margin-top: 100px;         /* Shopセクションとの間に強制的に距離を作る */
-    padding: 150px 0 100px;    /* 上下に大きな余白を持たせて高さを確保 */
-    background-color: #ffffff; /* 背景色を白で塗りつぶす */
-    position: relative;
-    z-index: 999;              /* 他の要素より前面に出す */
-    text-align: center;
-    border-top: 1px solid #eee;
-}
 
 /* 2. 文章の配置：塊を中央、中身を左揃えに固定 */
 #concept .story-text,
@@ -1713,32 +1692,6 @@ section p,
     transform: scale(1.05);
 }
 
-/* Footer Styles */
-#footer {
-  padding: 40px 0;
-  background-color: #f5f5f5; /* 背景色はお好みで */
-  text-align: center;
-}
-
-.footer-links {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 20px; /* リンク同士の間隔 */
-  margin-bottom: 20px;
-  flex-wrap: wrap; /* スマホで折り返すように */
-}
-
-.footer-links a {
-  text-decoration: none;
-  color: #666;
-  font-size: 0.85rem;
-  transition: color 0.3s;
-}
-
-.footer-links a:hover {
-  color: #25399c; /* SVGで使われている青色に合わせる */
-}
 
 .copyright {
   font-size: 0.75rem;
@@ -2036,63 +1989,7 @@ section p,
     font-family: 'Noto Sans JP', sans-serif; /* 日本語フォントを適用 */
 }
 
-/* --- 1. カートアイコン（右下固定）の修正 --- */
-.cart-floating-icon {
-    position: fixed !important;
-    bottom: 30px !important;
-    right: 30px !important;
-    z-index: 9999 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 60px !important;
-    height: 60px !important;
-    background: #25399c !important; /* SVGの青色に合わせる */
-    color: #ffffff !important;
-    border-radius: 50% !important;
-    text-decoration: none !important;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
-    margin: 0 !important; /* 隙間の原因を削除 */
-    padding: 0 !important;
-}
 
-/* カートの数字のバッジ */
-#cart-count {
-    position: absolute !important;
-    top: 0 !important;
-    right: 0 !important;
-    background: #e2393c !important; /* SVGの赤色に合わせる */
-    color: white !important;
-    font-size: 12px !important;
-    width: 20px !important;
-    height: 20px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    border-radius: 50% !important;
-    font-family: 'Montserrat', sans-serif;
-    transform: translate(20%, -20%);
-}
-
-/* --- 2. カートページ（購入画面）の中央寄せ --- */
-/* cart.html や他のページでメインコンテンツが左に寄るのを防ぐ */
-.container, 
-.wrapper, 
-main > section {
-    width: 100% !important;
-    max-width: 1200px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    display: block !important;
-}
-
-/* カートページ専用のメインエリア（もしあれば） */
-.cart-main, 
-#cart-items-container {
-    max-width: 800px !important;
-    margin: 40px auto !important;
-    padding: 0 20px !important;
-}
 
 
 
