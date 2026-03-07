@@ -1925,59 +1925,6 @@ section p,
     }
 }
 
-/* カートアイコンが消える問題の対策 */
-.cart-icon img {
-    display: block;
-    width: 30px;
-    height: auto;
-}
-
-/* --- カートアイコンが「×」になるのを防ぐ専用設定 --- */
-
-/* 1. カート内のspanにはハンバーガーの動き（回転・移動）を一切させない */
-#js-cart-icon span,
-.cart-floating-icon span,
-.cart-icon {
-    /* ハンバーガーメニュー用の設定をすべてリセット */
-    position: static;    /* 絶対配置を解除 */
-    transform: none;    /* 回転を解除 */
-    opacity: 1;         /* 透明化を解除 */
-    display: inline-block;
-    width: auto;        /* 横幅を絵文字サイズに戻す */
-    height: auto;
-    background-color: transparent; /* 背景色（青い線）を消す */
-    transition: none;    /* アニメーションを停止 */
-}
-
-/* 2. カートの数字（0）の位置がズレるのを防ぐ */
-#cart-count {
-    position: absolute; /* 数字だけは右上に配置 */
-    top: -5px;
-    right: -5px;
-    background-color: #ff4d4d; /* 通知の赤 */
-    color: white;
-    border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 10px;
-    line-height: 1;
-}
-
-/* 3. カートボタン自体の形を整える（丸いアイコンを維持） */
-.cart-floating-icon {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    background-color: #fff;
-    border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    text-decoration: none;
-    position: fixed; /* 浮遊させる場合 */
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-}
 
 /* --- ハンバーガーメニュー基本設定 --- */
 .hamburger-menu {
@@ -2097,29 +2044,6 @@ section p,
 }
 
 
-
-/* カート全体を右下に固定 */
-.cart-floating-icon {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 64px;
-  height: 64px;
-  background-color: #fe8d1c; /* オレンジ */
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  transition: transform 0.3s ease;
-  z-index: 1000;
-  text-decoration: none;
-}
-
-.cart-floating-icon:hover {
-  transform: scale(1.1);
-}
-
 /* アイコン自体のサイズ */
 .cart-floating-icon svg {
   width: 28px;
@@ -2127,29 +2051,7 @@ section p,
   stroke: #fff;
 }
 
-/* 通知バッジ（数字の部分） */
-#cart-count {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: #25399c; /* 濃い青 */
-  color: #fff;
-  font-size: 12px;
-  font-weight: bold;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #fff; /* 白枠をつけて見やすく */
-}
 
-/* 0のときは隠したい場合はこちら（お好みで） */
-#cart-count:empty,
-#cart-count[data-count="0"] {
-  display: none;
-}
 
 /* アイコンを少し小さくして枠内に収まりを良くする */
 .cart-floating-icon svg {
@@ -2160,22 +2062,6 @@ section p,
   transform: translateX(-1px); 
 }
 
-/* 通知バッジ（数字）の位置を調整 */
-#cart-count {
-  position: absolute;
-  top: -5px; /* 少し外側に出す */
-  right: -5px;
-  background-color: #25399c; 
-  color: #fff;
-  font-size: 11px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #fe8d1c; /* 土台のオレンジと同じ色で縁取ると馴染みます */
-}
 
 /* カートボタンの幅を調整 */
 .add-to-cart-btn {
@@ -2243,23 +2129,6 @@ section p,
   stroke-width: 2.5;
 }
 
-#cart-count {
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  background-color: #e2393c; /* 鮮やかな赤 */
-  color: #ffffff;           /* 数字は白 */
-  font-size: 11px;
-  font-weight: bold;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #ffffff; /* 紺色との間に白縁を入れて視認性アップ */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
 
 /* --- ショップ (Goods Grid) の中央寄せ修正 --- */
 #shop .goods-item {
@@ -2317,7 +2186,7 @@ section p,
   position: absolute;
   top: 5px;
   right: 5px;
-  background-color: #e2393c; /* SVGのクッションと同じ赤 */
+  background-color: #e2393c; /* 赤 */
   color: white;
   font-size: 10px;
   font-weight: bold;
@@ -2335,5 +2204,5 @@ section p,
 .cart-icon, 
 .header .nav .cart, 
 [class*="cart"] {
-    display: inline-block !important;
+    display: inline-block;
     color: #fff;
