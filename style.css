@@ -2044,60 +2044,6 @@ section p,
 }
 
 
-/* アイコン自体のサイズ */
-.cart-floating-icon svg {
-  width: 28px;
-  height: 28px;
-  stroke: #fff;
-}
-
-
-
-/* アイコンを少し小さくして枠内に収まりを良くする */
-.cart-floating-icon svg {
-  width: 26px;
-  height: 26px;
-  stroke: #fff;
-  /* ほんの少し左に寄せるとカートの持ち手とのバランスが取れます */
-  transform: translateX(-1px); 
-}
-
-
-/* カートボタンの幅を調整 */
-.add-to-cart-btn {
-    width: 100%;
-    padding: 12px 0;
-    font-size: 0.85rem;
-}
-
-/* カートの数字バッジ */
-#cart-count {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  
-  /* 背景を鮮やかな赤に */
-  background-color: #e2393c; 
-  color: #ffffff;
-  
-  /* 数字をはっきりさせる設定 */
-  font-size: 12px;
-  font-weight: bold;
-  font-family: sans-serif; /* 数字が見やすいフォント */
-  
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  /* 土台のオレンジとの境界線を白にして浮き立たせる */
-  border: 2px solid #ffffff; 
-  
-  /* 少し影をつけて立体感を出す */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
 
 /* --- カートアイコンの最終調整（ここを一番下に貼り付けてください） --- */
 
