@@ -2289,3 +2289,44 @@ section p,
     font-weight: 700;
     font-family: 'Noto Sans JP', sans-serif; /* 日本語フォントを適用 */
 }
+
+.cart-floating-icon {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #25399c; /* SVGの窓の色に合わせた濃い青 */
+  color: #fff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.cart-floating-icon:hover {
+  transform: scale(1.1);
+}
+
+/* カートの数字 */
+#cart-count {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #e2393c; /* SVGのクッションと同じ赤 */
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* アイコン自体のサイズ調整 */
+.material-symbols-outlined {
+  font-size: 28px;
+}
