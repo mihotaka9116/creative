@@ -315,8 +315,8 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 /* 中の画像が親要素を突き破らないようにする最重要設定 */
 .lookbook-visual img,
 .lookbook-visual svg {
-  width: 100% !important; /* 親要素の幅に合わせる */
-  height: auto !important; /* 高さは自動計算（歪まないように） */
+  width: 100%; /* 親要素の幅に合わせる */
+  height: auto; /* 高さは自動計算（歪まないように） */
   display: block;
 }
 
