@@ -2952,3 +2952,13 @@ section p,
   margin-bottom: 5px;
 }
 
+
+.sub-copy {
+  display: block;
+  width: 100%;
+  max-width: none; /* 他で設定された 600px 制限などを解除 */
+  text-align: center; /* 文字を中央に */
+  margin-left: auto;
+  margin-right: auto;
+  letter-spacing: 0.15em; /* 少し字間を広げると洗練されます */
+}
