@@ -2953,29 +2953,27 @@ section p,
 }
 
 
-/* ヒーローエリアのテキストを強制的に中央揃えにする */
-.hero-content .sub-copy {
-  display: block;
-  text-align: center; /* ブロック全体を中央へ */
-  width: 100%;
-  margin: 15px 0 0; /* 上に少し余白 */
-  padding: 0;
-}
-
-/* 中のspanタグに対しても中央揃えを適用 */
-.hero-content .sub-copy span {
-  display: inline-block;
+/* Look Book内のテキストをすべて中央に強制 */
+#lookbook .lookbook-info {
   text-align: center;
-  width: 100%;
-}
-
-/* 親要素のコンテナ自体も中央に寄せる */
-.hero-content {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+}
+
+/* 2025 Winter collection などの年度テキスト */
+#lookbook .collection-year {
+  display: block;
   text-align: center;
-  left: 50%;
-  transform: translateX(-50%);
+  margin: 0 auto 5px;
+  width: 100%;
+}
+
+/* 「少女と海」などのタイトル */
+#lookbook .lookbook-item-title {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
   width: 100%;
 }
