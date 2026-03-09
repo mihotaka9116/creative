@@ -2953,12 +2953,29 @@ section p,
 }
 
 
-.sub-copy {
+/* ヒーローエリアのテキストを強制的に中央揃えにする */
+.hero-content .sub-copy {
   display: block;
+  text-align: center; /* ブロック全体を中央へ */
   width: 100%;
-  max-width: none; /* 他で設定された 600px 制限などを解除 */
-  text-align: center; /* 文字を中央に */
-  margin-left: auto;
-  margin-right: auto;
-  letter-spacing: 0.15em; /* 少し字間を広げると洗練されます */
+  margin: 15px 0 0; /* 上に少し余白 */
+  padding: 0;
+}
+
+/* 中のspanタグに対しても中央揃えを適用 */
+.hero-content .sub-copy span {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+
+/* 親要素のコンテナ自体も中央に寄せる */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
 }
