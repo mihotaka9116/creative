@@ -2941,3 +2941,14 @@ section p,
   }
 }
 
+/* ルックブックのテキストを中央配置にする */
+.lookbook-info {
+  text-align: center;
+  margin-top: 15px; /* 写真とテキストの間の余白（お好みで調整してください） */
+}
+
+/* もしタイトルと年度の間の余白も微調整したい場合はこちら */
+.collection-year {
+  margin-bottom: 5px;
+}
+
