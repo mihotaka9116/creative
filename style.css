@@ -2887,4 +2887,57 @@ section p,
   }
 }
 
+/* ===========================================
+   iPad mini & Tablet (768px以上) 
+   横並び強制上書き
+   =========================================== */
+
+@media (min-width: 768px) {
+
+  /* 1. LOOKBOOKを強制的に横並び (Flexbox) */
+  /* 親要素（wrapperやcontainer）に対して指定 */
+  #lookbook .wrapper, 
+  .lookbook-container, 
+  .lookbook-visual-group {
+    display: flex !important;
+    flex-direction: row !important; /* 縦並びを解除して横へ */
+    flex-wrap: nowrap !important;   /* 折り返しを禁止 */
+    justify-content: center !important;
+    align-items: flex-start !important;
+    gap: 20px !important;           /* 写真の間の余白 */
+    width: 100% !important;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 30px;     /* 画面端の余白 */
+  }
+
+  /* 2. 各写真のボックスサイズ固定 */
+  .lookbook-visual, 
+  .lookbook-item {
+    flex: 1;             /* 均等に幅をとる */
+    max-width: 48%;      /* 2つ並ぶように設定 */
+    display: block;
+  }
+
+  .lookbook-visual img, 
+  .lookbook-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* 3. ナビゲーションの復元 (iPad mini用) */
+  .header .nav {
+    display: block;
+    position: static;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav ul {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+}
 
