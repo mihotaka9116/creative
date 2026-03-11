@@ -2991,3 +2991,23 @@ section p,
   /* border: ...; */           /* 枠線を削除 */
   /* box-shadow: ...; */       /* 影を削除（もしあれば） */
 }
+
+/* ===========================================
+   ルックブックの画像装飾リセット
+   =========================================== */
+
+/* 画像を囲む `.lookbook-image` の装飾をすべて消す */
+.lookbook-image {
+    background-color: transparent; /* 背景色を透明に */
+    border: none;                 /* 枠線を消す */
+    box-shadow: none;             /* 影を消す */
+    padding: 0;                  /* 余白をなくす */
+    border-radius: 0;            /* 角丸をリセット（必要に応じて） */
+    overflow: visible;            /* はみ出しを許可（必要に応じて） */
+}
+
+/* 中の画像自体の影なども念のため消す */
+.lookbook-image img {
+    box-shadow: none;
+    border: none;
+}
