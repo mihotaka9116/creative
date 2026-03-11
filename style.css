@@ -2977,3 +2977,17 @@ section p,
   margin: 0 auto;
   width: 100%;
 }
+
+/* --- 2. ルックブック（Lookbook）の巨大化修正 --- */
+.lookbook-visual {
+  width: 100%;
+  max-width: 500px; /* PCでの最大サイズを制限 */
+  margin: 40px auto;
+  padding: 0;           /* ★余白をなくす（もし画像自体の余白が不要なら） */
+  display: flex;
+  justify-content: center;
+  /* ★以下のプロパティがもしあれば、削除またはコメントアウトします */
+  /* background-color: ...; */ /* 背景色を削除 */
+  /* border: ...; */           /* 枠線を削除 */
+  /* box-shadow: ...; */       /* 影を削除（もしあれば） */
+}
