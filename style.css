@@ -568,7 +568,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 .section-title {
   font-size: 2.5rem; /* 少し大きく */
   letter-spacing: 0.2em; /* 字間を広げて洗練された印象に */
-  font-weight: 300; /* 細身にするとよりモダンになります */
+  font-weight: 300; /* 細身にするとよりモダンに*/
   margin-bottom: 40px;
 }
 
@@ -621,7 +621,7 @@ section:nth-of-type(odd) { background-color: var(--soft-pink); }
 }
 
 
-/* セクションタイトルも中央寄せにする（もし左に寄っていたら） */
+/* セクションタイトルも中央寄せにする */
 .section-title {
   text-align: center;
   border-left: none;
@@ -977,7 +977,7 @@ section p,
 .work-item h3 {
   display: inline-block;
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   color: var(--primary-blue);
   margin-bottom: 20px;
   position: relative;
@@ -1008,7 +1008,6 @@ section p,
   margin: 0; /* 余計なマージンをリセット */
 }
 
-/* --- どんな要素も強制的に中央寄せにする設定 --- */
 
 /* 1. 全てのセクションとテキストを中央に */
 section, 
