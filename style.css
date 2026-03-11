@@ -2993,21 +2993,68 @@ section p,
 }
 
 /* ===========================================
-   ルックブックの画像装飾リセット
+   FINAL CLEAN UP: ルックブック装飾削除 & レイアウト調整
    =========================================== */
 
-/* 画像を囲む `.lookbook-image` の装飾をすべて消す */
+/* 1. ルックブックの背景ボックス・影・枠線を完全に消去 */
+#lookbook .lookbook-item,
+#lookbook .lookbook-visual,
+#lookbook .image-wrap,
 .lookbook-image {
-    background-color: transparent; /* 背景色を透明に */
-    border: none;                 /* 枠線を消す */
-    box-shadow: none;             /* 影を消す */
-    padding: 0;                  /* 余白をなくす */
-    border-radius: 0;            /* 角丸をリセット（必要に応じて） */
-    overflow: visible;            /* はみ出しを許可（必要に応じて） */
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
 }
 
-/* 中の画像自体の影なども念のため消す */
-.lookbook-image img {
+#lookbook img {
     box-shadow: none;
     border: none;
+    background: none;
+}
+
+/* 2. iPad mini / タブレット (768px以上) でのルックブック横並び強制 */
+@media (min-width: 768px) {
+    /* HTMLの構造に合わせて grid クラスに Flexbox を適用 */
+    .lookbook-grid {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        gap: 20px;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .lookbook-item {
+        flex: 1;
+        max-width: 48%; /* 2枚並び */
+    }
+}
+
+/* 3. ボタンの視認性（常に濃い青背景に白文字） */
+.custom-btn, .btn, #contact .form-submit .custom-btn {
+    background-color: #25399c;
+    color: #ffffff;
+    border: 2px solid #25399c;
+    padding: 15px 45px;
+    border-radius: 50px;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.custom-btn:hover, .btn:hover {
+    background-color: #ffffff;
+    color: #25399c;
+}
+
+/* 4. フッターの重なり防止（最下部に押し出す） */
+footer, .footer, #footer {
+    display: block;
+    clear: both;
+    margin-top: 100px;
+    padding: 100px 0;
+    text-align: center;
 }
