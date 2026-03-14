@@ -90,12 +90,12 @@ body {
 .nav ul {
   display: flex;
   list-style: none;
-  gap: 30px;
+  gap: 20px; /* 項目が6個になったので少し詰める */
 }
 
 .nav ul li a {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.82rem; /* 6項目に合わせて少し縮小 */
   font-weight: 800;
   color: var(--primary-blue);
   text-decoration: none;
@@ -808,7 +808,7 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
   .nav ul {
     display: flex;
     flex-direction: row;
-    gap: 30px;
+    gap: 20px;
   }
 
   .hamburger-menu {
