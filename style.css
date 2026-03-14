@@ -297,6 +297,7 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
 .btn:hover {
   background-color: #ffffff;
   color: var(--primary-blue);
+  border: 2px solid var(--primary-blue); /* 縁取りを維持 */
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(37, 57, 156, 0.3);
 }
