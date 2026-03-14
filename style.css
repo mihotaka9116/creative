@@ -2500,7 +2500,7 @@ section p,
 .lookbook-item-title {
   font-family: 'Noto Sans JP', sans-serif;
   font-size: 1.4rem;
-  font-weight: 700;
+  font-weight: 400;
   color: #25399c;
   line-height: 1.5;
   margin: 0;
@@ -2605,11 +2605,11 @@ section p,
 .lookbook-item img {
     width: 100%;
     height: auto;
-    border-radius: 8px;      /* ほんの少し角を丸めると画面端での圧迫感が減ります */
+    border-radius: 8px;      /* ほんの少し角を丸める */
     object-fit: contain;
 }
 
-/* 4. もしナビゲーションがまだ不安定なら、iPad Air用に固定 */
+/* 4. ナビをiPad Air用に固定 */
 @media (min-width: 800px) and (max-width: 1100px) {
     .header-inner {
         padding: 0 40px; /* ヘッダーも左右に余裕を持たせる */
@@ -2698,19 +2698,7 @@ section p,
     display: none;      /* iPad以上では三本線を隠す */
   }
 
-  /* 2. LOOKBOOKを強制的に横並びにする */
-  /* 画像を包んでいる親要素（クラス名が異なる場合はここを調整してください） */
-  .lookbook-visual-group, 
-  .lookbook-container,
-  #lookbook .wrapper { 
-    display: flex;
-    flex-direction: row; /* 横に並べる */
-    justify-content: center;
-    align-items: flex-start;
-    gap: 20px;
-    flex-wrap: nowrap;  /* 縦に落ちるのを禁止 */
-  }
-
+ 
   /* 個別の画像ボックスの幅を調整 */
   .lookbook-visual,
   .lookbook-item {
@@ -2904,7 +2892,7 @@ section p,
 }
 
 /* ===========================================
-   FINAL CLEAN UP: ルックブック装飾削除 & レイアウト調整
+   ルックブック装飾削除 & レイアウト調整
    =========================================== */
 
 /* 1. ルックブックの背景ボックス・影・枠線を完全に消去 */
@@ -2924,7 +2912,7 @@ section p,
     background: none;
 }
 
-/* 2. iPad mini / タブレット (768px以上) でのルックブック横並び強制 */
+/* 2. iPad mini / タブレット (768px以上) でのルックブック横並び */
 @media (min-width: 768px) {
     /* HTMLの構造に合わせて grid クラスに Flexbox を適用 */
     .lookbook-grid {
