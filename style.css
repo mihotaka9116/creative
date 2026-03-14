@@ -104,8 +104,11 @@ body {
   transition: color 0.3s;
 }
 
-.nav ul li a:hover,
 .nav ul li a:visited {
+  color: var(--primary-blue); /* 訪問済みでも通常色を維持 */
+}
+
+.nav ul li a:hover {
   color: var(--hover-blue);
 }
 
@@ -381,6 +384,7 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
   position: relative;
   font-family: 'Montserrat', sans-serif;
   font-size: 1.3rem;
+  font-weight: 700; /* concept-lead に合わせて統一 */
   color: var(--primary-blue);
   margin-bottom: 20px;
   padding-bottom: 8px;
