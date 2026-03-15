@@ -385,7 +385,7 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
   position: relative;
   font-family: 'Montserrat', sans-serif;
   font-size: 1.3rem;
-  font-weight: 500; /* concept-lead に合わせて統一 */
+  font-weight: 600; /* concept-lead に合わせて統一 */
   color: var(--primary-blue);
   margin-bottom: 20px;
   padding-bottom: 8px;
