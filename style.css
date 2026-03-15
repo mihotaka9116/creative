@@ -383,9 +383,9 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
 .work-item h3 {
   display: inline-block;
   position: relative;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Playfair Display', serif;
   font-size: 1.3rem;
-  font-weight: 600; /* concept-lead に合わせて統一 */
+  font-weight: 700; /* concept-lead に合わせて統一 */
   color: var(--primary-blue);
   margin-bottom: 20px;
   padding-bottom: 8px;
