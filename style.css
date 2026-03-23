@@ -90,12 +90,12 @@ body {
 .nav ul {
   display: flex;
   list-style: none;
-  gap: 20px; /* 項目が6個になったので少し詰める */
+  gap: 20px; 
 }
 
 .nav ul li a {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.82rem; /* 6項目に合わせて少し縮小 */
+  font-size: 0.82rem; 
   font-weight: 800;
   color: var(--primary-blue);
   text-decoration: none;
@@ -112,7 +112,7 @@ body {
   color: var(--hover-blue);
 }
 
-/* ハンバーガーメニュー（PC では非表示） */
+/* ハンバーガーメニュー */
 .hamburger-menu {
   display: none;
   width: 30px;
