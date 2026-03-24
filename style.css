@@ -11,12 +11,12 @@
      6.  Concept Section
      7.  Detail (Works) Section
      8.  Look Book Section
-     9.  Shop (Goods Grid) Section
+     9.  Shop Section
      10. Contact Section
      11. Cart Floating Icon
      12. Footer
-     13. Responsive — Tablet (768px〜)
-     14. Responsive — Mobile (〜767px)
+     13. Responsive — Tablet  (768px〜)
+     14. Responsive — Mobile  (〜767px)
      15. Responsive — Small Mobile (〜480px)
 =========================================== */
 
@@ -43,10 +43,10 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   overflow-x: hidden;
-  position: relative;
   scroll-behavior: smooth;
 }
 
@@ -55,7 +55,7 @@ body {
   line-height: 1.7;
   color: var(--text-dark);
   background-color: #fff;
-  padding-top: 60px; /* ヘッダー固定分 */
+  padding-top: 60px; /* 固定ヘッダー分 */
 }
 
 
@@ -86,26 +86,23 @@ body {
   padding: 0 20px;
 }
 
-/* ナビリンク */
 .nav ul {
   display: flex;
   list-style: none;
-  gap: 20px; 
+  gap: 20px;
 }
 
 .nav ul li a {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.82rem; 
+  font-size: 0.82rem;
   font-weight: 800;
   color: var(--primary-blue);
   text-decoration: none;
-  background: transparent;
-  padding: 0;
   transition: color 0.3s;
 }
 
 .nav ul li a:visited {
-  color: var(--primary-blue); /* 訪問済みでも通常色を維持 */
+  color: var(--primary-blue);
 }
 
 .nav ul li a:hover {
@@ -136,7 +133,6 @@ body {
 .hamburger-menu span:nth-child(2) { top: 11px; }
 .hamburger-menu span:nth-child(3) { top: 22px; }
 
-/* ハンバーガー「×」状態 */
 #js-hamburger.active span:nth-child(1) {
   top: 11px;
   transform: rotate(45deg);
@@ -170,7 +166,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
 }
 
 .hero-svg-wrapper svg,
@@ -213,9 +208,7 @@ body {
 }
 
 /* 窓の光アニメーション */
-#window-base,
-#window,
-.hero-svg-wrapper svg path[fill="#25399c"] {
+#window-base {
   animation: window-glow 4s infinite alternate ease-in-out;
 }
 
@@ -250,7 +243,6 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
   text-align: center;
 }
 
-/* セクションタイトル */
 .section-title {
   display: block;
   width: 100%;
@@ -259,8 +251,6 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
   font-weight: 300;
   letter-spacing: 0.2em;
   margin: 0 auto 40px;
-  border: none;
-  padding: 0;
 }
 
 /* スクロール出現アニメーション */
@@ -276,8 +266,7 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
 }
 
 /* ボタン共通 */
-.custom-btn,
-.btn {
+.custom-btn {
   display: inline-block;
   background-color: var(--primary-blue);
   color: #ffffff;
@@ -293,17 +282,14 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
   cursor: pointer;
 }
 
-.custom-btn:hover,
-.btn:hover {
+.custom-btn:hover {
   background-color: #ffffff;
   color: var(--primary-blue);
-  border: 2px solid var(--primary-blue); /* 縁取りを維持 */
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(37, 57, 156, 0.3);
 }
 
-.custom-btn:visited,
-.btn:visited {
+.custom-btn:visited {
   color: #ffffff;
 }
 
@@ -325,12 +311,6 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
   margin-bottom: 30px;
 }
 
-/* 装飾線なし */
-.concept-lead::after {
-  display: none;
-  content: none;
-}
-
 .story-text {
   max-width: 650px;
   margin: 0 auto;
@@ -341,7 +321,6 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
   text-align: left;
 }
 
-/* スマホ専用改行 */
 .sp-only { display: none; }
 
 
@@ -350,7 +329,6 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
 ------------------------------------------- */
 .works-grid {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-items: stretch;
@@ -385,14 +363,13 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
   position: relative;
   font-family: 'Playfair Display', serif;
   font-size: 1.3rem;
-  font-weight: 700; /* concept-lead に合わせて統一 */
+  font-weight: 700;
   color: var(--primary-blue);
   margin-bottom: 20px;
   padding-bottom: 8px;
   cursor: pointer;
 }
 
-/* 下線アニメーション */
 .work-item h3::after {
   content: '';
   position: absolute;
@@ -410,8 +387,8 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
 
 .work-item p {
   flex-grow: 1;
-  line-height: 1.8;
   font-size: 0.95rem;
+  line-height: 1.8;
   color: #555;
   text-align: left;
   margin: 0;
@@ -441,11 +418,6 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
   flex-direction: column;
   align-items: center;
   text-align: center;
-  /* 余分な装飾をリセット */
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  padding: 0;
 }
 
 .lookbook-image {
@@ -464,11 +436,6 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
   max-height: 100%;
   object-fit: contain;
   display: block;
-  transition: none;
-}
-
-.lookbook-item:hover .lookbook-image img {
-  transform: none; /* ホバーで動かさない */
 }
 
 .lookbook-info {
@@ -485,7 +452,6 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
   letter-spacing: 0.15em;
   text-transform: uppercase;
   margin: 0 auto 8px;
-  width: 100%;
 }
 
 .lookbook-item-title {
@@ -496,12 +462,11 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
   color: var(--primary-blue);
   line-height: 1.5;
   margin: 0 auto;
-  width: 100%;
 }
 
 
 /* -------------------------------------------
-   9. Shop (Goods Grid) Section
+   9. Shop Section
 ------------------------------------------- */
 #shop .goods-grid {
   display: grid;
@@ -557,7 +522,6 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
   font-weight: bold;
   color: var(--primary-blue);
   margin-bottom: 5px;
-  text-align: center;
 }
 
 .item-price {
@@ -566,14 +530,6 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
   font-weight: 700;
   color: var(--primary-blue);
   margin: 5px 0 15px;
-  text-align: center;
-}
-
-.item-price small {
-  font-size: 0.7rem;
-  font-weight: 400;
-  color: #888;
-  margin-left: 3px;
 }
 
 .add-to-cart-btn {
@@ -582,7 +538,6 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
   font-size: 0.85rem;
 }
 
-/* 注意書き */
 .caution-text {
   display: block;
   margin-top: 15px;
@@ -624,7 +579,6 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
 .form-group {
   width: 100%;
   margin-bottom: 25px;
-  text-align: left;
 }
 
 .form-group label {
@@ -647,7 +601,6 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
 .form-group textarea {
   display: block;
   width: 100%;
-  max-width: none;
   padding: 12px 15px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
@@ -712,7 +665,6 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
   transform: scale(1.1);
 }
 
-/* Material Symbolsアイコン */
 .cart-floating-icon .material-symbols-outlined {
   font-size: 28px;
   color: #ffffff;
@@ -793,11 +745,9 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
 
 
 /* -------------------------------------------
-   13. Responsive — Tablet (768px以上)
+   13. Responsive — Tablet (768px〜)
 ------------------------------------------- */
 @media (min-width: 768px) {
-
-  /* ナビゲーションを横並びで表示 */
   .header .nav {
     display: block;
     position: static;
@@ -811,7 +761,6 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
   }
 
   .nav ul {
-    display: flex;
     flex-direction: row;
     gap: 20px;
   }
@@ -826,13 +775,10 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
    14. Responsive — Mobile (〜767px)
 ------------------------------------------- */
 @media (max-width: 767px) {
-
-  /* ハンバーガーメニューを表示 */
   .hamburger-menu {
     display: block;
   }
 
-  /* スマホナビ：画面外に隠す */
   .nav {
     position: fixed;
     top: 0;
@@ -860,7 +806,6 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
     font-size: 1.5rem;
   }
 
-  /* Hero */
   .hero {
     height: 75vh;
   }
@@ -878,7 +823,6 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
     text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 5px rgba(255, 255, 255, 0.8);
   }
 
-  /* Concept */
   .sp-only {
     display: block;
   }
@@ -893,7 +837,6 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
     padding: 0 20px;
   }
 
-  /* Lookbook */
   .lookbook-grid {
     flex-direction: column;
     align-items: center;
@@ -905,13 +848,11 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
     font-size: 1.2rem;
   }
 
-  /* Shop: スマホでも2列 */
   #shop .goods-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
   }
 
-  /* Footer */
   .footer {
     padding: 60px 0 40px;
   }
@@ -920,7 +861,6 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
     gap: 15px;
   }
 
-  /* Wrapper */
   .wrapper {
     padding: 0 25px;
   }
@@ -935,8 +875,6 @@ section:nth-of-type(odd)  { background-color: var(--soft-pink); }
    15. Responsive — Small Mobile (〜480px)
 ------------------------------------------- */
 @media (max-width: 480px) {
-
-  /* Shop: 小さいスマホは1列 */
   #shop .goods-grid {
     grid-template-columns: 1fr;
     padding: 0 40px;
